@@ -1,0 +1,7 @@
+# Private folder 
+# (used for information which is not directly related to the project)
+_private/
+
+# Archives
+*.zip
+
