@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name SRAMs)(type Legacy)(uri "/data/KiCad Custom Libraries/SRAMS/SRAMs.lib")(options "")(descr ""))
+  (lib (name Frequency_Synthesizers)(type Legacy)(uri "/data/KiCad Custom Libraries/Oscillators/Frequency_Synthesizers.lib")(options "")(descr ""))
+  (lib (name MY_74xx)(type Legacy)(uri "/data/KiCad Custom Libraries/MY_74xx/MY_74xx.lib")(options "")(descr ""))
+  (lib (name TxDAC)(type Legacy)(uri "/data/KiCad Custom Libraries/TxDAC/TxDAC.lib")(options "")(descr ""))
+)
