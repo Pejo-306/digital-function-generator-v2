@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 2
+Sheet 2 3
 Title "Digital Function Generator v2 - DDS System"
 Date "2019-10-28"
 Rev "1"
@@ -14,4 +14,135 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L TxDAC:AD9764AR U?
+U 1 1 5DBB83CF
+P 8600 3050
+F 0 "U?" H 8600 4228 50  0000 C CNN
+F 1 "AD9764AR" H 8600 4137 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-28W_7.5x17.9mm_Pitch1.27mm" H 8600 3000 50  0001 C CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/AD9764.pdf" H 8600 3100 50  0001 C CNN
+	1    8600 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L SRAMs:CY7C1021D-10ZSXI U?
+U 1 1 5DBB84FF
+P 6100 2850
+F 0 "U?" H 5650 4050 50  0000 C CNN
+F 1 "CY7C1021D-10ZSXI" V 6100 2850 50  0000 C CNN
+F 2 "" H 5300 3600 50  0001 C CNN
+F 3 "https://www.cypress.com/file/42721/download" H 6100 2900 50  0001 C CNN
+	1    6100 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Frequency_Synthesizers:DS1085Z-10+ U?
+U 1 1 5DBB873B
+P 7750 5850
+F 0 "U?" H 7750 6378 50  0000 C CNN
+F 1 "DS1085Z-10+" H 7750 6287 50  0000 C CNN
+F 2 "" H 6200 5800 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/DS1085.pdf" H 7750 5850 50  0001 C CNN
+	1    7750 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Interface_Expansion:MCP23017_SO U?
+U 1 1 5DBB8AEE
+P 5800 5850
+F 0 "U?" H 5800 7128 50  0000 C CNN
+F 1 "MCP23017_SO" H 5800 7037 50  0000 C CNN
+F 2 "Package_SO:SOIC-28W_7.5x17.9mm_P1.27mm" H 6000 4850 50  0001 L CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf" H 6000 4750 50  0001 L CNN
+	1    5800 5850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 1900 5400 1900
+Wire Wire Line
+	5500 2000 5400 2000
+Wire Wire Line
+	5500 2100 5400 2100
+Wire Wire Line
+	5500 2200 5400 2200
+Wire Wire Line
+	5500 2300 5400 2300
+Wire Wire Line
+	5500 2400 5400 2400
+Wire Wire Line
+	5500 2500 5400 2500
+Wire Wire Line
+	5500 2600 5400 2600
+Wire Wire Line
+	5500 2700 5400 2700
+Wire Wire Line
+	5500 2800 5400 2800
+Wire Wire Line
+	5500 2900 5400 2900
+Wire Wire Line
+	5500 3000 5400 3000
+Wire Wire Line
+	5500 3100 5400 3100
+Wire Wire Line
+	5500 3200 5400 3200
+Wire Wire Line
+	5500 3300 5400 3300
+$Sheet
+S 4300 1700 600  1700
+U 5DBBB708
+F0 "16-bit Counter" 50
+F1 "16-bit-counter.sch" 50
+F2 "Q0" I R 4900 1800 50 
+F3 "Q1" I R 4900 1900 50 
+F4 "Q2" I R 4900 2000 50 
+F5 "Q3" I R 4900 2100 50 
+F6 "Q4" I R 4900 2200 50 
+F7 "Q5" I R 4900 2300 50 
+F8 "Q6" I R 4900 2400 50 
+F9 "Q7" I R 4900 2500 50 
+F10 "Q8" I R 4900 2600 50 
+F11 "Q9" I R 4900 2700 50 
+F12 "Q10" I R 4900 2800 50 
+F13 "Q11" I R 4900 2900 50 
+F14 "MR1" I L 4300 2400 50 
+F15 "~CP" I L 4300 2600 50 
+F16 "Q12" I R 4900 3000 50 
+F17 "Q13" I R 4900 3100 50 
+F18 "Q14" I R 4900 3200 50 
+F19 "Q15" I R 4900 3300 50 
+F20 "MR2" I L 4300 2500 50 
+$EndSheet
+Wire Wire Line
+	4900 1800 5500 1800
+Wire Wire Line
+	4900 1900 5400 1900
+Wire Wire Line
+	4900 2000 5400 2000
+Wire Wire Line
+	4900 2100 5400 2100
+Wire Wire Line
+	4900 2200 5400 2200
+Wire Wire Line
+	4900 2300 5400 2300
+Wire Wire Line
+	4900 2400 5400 2400
+Wire Wire Line
+	4900 2500 5400 2500
+Wire Wire Line
+	4900 2600 5400 2600
+Wire Wire Line
+	4900 2700 5400 2700
+Wire Wire Line
+	4900 2800 5400 2800
+Wire Wire Line
+	4900 2900 5400 2900
+Wire Wire Line
+	4900 3000 5400 3000
+Wire Wire Line
+	4900 3100 5400 3100
+Wire Wire Line
+	4900 3200 5400 3200
+Wire Wire Line
+	4900 3300 5400 3300
 $EndSCHEMATC
