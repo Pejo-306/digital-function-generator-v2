@@ -6,7 +6,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 3
 Title "Digital Function Generator v2"
-Date "2019-10-31"
+Date "2019-11-05"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -15,10 +15,21 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 4750 3300 1350 800 
+S 4750 3300 1300 1100
 U 5DB72CF6
 F0 "DDS System" 50
 F1 "DDS-system.sch" 50
+F2 "IOUTA" I R 6050 3800 50 
+F3 "IOUTB" I R 6050 3900 50 
+F4 "~IOExRESET" I L 4750 3800 50 
+F5 "R\\~W" I L 4750 4000 50 
+F6 "~CMR1" I L 4750 3600 50 
+F7 "~CMR2" I L 4750 3700 50 
+F8 "SDA" I R 6050 3500 50 
+F9 "SCL" I R 6050 3400 50 
+F10 "PWRDWN" I L 4750 3400 50 
+F11 "~OSCOE" I L 4750 4300 50 
+F12 "~CP" I L 4750 4100 50 
 $EndSheet
 $Comp
 L Connector_Generic:Conn_02x05_Odd_Even J?
@@ -516,9 +527,9 @@ Wire Wire Line
 Wire Wire Line
 	4750 7100 4850 7100
 Wire Wire Line
-	4550 6300 4850 6500
+	4550 6300 4750 6500
 Wire Wire Line
-	5650 6500 5950 6300
+	5750 6500 5950 6300
 $Comp
 L power:GNDA #PWR0115
 U 1 1 5DBE9E60
@@ -552,4 +563,8 @@ Wire Notes Line
 	6400 5200 6400 7700
 Text Notes 550  5200 0    50   ~ 0
 POWER SUPPLY
+Wire Wire Line
+	4850 6500 4750 6500
+Wire Wire Line
+	5750 6500 5650 6500
 $EndSCHEMATC
