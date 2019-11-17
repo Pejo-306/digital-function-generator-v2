@@ -3,4 +3,6 @@
   (lib (name Frequency_Synthesizers)(type Legacy)(uri "/data/KiCad Custom Libraries/Oscillators/Frequency_Synthesizers.lib")(options "")(descr ""))
   (lib (name MY_74xx)(type Legacy)(uri "/data/KiCad Custom Libraries/MY_74xx/MY_74xx.lib")(options "")(descr ""))
   (lib (name TxDAC)(type Legacy)(uri "/data/KiCad Custom Libraries/TxDAC/TxDAC.lib")(options "")(descr ""))
+  (lib (name ulib_IC_Amplifiers)(type Legacy)(uri ${KICAD_USER_LIBRARY}/user-symbols/ulib_IC_Amplifiers.lib)(options "")(descr ""))
+  (lib (name ulib_Digital_Potentiometers)(type Legacy)(uri "/data/KiCad Custom Libraries/Digital Potentiometers/ulib_Digital_Potentiometers.lib")(options "")(descr ""))
 )
