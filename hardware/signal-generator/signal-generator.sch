@@ -4,9 +4,9 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 3
+Sheet 1 4
 Title "Digital Function Generator v2"
-Date "2019-11-05"
+Date "2019-11-17"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -567,4 +567,15 @@ Wire Wire Line
 	4850 6500 4750 6500
 Wire Wire Line
 	5750 6500 5650 6500
+$Sheet
+S 6450 3300 1300 1100
+U 5DCBE811
+F0 "Output Circuitry" 50
+F1 "output-circuitry.sch" 50
+F2 "~DISABLE" I L 6450 3500 50 
+F3 "VOUT" I R 7750 3850 50 
+F4 "SDA" I R 7750 3500 50 
+F5 "SCL" I R 7750 3400 50 
+F6 "VIN" I L 6450 3850 50 
+$EndSheet
 $EndSCHEMATC
