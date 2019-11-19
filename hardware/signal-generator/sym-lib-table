@@ -5,4 +5,5 @@
   (lib (name TxDAC)(type Legacy)(uri "/data/KiCad Custom Libraries/TxDAC/TxDAC.lib")(options "")(descr ""))
   (lib (name ulib_IC_Amplifiers)(type Legacy)(uri ${KICAD_USER_LIBRARY}/user-symbols/ulib_IC_Amplifiers.lib)(options "")(descr ""))
   (lib (name ulib_Digital_Potentiometers)(type Legacy)(uri "/data/KiCad Custom Libraries/Digital Potentiometers/ulib_Digital_Potentiometers.lib")(options "")(descr ""))
+  (lib (name ulib_Displays)(type Legacy)(uri "/data/KiCad Custom Libraries/Displays/ulib_Displays.lib")(options "")(descr ""))
 )
