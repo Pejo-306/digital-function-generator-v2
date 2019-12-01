@@ -4,9 +4,9 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 4
+Sheet 3 6
 Title "Digital Function Generator v2 - DDS 16-bit counter"
-Date "2019-11-01"
+Date "2019-11-24"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -14,155 +14,12 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L MY_74xx:74HC4040 U?
-U 1 1 5DBBBCEC
-P 4250 2100
-F 0 "U?" H 4000 2800 50  0000 C CNN
-F 1 "74HC4040" H 4550 2800 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-16_3.9x9.9mm_Pitch1.27mm" H 4250 2050 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT4040.pdf" H 4250 2150 50  0001 C CNN
-	1    4250 2100
-	1    0    0    -1  
-$EndComp
-$Comp
-L MY_74xx:74HC4040 U?
-U 1 1 5DBBBD57
-P 4250 5450
-F 0 "U?" H 4000 6150 50  0000 C CNN
-F 1 "74HC4040" H 4550 6150 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-16_3.9x9.9mm_Pitch1.27mm" H 4250 5400 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT4040.pdf" H 4250 5500 50  0001 C CNN
-	1    4250 5450
-	1    0    0    -1  
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 1 1 5DBBC1D6
-P 5050 3350
-F 0 "U?" V 5300 3600 50  0000 R CNN
-F 1 "74HC08" H 5150 3550 50  0000 R CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5050 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5050 3400 50  0001 C CNN
-	1    5050 3350
-	0    -1   1    0   
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 2 1 5DBBC2D0
-P 5450 3350
-F 0 "U?" V 5700 3450 50  0000 L CNN
-F 1 "74HC08" H 5250 3550 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5450 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5450 3400 50  0001 C CNN
-	2    5450 3350
-	0    -1   1    0   
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 3 1 5DBBCBBC
-P 5850 3350
-F 0 "U?" V 6100 3600 50  0000 R CNN
-F 1 "74HC08" H 5950 3550 50  0000 R CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5850 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5850 3400 50  0001 C CNN
-	3    5850 3350
-	0    -1   1    0   
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 4 1 5DBBCDF3
-P 6250 3350
-F 0 "U?" V 6500 3600 50  0000 R CNN
-F 1 "74HC08" H 6350 3550 50  0000 R CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6250 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6250 3400 50  0001 C CNN
-	4    6250 3350
-	0    -1   1    0   
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 5 1 5DBBD6FE
-P 7000 5550
-F 0 "U?" H 7230 5596 50  0000 L CNN
-F 1 "74HC08" H 7230 5505 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7000 5500 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7000 5600 50  0001 C CNN
-	5    7000 5550
-	1    0    0    -1  
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 1 1 5DBBDCC6
-P 6650 3350
-F 0 "U?" V 6900 3600 50  0000 R CNN
-F 1 "74HC08" H 6750 3550 50  0000 R CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6650 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6650 3400 50  0001 C CNN
-	1    6650 3350
-	0    -1   1    0   
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 2 1 5DBBE205
-P 7050 3350
-F 0 "U?" V 7300 3600 50  0000 R CNN
-F 1 "74HC08" H 7150 3550 50  0000 R CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7050 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7050 3400 50  0001 C CNN
-	2    7050 3350
-	0    -1   1    0   
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 5 1 5DBBED9F
-P 7900 5550
-F 0 "U?" H 8130 5596 50  0000 L CNN
-F 1 "74HC08" H 8130 5505 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7900 5500 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7900 5600 50  0001 C CNN
-	5    7900 5550
-	1    0    0    -1  
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 3 1 5DBBF2D3
-P 5750 5100
-F 0 "U?" H 5750 5425 50  0000 C CNN
-F 1 "74HC08" H 5750 5334 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5750 5050 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5750 5150 50  0001 C CNN
-	3    5750 5100
-	1    0    0    -1  
-$EndComp
-$Comp
-L MY_74xx:74HC08 U?
-U 4 1 5DBBF327
-P 5750 5800
-F 0 "U?" H 5750 6125 50  0000 C CNN
-F 1 "74HC08" H 5750 6034 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5750 5750 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5750 5850 50  0001 C CNN
-	4    5750 5800
-	1    0    0    -1  
-$EndComp
 NoConn ~ 5450 5000
 NoConn ~ 5450 5200
 NoConn ~ 5450 5700
 NoConn ~ 5450 5900
 NoConn ~ 6050 5800
 NoConn ~ 6050 5100
-$Comp
-L MY_74xx:74HC30 U?
-U 1 1 5DBC0C97
-P 3350 5300
-F 0 "U?" H 3300 5550 50  0000 L CNN
-F 1 "74HC30" H 3250 5100 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 3350 5250 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT30.pdf" H 3350 5350 50  0001 C CNN
-	1    3350 5300
-	1    0    0    1   
-$EndComp
 Text HLabel 8850 1550 2    50   Input ~ 0
 Q0
 Text HLabel 8850 1650 2    50   Input ~ 0
@@ -189,17 +46,6 @@ Text HLabel 8850 2650 2    50   Input ~ 0
 Q11
 Wire Wire Line
 	3650 5300 3850 5300
-$Comp
-L MY_74xx:74HC30 U?
-U 2 1 5DBB78B3
-P 8800 5550
-F 0 "U?" H 9050 5600 50  0000 L CNN
-F 1 "74HC30" H 9050 5500 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 8800 5500 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT30.pdf" H 8800 5600 50  0001 C CNN
-	2    8800 5550
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:C C?
 U 1 1 5DBB7F3D
@@ -892,6 +738,160 @@ Wire Notes Line
 	5350 6400 6150 6400
 Text Notes 5350 4600 0    50   ~ 0
 UNUSED LOGIC GATES
+$Comp
+L ulib_MY_74xx:74HC4040 U?
+U 1 1 5DDE79E4
+P 4250 2100
+F 0 "U?" H 4000 2800 50  0000 C CNN
+F 1 "74HC4040" H 4500 2800 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-16_3.9x9.9mm_Pitch1.27mm" H 4250 2050 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT4040.pdf" H 4250 2150 50  0001 C CNN
+	1    4250 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC4040 U?
+U 1 1 5DDE7D79
+P 4250 5450
+F 0 "U?" H 4000 6150 50  0000 C CNN
+F 1 "74HC4040" H 4500 6150 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-16_3.9x9.9mm_Pitch1.27mm" H 4250 5400 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT4040.pdf" H 4250 5500 50  0001 C CNN
+	1    4250 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC30 U?
+U 1 1 5DDE81EA
+P 3350 5300
+F 0 "U?" H 3350 4722 50  0000 C CNN
+F 1 "74HC30" H 3350 4813 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 3350 5250 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT30.pdf" H 3350 5350 50  0001 C CNN
+	1    3350 5300
+	1    0    0    1   
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC30 U?
+U 2 1 5DDE832D
+P 8800 5550
+F 0 "U?" H 9050 5600 50  0000 L CNN
+F 1 "74HC30" H 9050 5500 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 8800 5500 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT30.pdf" H 8800 5600 50  0001 C CNN
+	2    8800 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 5 1 5DDE868F
+P 7900 5550
+F 0 "U?" H 8130 5596 50  0000 L CNN
+F 1 "74HC08" H 8130 5505 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7900 5500 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7900 5600 50  0001 C CNN
+	5    7900 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 5 1 5DDE8710
+P 7000 5550
+F 0 "U?" H 7230 5596 50  0000 L CNN
+F 1 "74HC08" H 7230 5505 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7000 5500 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7000 5600 50  0001 C CNN
+	5    7000 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 1 1 5DDE88D1
+P 5050 3350
+F 0 "U?" V 5300 3100 50  0000 L CNN
+F 1 "74HC08" H 4850 3150 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5050 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5050 3400 50  0001 C CNN
+	1    5050 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 2 1 5DDE89F7
+P 5450 3350
+F 0 "U?" V 5700 3100 50  0000 L CNN
+F 1 "74HC08" H 5250 3150 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5450 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5450 3400 50  0001 C CNN
+	2    5450 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 3 1 5DDE8B26
+P 5850 3350
+F 0 "U?" V 6100 3100 50  0000 L CNN
+F 1 "74HC08" H 5650 3150 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5850 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5850 3400 50  0001 C CNN
+	3    5850 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 4 1 5DDE8C64
+P 6250 3350
+F 0 "U?" V 6500 3100 50  0000 L CNN
+F 1 "74HC08" H 6050 3150 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6250 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6250 3400 50  0001 C CNN
+	4    6250 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 1 1 5DDE8DB3
+P 6650 3350
+F 0 "U?" V 6900 3100 50  0000 L CNN
+F 1 "74HC08" H 6450 3150 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6650 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6650 3400 50  0001 C CNN
+	1    6650 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 2 1 5DDE8F14
+P 7050 3350
+F 0 "U?" V 7300 3100 50  0000 L CNN
+F 1 "74HC08" H 6850 3150 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7050 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7050 3400 50  0001 C CNN
+	2    7050 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 3 1 5DDE9105
+P 5750 5100
+F 0 "U?" H 5750 5425 50  0000 C CNN
+F 1 "74HC08" H 5750 5334 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5750 5050 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5750 5150 50  0001 C CNN
+	3    5750 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 4 1 5DDE9185
+P 5750 5800
+F 0 "U?" H 5750 6125 50  0000 C CNN
+F 1 "74HC08" H 5750 6034 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5750 5750 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5750 5850 50  0001 C CNN
+	4    5750 5800
+	1    0    0    -1  
+$EndComp
 Wire Bus Line
 	2650 3950 7150 3950
 Wire Bus Line

@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 5 6
+Sheet 6 6
 Title "Digital Function Generator v2 - Level Shifter"
 Date "2019-12-01"
 Rev "1"
@@ -279,7 +279,7 @@ LCD_SDI
 Text HLabel 5500 4250 2    50   Input ~ 0
 LCD_SCK
 Text HLabel 5700 1950 2    50   Input ~ 0
-LCD_DC|~RS
+LCD_DC\~RS
 Text HLabel 5700 2750 2    50   Input ~ 0
 LCD_~RESET
 $Comp
@@ -779,7 +779,7 @@ Text HLabel 4500 3550 0    50   Input ~ 0
 Text HLabel 4500 2750 0    50   Input ~ 0
 ~RESET~_LCD
 Text HLabel 4500 1950 0    50   Input ~ 0
-DC|~RS~_LCD
+DC\~RS~_LCD
 Text HLabel 6800 1950 0    50   Input ~ 0
 IRQ_T
 Wire Notes Line

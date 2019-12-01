@@ -4,9 +4,9 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 4
+Sheet 2 6
 Title "Digital Function Generator v2 - DDS System"
-Date "2019-11-05"
+Date "2019-12-01"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -14,39 +14,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L TxDAC:AD9764AR U?
-U 1 1 5DBB83CF
-P 8100 2500
-F 0 "U?" H 7650 1550 50  0000 C CNN
-F 1 "AD9764AR" H 8500 1550 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-28W_7.5x17.9mm_Pitch1.27mm" H 8100 2450 50  0001 C CNN
-F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/AD9764.pdf" H 8100 2550 50  0001 C CNN
-	1    8100 2500
-	1    0    0    -1  
-$EndComp
-$Comp
-L SRAMs:CY7C1021D-10ZSXI U?
-U 1 1 5DBB84FF
-P 5250 2550
-F 0 "U?" H 4800 3750 50  0000 C CNN
-F 1 "CY7C1021D-10ZSXI" V 5250 2550 50  0000 C CNN
-F 2 "" H 4450 3300 50  0001 C CNN
-F 3 "https://www.cypress.com/file/42721/download" H 5250 2600 50  0001 C CNN
-	1    5250 2550
-	1    0    0    -1  
-$EndComp
-$Comp
-L Frequency_Synthesizers:DS1085Z-10+ U?
-U 1 1 5DBB873B
-P 1550 3350
-F 0 "U?" H 1200 3050 50  0000 C CNN
-F 1 "DS1085Z-10+" H 1900 3050 50  0000 C CNN
-F 2 "" H 0   3300 50  0001 C CNN
-F 3 "https://datasheets.maximintegrated.com/en/ds/DS1085.pdf" H 1550 3350 50  0001 C CNN
-	1    1550 3350
-	1    0    0    -1  
-$EndComp
 $Comp
 L Interface_Expansion:MCP23017_SO U?
 U 1 1 5DBB8AEE
@@ -755,8 +722,6 @@ F 3 "" H 5250 6900 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5250 6800 5250 6900
-NoConn ~ 4550 5500
-NoConn ~ 4550 5600
 Wire Wire Line
 	4550 6300 4450 6300
 Wire Wire Line
@@ -994,4 +959,45 @@ F 3 "" H 4450 6200 50  0001 C CNN
 	1    4450 6200
 	1    0    0    -1  
 $EndComp
+$Comp
+L ulib_TxDAC:AD9764AR U?
+U 1 1 5DDD4020
+P 8100 2500
+F 0 "U?" H 8550 1550 50  0000 C CNN
+F 1 "AD9764AR" H 7650 1550 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-28W_7.5x17.9mm_Pitch1.27mm" H 8100 2450 50  0001 C CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/AD9764.pdf" H 8100 2550 50  0001 C CNN
+	1    8100 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_SRAMs:CY7C1021D-10ZSXI U?
+U 1 1 5DDE4989
+P 5250 2550
+F 0 "U?" H 5800 1350 50  0000 C CNN
+F 1 "CY7C1021D-10ZSXI" V 5250 2600 50  0000 C CNN
+F 2 "" H 4450 3300 50  0001 C CNN
+F 3 "https://www.cypress.com/file/42721/download" H 5250 2600 50  0001 C CNN
+	1    5250 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_Frequency_Synthesizers:DS1085Z-10+ U?
+U 1 1 5DDE50A7
+P 1550 3350
+F 0 "U?" H 1200 3050 50  0000 C CNN
+F 1 "DS1085Z-10+" H 1900 3050 50  0000 C CNN
+F 2 "" H 0   3300 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/DS1085.pdf" H 1550 3350 50  0001 C CNN
+	1    1550 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4550 5500 4450 5500
+Wire Wire Line
+	4450 5600 4550 5600
+Text HLabel 4450 5600 0    50   Input ~ 0
+IOExINTA
+Text HLabel 4450 5500 0    50   Input ~ 0
+IOExINTB
 $EndSCHEMATC
