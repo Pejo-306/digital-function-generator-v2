@@ -4,9 +4,9 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 6
+Sheet 3 7
 Title "Digital Function Generator v2 - DDS 16-bit counter"
-Date "2019-11-24"
+Date "2019-12-02"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -14,35 +14,29 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-NoConn ~ 5450 5000
-NoConn ~ 5450 5200
-NoConn ~ 5450 5700
-NoConn ~ 5450 5900
-NoConn ~ 6050 5800
-NoConn ~ 6050 5100
-Text HLabel 8850 1550 2    50   Input ~ 0
+Text HLabel 6150 4900 2    50   Input ~ 0
 Q0
-Text HLabel 8850 1650 2    50   Input ~ 0
+Text HLabel 6150 5000 2    50   Input ~ 0
 Q1
-Text HLabel 8850 1750 2    50   Input ~ 0
+Text HLabel 6150 5100 2    50   Input ~ 0
 Q2
-Text HLabel 8850 1850 2    50   Input ~ 0
+Text HLabel 6150 5200 2    50   Input ~ 0
 Q3
-Text HLabel 8850 1950 2    50   Input ~ 0
+Text HLabel 6150 5300 2    50   Input ~ 0
 Q4
-Text HLabel 8850 2050 2    50   Input ~ 0
+Text HLabel 6150 5400 2    50   Input ~ 0
 Q5
-Text HLabel 8850 2150 2    50   Input ~ 0
+Text HLabel 6150 5500 2    50   Input ~ 0
 Q6
-Text HLabel 8850 2250 2    50   Input ~ 0
+Text HLabel 6150 5600 2    50   Input ~ 0
 Q7
-Text HLabel 8850 2350 2    50   Input ~ 0
+Text HLabel 6150 5700 2    50   Input ~ 0
 Q8
-Text HLabel 8850 2450 2    50   Input ~ 0
+Text HLabel 6150 5800 2    50   Input ~ 0
 Q9
-Text HLabel 8850 2550 2    50   Input ~ 0
+Text HLabel 6150 5900 2    50   Input ~ 0
 Q10
-Text HLabel 8850 2650 2    50   Input ~ 0
+Text HLabel 6150 6000 2    50   Input ~ 0
 Q11
 Wire Wire Line
 	3650 5300 3850 5300
@@ -235,13 +229,13 @@ Entry Wire Line
 	2650 5400 2750 5500
 Entry Wire Line
 	2650 5500 2750 5600
-Text HLabel 8850 2750 2    50   Input ~ 0
+Text HLabel 6150 6100 2    50   Input ~ 0
 Q12
-Text HLabel 8850 2850 2    50   Input ~ 0
+Text HLabel 6150 6200 2    50   Input ~ 0
 Q13
-Text HLabel 8850 2950 2    50   Input ~ 0
+Text HLabel 6150 6300 2    50   Input ~ 0
 Q14
-Text HLabel 8850 3050 2    50   Input ~ 0
+Text HLabel 6150 6400 2    50   Input ~ 0
 Q15
 NoConn ~ 4650 5300
 NoConn ~ 4650 5400
@@ -444,69 +438,69 @@ Q14
 Text Label 4650 5200 0    50   ~ 0
 Q15
 Wire Wire Line
-	8850 1550 8750 1550
+	6150 4900 6050 4900
 Wire Wire Line
-	8850 1650 8750 1650
+	6150 5000 6050 5000
 Wire Wire Line
-	8850 1750 8750 1750
+	6150 5100 6050 5100
 Wire Wire Line
-	8850 1850 8750 1850
+	6150 5200 6050 5200
 Wire Wire Line
-	8850 1950 8750 1950
+	6150 5300 6050 5300
 Wire Wire Line
-	8850 2050 8750 2050
+	6150 5400 6050 5400
 Wire Wire Line
-	8850 2150 8750 2150
+	6150 5500 6050 5500
 Wire Wire Line
-	8850 2250 8750 2250
+	6150 5600 6050 5600
 Wire Wire Line
-	8850 2350 8750 2350
+	6150 5700 6050 5700
 Wire Wire Line
-	8850 2450 8750 2450
+	6150 5800 6050 5800
 Wire Wire Line
-	8850 2550 8750 2550
+	6150 5900 6050 5900
 Wire Wire Line
-	8850 2650 8750 2650
+	6150 6000 6050 6000
 Wire Wire Line
-	8850 2750 8750 2750
+	6150 6100 6050 6100
 Wire Wire Line
-	8850 2850 8750 2850
-Text Label 8750 1550 2    50   ~ 0
+	6150 6200 6050 6200
+Text Label 6050 4900 2    50   ~ 0
 Q0
-Text Label 8750 1650 2    50   ~ 0
+Text Label 6050 5000 2    50   ~ 0
 Q1
-Text Label 8750 1750 2    50   ~ 0
+Text Label 6050 5100 2    50   ~ 0
 Q2
-Text Label 8750 1850 2    50   ~ 0
+Text Label 6050 5200 2    50   ~ 0
 Q3
-Text Label 8750 1950 2    50   ~ 0
+Text Label 6050 5300 2    50   ~ 0
 Q4
-Text Label 8750 2050 2    50   ~ 0
+Text Label 6050 5400 2    50   ~ 0
 Q5
-Text Label 8750 2150 2    50   ~ 0
+Text Label 6050 5500 2    50   ~ 0
 Q6
-Text Label 8750 2250 2    50   ~ 0
+Text Label 6050 5600 2    50   ~ 0
 Q7
-Text Label 8750 2350 2    50   ~ 0
+Text Label 6050 5700 2    50   ~ 0
 Q8
-Text Label 8750 2450 2    50   ~ 0
+Text Label 6050 5800 2    50   ~ 0
 Q9
-Text Label 8750 2550 2    50   ~ 0
+Text Label 6050 5900 2    50   ~ 0
 Q10
-Text Label 8750 2650 2    50   ~ 0
+Text Label 6050 6000 2    50   ~ 0
 Q11
-Text Label 8750 2750 2    50   ~ 0
+Text Label 6050 6100 2    50   ~ 0
 Q12
-Text Label 8750 2850 2    50   ~ 0
+Text Label 6050 6200 2    50   ~ 0
 Q13
-Text Label 8750 2950 2    50   ~ 0
+Text Label 6050 6300 2    50   ~ 0
 Q14
-Text Label 8750 3050 2    50   ~ 0
+Text Label 6050 6400 2    50   ~ 0
 Q15
 Wire Wire Line
-	8750 3050 8850 3050
+	6050 6400 6150 6400
 Wire Wire Line
-	8850 2950 8750 2950
+	6150 6300 6050 6300
 Text Label 7050 2850 0    50   ~ 0
 Q[0..11]
 Wire Notes Line
@@ -548,197 +542,6 @@ Connection ~ 3450 1950
 Wire Wire Line
 	3450 1950 3850 1950
 $Comp
-L Device:C C?
-U 1 1 5DBDEC4E
-P 6750 5000
-F 0 "C?" V 6498 5000 50  0000 C CNN
-F 1 "100nF" V 6589 5000 50  0000 C CNN
-F 2 "" H 6788 4850 50  0001 C CNN
-F 3 "~" H 6750 5000 50  0001 C CNN
-	1    6750 5000
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6900 5000 7000 5000
-Wire Wire Line
-	7000 5000 7000 5050
-Wire Wire Line
-	7000 5000 7000 4950
-Connection ~ 7000 5000
-$Comp
-L power:+5VD #PWR?
-U 1 1 5DBE32EE
-P 7000 4950
-F 0 "#PWR?" H 7000 4800 50  0001 C CNN
-F 1 "+5VD" H 7015 5123 50  0000 C CNN
-F 2 "" H 7000 4950 50  0001 C CNN
-F 3 "" H 7000 4950 50  0001 C CNN
-	1    7000 4950
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6600 5000 6550 5000
-Wire Wire Line
-	6550 5000 6550 5050
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DBE4BFC
-P 6550 5050
-F 0 "#PWR?" H 6550 4800 50  0001 C CNN
-F 1 "GNDD" H 6554 4895 50  0000 C CNN
-F 2 "" H 6550 5050 50  0001 C CNN
-F 3 "" H 6550 5050 50  0001 C CNN
-	1    6550 5050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7000 6050 7000 6100
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DBE65A0
-P 7000 6100
-F 0 "#PWR?" H 7000 5850 50  0001 C CNN
-F 1 "GNDD" H 7004 5945 50  0000 C CNN
-F 2 "" H 7000 6100 50  0001 C CNN
-F 3 "" H 7000 6100 50  0001 C CNN
-	1    7000 6100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C?
-U 1 1 5DBE6BCD
-P 7700 5000
-F 0 "C?" V 7448 5000 50  0000 C CNN
-F 1 "100nF" V 7539 5000 50  0000 C CNN
-F 2 "" H 7738 4850 50  0001 C CNN
-F 3 "~" H 7700 5000 50  0001 C CNN
-	1    7700 5000
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	7550 5000 7500 5000
-Wire Wire Line
-	7500 5000 7500 5050
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DBE8659
-P 7500 5050
-F 0 "#PWR?" H 7500 4800 50  0001 C CNN
-F 1 "GNDD" H 7504 4895 50  0000 C CNN
-F 2 "" H 7500 5050 50  0001 C CNN
-F 3 "" H 7500 5050 50  0001 C CNN
-	1    7500 5050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7900 5050 7900 5000
-Wire Wire Line
-	7900 5000 7850 5000
-Wire Wire Line
-	7900 5000 7900 4950
-Connection ~ 7900 5000
-$Comp
-L power:+5VD #PWR?
-U 1 1 5DBEBCBF
-P 7900 4950
-F 0 "#PWR?" H 7900 4800 50  0001 C CNN
-F 1 "+5VD" H 7915 5123 50  0000 C CNN
-F 2 "" H 7900 4950 50  0001 C CNN
-F 3 "" H 7900 4950 50  0001 C CNN
-	1    7900 4950
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7900 6050 7900 6100
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DBED8E9
-P 7900 6100
-F 0 "#PWR?" H 7900 5850 50  0001 C CNN
-F 1 "GNDD" H 7904 5945 50  0000 C CNN
-F 2 "" H 7900 6100 50  0001 C CNN
-F 3 "" H 7900 6100 50  0001 C CNN
-	1    7900 6100
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DC09B9F
-P 8800 6100
-F 0 "#PWR?" H 8800 5850 50  0001 C CNN
-F 1 "GNDD" H 8804 5945 50  0000 C CNN
-F 2 "" H 8800 6100 50  0001 C CNN
-F 3 "" H 8800 6100 50  0001 C CNN
-	1    8800 6100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8800 6050 8800 6100
-Wire Wire Line
-	8800 5050 8800 5000
-Wire Wire Line
-	8800 5000 8750 5000
-$Comp
-L Device:C C?
-U 1 1 5DC0D472
-P 8600 5000
-F 0 "C?" V 8348 5000 50  0000 C CNN
-F 1 "100nF" V 8439 5000 50  0000 C CNN
-F 2 "" H 8638 4850 50  0001 C CNN
-F 3 "~" H 8600 5000 50  0001 C CNN
-	1    8600 5000
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	8450 5000 8400 5000
-Wire Wire Line
-	8400 5000 8400 5050
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DC0F329
-P 8400 5050
-F 0 "#PWR?" H 8400 4800 50  0001 C CNN
-F 1 "GNDD" H 8404 4895 50  0000 C CNN
-F 2 "" H 8400 5050 50  0001 C CNN
-F 3 "" H 8400 5050 50  0001 C CNN
-	1    8400 5050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8800 5000 8800 4950
-Connection ~ 8800 5000
-$Comp
-L power:+5VD #PWR?
-U 1 1 5DC111ED
-P 8800 4950
-F 0 "#PWR?" H 8800 4800 50  0001 C CNN
-F 1 "+5VD" H 8815 5123 50  0000 C CNN
-F 2 "" H 8800 4950 50  0001 C CNN
-F 3 "" H 8800 4950 50  0001 C CNN
-	1    8800 4950
-	1    0    0    -1  
-$EndComp
-Wire Notes Line
-	6350 4600 6350 6400
-Wire Notes Line
-	6350 6400 9400 6400
-Wire Notes Line
-	9400 6400 9400 4600
-Wire Notes Line
-	9400 4600 6350 4600
-Text Notes 6350 4600 0    50   ~ 0
-POWER SUPPLY PINS
-Wire Notes Line
-	6150 6400 6150 4600
-Wire Notes Line
-	6150 4600 5350 4600
-Wire Notes Line
-	5350 4600 5350 6400
-Wire Notes Line
-	5350 6400 6150 6400
-Text Notes 5350 4600 0    50   ~ 0
-UNUSED LOGIC GATES
-$Comp
 L ulib_MY_74xx:74HC4040 U?
 U 1 1 5DDE79E4
 P 4250 2100
@@ -770,39 +573,6 @@ F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 3350 5250 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT30.pdf" H 3350 5350 50  0001 C CNN
 	1    3350 5300
 	1    0    0    1   
-$EndComp
-$Comp
-L ulib_MY_74xx:74HC30 U?
-U 2 1 5DDE832D
-P 8800 5550
-F 0 "U?" H 9050 5600 50  0000 L CNN
-F 1 "74HC30" H 9050 5500 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 8800 5500 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT30.pdf" H 8800 5600 50  0001 C CNN
-	2    8800 5550
-	1    0    0    -1  
-$EndComp
-$Comp
-L ulib_MY_74xx:74HC08 U?
-U 5 1 5DDE868F
-P 7900 5550
-F 0 "U?" H 8130 5596 50  0000 L CNN
-F 1 "74HC08" H 8130 5505 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7900 5500 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7900 5600 50  0001 C CNN
-	5    7900 5550
-	1    0    0    -1  
-$EndComp
-$Comp
-L ulib_MY_74xx:74HC08 U?
-U 5 1 5DDE8710
-P 7000 5550
-F 0 "U?" H 7230 5596 50  0000 L CNN
-F 1 "74HC08" H 7230 5505 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7000 5500 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7000 5600 50  0001 C CNN
-	5    7000 5550
-	1    0    0    -1  
 $EndComp
 $Comp
 L ulib_MY_74xx:74HC08 U?
@@ -869,28 +639,6 @@ F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7050 3300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7050 3400 50  0001 C CNN
 	2    7050 3350
 	0    1    1    0   
-$EndComp
-$Comp
-L ulib_MY_74xx:74HC08 U?
-U 3 1 5DDE9105
-P 5750 5100
-F 0 "U?" H 5750 5425 50  0000 C CNN
-F 1 "74HC08" H 5750 5334 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5750 5050 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5750 5150 50  0001 C CNN
-	3    5750 5100
-	1    0    0    -1  
-$EndComp
-$Comp
-L ulib_MY_74xx:74HC08 U?
-U 4 1 5DDE9185
-P 5750 5800
-F 0 "U?" H 5750 6125 50  0000 C CNN
-F 1 "74HC08" H 5750 6034 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5750 5750 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5750 5850 50  0001 C CNN
-	4    5750 5800
-	1    0    0    -1  
 $EndComp
 Wire Bus Line
 	2650 3950 7150 3950
