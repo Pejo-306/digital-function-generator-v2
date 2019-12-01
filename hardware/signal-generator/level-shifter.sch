@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 5 5
+Sheet 5 6
 Title "Digital Function Generator v2 - Level Shifter"
 Date "2019-12-01"
 Rev "1"
@@ -101,7 +101,7 @@ F 3 "" H 9100 1450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text HLabel 10100 1950 2    50   Input ~ 0
-~SD_CS
+SD_~CS
 Text HLabel 8000 1950 2    50   Input ~ 0
 T_IRQ
 Text HLabel 7800 3250 2    50   Input ~ 0
@@ -109,7 +109,7 @@ T_DO
 Text HLabel 7800 3450 2    50   Input ~ 0
 T_DIN
 Text HLabel 8000 2750 2    50   Input ~ 0
-~T_CS
+T_~CS
 Text HLabel 7800 3650 2    50   Input ~ 0
 T_CLK
 $Comp
@@ -273,15 +273,15 @@ F 3 "" H 7000 2250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text HLabel 5500 4050 2    50   Input ~ 0
-LCD_SDO(MISO)
+LCD_SDO
 Text HLabel 5500 4450 2    50   Input ~ 0
-LCD_SDI(MOSI)
+LCD_SDI
 Text HLabel 5500 4250 2    50   Input ~ 0
 LCD_SCK
 Text HLabel 5700 1950 2    50   Input ~ 0
 LCD_DC|~RS
 Text HLabel 5700 2750 2    50   Input ~ 0
-~LCD_RESET
+LCD_~RESET
 $Comp
 L ulib_MY_Transistor_FET:AP2310GN Q?
 U 1 1 5DDC7774
@@ -689,11 +689,11 @@ MOSI
 Text HLabel 2100 1950 0    50   Input ~ 0
 MISO
 Text HLabel 8900 1950 0    50   Input ~ 0
-~CS_SD
+~CS~_SD
 Text HLabel 6800 2750 0    50   Input ~ 0
-~CS_T
+~CS~_T
 Text HLabel 5700 3550 2    50   Input ~ 0
-~LCD_CS
+LCD_~CS
 $Comp
 L ulib_MY_Transistor_FET:AP2310GN Q?
 U 1 1 5DE5E971
@@ -775,9 +775,9 @@ F 3 "" H 4700 3050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text HLabel 4500 3550 0    50   Input ~ 0
-~CS_LCD
+~CS~_LCD
 Text HLabel 4500 2750 0    50   Input ~ 0
-~RESET_LCD
+~RESET~_LCD
 Text HLabel 4500 1950 0    50   Input ~ 0
 DC|~RS~_LCD
 Text HLabel 6800 1950 0    50   Input ~ 0
