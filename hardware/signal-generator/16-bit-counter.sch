@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 7
+Sheet 3 6
 Title "Digital Function Generator v2 - DDS 16-bit counter"
 Date "2019-12-02"
 Rev "1"

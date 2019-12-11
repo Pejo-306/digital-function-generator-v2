@@ -4,9 +4,9 @@ EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 7
+Sheet 2 6
 Title "Digital Function Generator v2 - DDS System"
-Date "2019-12-01"
+Date "2019-12-08"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -992,12 +992,6 @@ F 3 "https://datasheets.maximintegrated.com/en/ds/DS1085.pdf" H 1550 3350 50  00
 	1    1550 3350
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4550 5500 4450 5500
-Wire Wire Line
-	4450 5600 4550 5600
-Text HLabel 4450 5600 0    50   Input ~ 0
-IOExINTA
-Text HLabel 4450 5500 0    50   Input ~ 0
-IOExINTB
+NoConn ~ 4550 5600
+NoConn ~ 4550 5500
 $EndSCHEMATC

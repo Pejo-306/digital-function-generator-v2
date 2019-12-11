@@ -6,5 +6,4 @@
   (lib (name ulib_SRAMs)(type Legacy)(uri ${KICAD_USER_LIBRARY}/user-symbols/SRAMS/ulib_SRAMs.lib)(options "")(descr ""))
   (lib (name ulib_MY_74xx)(type Legacy)(uri ${KICAD_USER_LIBRARY}/user-symbols/MY_74xx/ulib_MY_74xx.lib)(options "")(descr ""))
   (lib (name ulib_Frequency_Synthesizers)(type Legacy)(uri ${KICAD_USER_LIBRARY}/user-symbols/Oscillators/ulib_Frequency_Synthesizers.lib)(options "")(descr ""))
-  (lib (name signal-generator-rescue)(type Legacy)(uri ${KIPRJMOD}/signal-generator-rescue.lib)(options "")(descr ""))
 )
