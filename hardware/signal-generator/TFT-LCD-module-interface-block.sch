@@ -6,7 +6,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 5 6
 Title "Digital Function Generator v2 - TFT LCD Module Interface Block"
-Date "2019-12-01"
+Date "2019-12-14"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -61,19 +61,6 @@ Wire Wire Line
 	7050 2950 7100 2950
 Wire Wire Line
 	7050 3050 7100 3050
-$Comp
-L power:+3.3V #PWR?
-U 1 1 5DF8DC0E
-P 7100 3050
-AR Path="/5DF8DC0E" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC0E" Ref="#PWR0218"  Part="1" 
-F 0 "#PWR0218" H 7100 2900 50  0001 C CNN
-F 1 "+3.3V" V 7115 3178 50  0000 L CNN
-F 2 "" H 7100 3050 50  0001 C CNN
-F 3 "" H 7100 3050 50  0001 C CNN
-	1    7100 3050
-	0    1    1    0   
-$EndComp
 $Comp
 L power:GNDD #PWR?
 U 1 1 5DF8DC14
@@ -341,19 +328,6 @@ LCD_LED
 Text Label 7100 2350 0    50   ~ 0
 LCD_LED
 $Comp
-L power:+3.3V #PWR?
-U 1 1 5DF8DCB5
-P 8100 3050
-AR Path="/5DF8DCB5" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DCB5" Ref="#PWR0226"  Part="1" 
-F 0 "#PWR0226" H 8100 2900 50  0001 C CNN
-F 1 "+3.3V" V 8115 3178 50  0000 L CNN
-F 2 "" H 8100 3050 50  0001 C CNN
-F 3 "" H 8100 3050 50  0001 C CNN
-	1    8100 3050
-	0    -1   1    0   
-$EndComp
-$Comp
 L power:GNDD #PWR?
 U 1 1 5DF8DCBB
 P 8100 2950
@@ -511,4 +485,26 @@ Text HLabel 3050 4400 0    50   Input ~ 0
 IRQ_T
 Text HLabel 3050 4200 0    50   Input ~ 0
 ~CS~_SD
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E0A0514
+P 8100 3050
+F 0 "#PWR?" H 8100 2900 50  0001 C CNN
+F 1 "+5VD" V 8115 3178 50  0000 L CNN
+F 2 "" H 8100 3050 50  0001 C CNN
+F 3 "" H 8100 3050 50  0001 C CNN
+	1    8100 3050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E0A0544
+P 7100 3050
+F 0 "#PWR?" H 7100 2900 50  0001 C CNN
+F 1 "+5VD" V 7115 3178 50  0000 L CNN
+F 2 "" H 7100 3050 50  0001 C CNN
+F 3 "" H 7100 3050 50  0001 C CNN
+	1    7100 3050
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
