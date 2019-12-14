@@ -274,34 +274,19 @@ F 3 "" H 6100 4100 50  0001 C CNN
 	1    6100 4100
 	0    1    1    0   
 $EndComp
-$Comp
-L power:+3.3V #PWR?
-U 1 1 5DF8DC94
-P 6500 4000
-AR Path="/5DF8DC94" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC94" Ref="#PWR0223"  Part="1" 
-F 0 "#PWR0223" H 6500 3850 50  0001 C CNN
-F 1 "+3.3V" H 6515 4173 50  0000 C CNN
-F 2 "" H 6500 4000 50  0001 C CNN
-F 3 "" H 6500 4000 50  0001 C CNN
-	1    6500 4000
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7000 4400 7100 4400
-Wire Wire Line
-	7100 4400 7100 4300
 $Comp
 L power:+3.3V #PWR?
 U 1 1 5DF8DC9C
-P 7100 4300
+P 7100 4100
 AR Path="/5DF8DC9C" Ref="#PWR?"  Part="1" 
 AR Path="/5DF89F54/5DF8DC9C" Ref="#PWR0224"  Part="1" 
-F 0 "#PWR0224" H 7100 4150 50  0001 C CNN
-F 1 "+3.3V" H 7115 4473 50  0000 C CNN
-F 2 "" H 7100 4300 50  0001 C CNN
-F 3 "" H 7100 4300 50  0001 C CNN
-	1    7100 4300
+F 0 "#PWR0224" H 7100 3950 50  0001 C CNN
+F 1 "+3.3V" H 7115 4273 50  0000 C CNN
+F 2 "" H 7100 4100 50  0001 C CNN
+F 3 "" H 7100 4100 50  0001 C CNN
+	1    7100 4100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -321,9 +306,7 @@ F 3 "" H 7100 4700 50  0001 C CNN
 	1    7100 4700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	7000 4500 7100 4500
-Text Label 7100 4500 0    50   ~ 0
+Text Label 7300 4500 0    50   ~ 0
 LCD_LED
 Text Label 7100 2350 0    50   ~ 0
 LCD_LED
@@ -507,4 +490,42 @@ F 3 "" H 7100 3050 50  0001 C CNN
 	1    7100 3050
 	0    1    1    0   
 $EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E0A2195
+P 6500 4000
+F 0 "#PWR?" H 6500 3850 50  0001 C CNN
+F 1 "+5VD" H 6515 4173 50  0000 C CNN
+F 2 "" H 6500 4000 50  0001 C CNN
+F 3 "" H 6500 4000 50  0001 C CNN
+	1    6500 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7200 4400 7200 4500
+Wire Wire Line
+	7000 4500 7200 4500
+Wire Wire Line
+	7200 4500 7300 4500
+Connection ~ 7200 4500
+$Comp
+L Device:Jumper_NO_Small JP?
+U 1 1 5E0A7E69
+P 7200 4300
+F 0 "JP?" V 7154 4348 50  0000 L CNN
+F 1 "Always_On_Backlight" V 7245 4348 50  0000 L CNN
+F 2 "" H 7200 4300 50  0001 C CNN
+F 3 "~" H 7200 4300 50  0001 C CNN
+	1    7200 4300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7200 4200 7200 4150
+Wire Wire Line
+	7200 4150 7100 4150
+Wire Wire Line
+	7100 4150 7100 4400
+Connection ~ 7100 4150
+Wire Wire Line
+	7100 4100 7100 4150
 $EndSCHEMATC
