@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 6
 Title "Digital Function Generator v2 - DDS System"
-Date "2019-12-15"
+Date "2019-12-20"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -950,7 +950,7 @@ $Comp
 L ulib_Voltage_References:TS4061xIxT-1.25 U12
 U 1 1 5DFE0B4C
 P 9300 1600
-F 0 "U12" V 9300 1500 50  0000 R CNN
+F 0 "U12" V 9350 1550 50  0000 R CNN
 F 1 "TS4061AICT-1.25" H 9600 1750 50  0000 R CNN
 F 2 "TO_SOT_Packages_SMD:SOT-323_SC-70_Handsoldering" H 9300 1400 50  0001 C CIN
 F 3 "https://www.st.com/resource/en/datasheet/ts4061.pdf" H 9300 1600 50  0001 C CIN
@@ -1000,12 +1000,6 @@ Wire Wire Line
 	8900 1400 8900 1700
 Wire Wire Line
 	8700 1700 8900 1700
-Wire Notes Line
-	9550 750  9550 4450
-Wire Notes Line
-	6950 4450 9550 4450
-Wire Notes Line
-	6950 750  9550 750 
 Wire Wire Line
 	9300 1400 9300 1350
 Wire Wire Line
@@ -1024,4 +1018,38 @@ F 3 "" H 8750 1900 50  0001 C CNN
 	1    8750 1900
 	0    1    1    0   
 $EndComp
+$Comp
+L Device:C C?
+U 1 1 5DFEC1DC
+P 9600 1600
+F 0 "C?" H 9715 1646 50  0000 L CNN
+F 1 "100nF" H 9715 1555 50  0000 L CNN
+F 2 "" H 9638 1450 50  0001 C CNN
+F 3 "~" H 9600 1600 50  0001 C CNN
+	1    9600 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 1450 9600 1400
+Wire Wire Line
+	9600 1400 9300 1400
+Wire Wire Line
+	9600 1750 9600 1800
+$Comp
+L power:GNDA #PWR?
+U 1 1 5DFFFA9B
+P 9600 1800
+F 0 "#PWR?" H 9600 1550 50  0001 C CNN
+F 1 "GNDA" H 9605 1627 50  0000 C CNN
+F 2 "" H 9600 1800 50  0001 C CNN
+F 3 "" H 9600 1800 50  0001 C CNN
+	1    9600 1800
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	10050 750  10050 4450
+Wire Notes Line
+	6950 4450 10050 4450
+Wire Notes Line
+	6950 750  10050 750 
 $EndSCHEMATC
