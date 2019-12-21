@@ -3,9 +3,9 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 5 6
+Sheet 5 5
 Title "Digital Function Generator v2 - TFT LCD Module Interface Block"
-Date "2019-12-14"
+Date "2019-12-21"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -13,518 +13,1191 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Sheet
-S 3150 3800 1100 2200
-U 5DF8DBFF
-F0 "sheet5DF8DBE5" 50
-F1 "level-shifter.sch" 50
-F2 "SD_SCK" I R 4250 3900 50 
-F3 "SD_MISO" I R 4250 4000 50 
-F4 "SD_MOSI" I R 4250 4100 50 
-F5 "T_IRQ" I R 4250 4400 50 
-F6 "T_DO" I R 4250 4500 50 
-F7 "T_DIN" I R 4250 4600 50 
-F8 "T_CLK" I R 4250 4800 50 
-F9 "LCD_SCK" I R 4250 5100 50 
-F10 "SCK" I L 3150 5700 50 
-F11 "MOSI" I L 3150 5800 50 
-F12 "MISO" I L 3150 5900 50 
-F13 "IRQ_T" I L 3150 4400 50 
-F14 "LCD_SDO" I R 4250 5000 50 
-F15 "LCD_SDI" I R 4250 5200 50 
-F16 "SD_~CS" I R 4250 4200 50 
-F17 "T_~CS" I R 4250 4700 50 
-F18 "LCD_~RESET" I R 4250 5400 50 
-F19 "~CS~_SD" I L 3150 4200 50 
-F20 "~CS~_T" I L 3150 4700 50 
-F21 "LCD_~CS" I R 4250 5500 50 
-F22 "~CS~_LCD" I L 3150 5500 50 
-F23 "~RESET~_LCD" I L 3150 5400 50 
-F24 "LCD_DC\\~RS" I R 4250 5300 50 
-F25 "DC\\~RS~_LCD" I L 3150 5300 50 
-$EndSheet
 $Comp
-L ulib_Displays:MSP3218 #U?
+L ulib_Displays:MSP3218 #DS?
 U 1 1 5DF8DC05
-P 5050 2350
-AR Path="/5DF8DC05" Ref="#U?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC05" Ref="#U1"  Part="1" 
-F 0 "#U1" H 5050 3450 50  0000 C CNN
-F 1 "MSP3218" H 5050 3350 50  0000 C CNN
-F 2 "" H 3150 4050 50  0001 C CNN
-F 3 "http://www.lcdwiki.com/res/MSP3218/QD-TFT3202%20specification_v1.1.pdf" H 5000 2350 50  0001 C CNN
-	1    5050 2350
+P 5050 1800
+AR Path="/5DF8DC05" Ref="#DS?"  Part="1" 
+AR Path="/5DF89F54/5DF8DC05" Ref="#DS?"  Part="1" 
+F 0 "#DS?" H 5050 2900 50  0000 C CNN
+F 1 "MSP3218" H 5050 2800 50  0000 C CNN
+F 2 "" H 3150 3500 50  0001 C CNN
+F 3 "http://www.lcdwiki.com/res/MSP3218/QD-TFT3202%20specification_v1.1.pdf" H 5000 1800 50  0001 C CNN
+	1    5050 1800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7050 2950 7100 2950
+	7050 2400 7100 2400
 Wire Wire Line
-	7050 3050 7100 3050
+	7050 2500 7100 2500
 $Comp
 L power:GNDD #PWR?
 U 1 1 5DF8DC14
-P 7100 2950
+P 7100 2400
 AR Path="/5DF8DC14" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC14" Ref="#PWR0219"  Part="1" 
-F 0 "#PWR0219" H 7100 2700 50  0001 C CNN
-F 1 "GNDD" V 7104 2840 50  0000 R CNN
-F 2 "" H 7100 2950 50  0001 C CNN
-F 3 "" H 7100 2950 50  0001 C CNN
-	1    7100 2950
+AR Path="/5DF89F54/5DF8DC14" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 7100 2150 50  0001 C CNN
+F 1 "GNDD" V 7104 2290 50  0000 R CNN
+F 2 "" H 7100 2400 50  0001 C CNN
+F 3 "" H 7100 2400 50  0001 C CNN
+	1    7100 2400
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	7050 2450 7100 2450
+	7050 1900 7100 1900
 Wire Wire Line
-	7050 2550 7100 2550
+	7050 2000 7100 2000
 Wire Wire Line
-	7050 2650 7100 2650
+	7050 2100 7100 2100
 Wire Wire Line
-	7050 2750 7100 2750
+	7050 2200 7100 2200
 Wire Wire Line
-	7050 2850 7100 2850
-Text Label 7100 1650 0    50   ~ 0
+	7050 2300 7100 2300
+Text Label 7100 1100 0    50   ~ 0
 T_IRQ
-Text Label 7100 1750 0    50   ~ 0
-T_DO
-Text Label 7100 1850 0    50   ~ 0
-T_DIN
-Text Label 7100 1950 0    50   ~ 0
+Text Label 7100 1400 0    50   ~ 0
 T_~CS
-Text Label 7100 2050 0    50   ~ 0
-T_CLK
-Text Label 7100 2250 0    50   ~ 0
-LCD_SDO
-Text Label 7100 2450 0    50   ~ 0
-LCD_SCK
-Text Label 7100 2550 0    50   ~ 0
-LCD_SDI
-Text Label 7100 2650 0    50   ~ 0
+Text Label 7100 2100 0    50   ~ 0
 LCD_DC\~RS
-Text Label 7100 2750 0    50   ~ 0
+Text Label 7100 2200 0    50   ~ 0
 LCD_~RESET
-Text Label 7100 2850 0    50   ~ 0
+Text Label 7100 2300 0    50   ~ 0
 LCD_~CS
-Text Label 3000 2200 2    50   ~ 0
-SD_SCK
-Text Label 3000 2300 2    50   ~ 0
-SD_MISO
-Text Label 3000 2400 2    50   ~ 0
-SD_MOSI
-Text Label 3000 2500 2    50   ~ 0
+Text Label 3000 1950 2    50   ~ 0
 SD_~CS
-Text Label 4350 3900 0    50   ~ 0
-SD_SCK
-Text Label 4350 4000 0    50   ~ 0
-SD_MISO
-Text Label 4350 4100 0    50   ~ 0
-SD_MOSI
-Wire Wire Line
-	4250 3900 4350 3900
-Text Label 4350 4200 0    50   ~ 0
-SD_~CS
-Wire Wire Line
-	4250 4400 4350 4400
-Wire Wire Line
-	4250 4000 4350 4000
-Wire Wire Line
-	4250 4100 4350 4100
-Wire Wire Line
-	4250 4200 4350 4200
-Wire Wire Line
-	4250 4500 4350 4500
-Wire Wire Line
-	4250 4600 4350 4600
-Wire Wire Line
-	4250 4700 4350 4700
-Wire Wire Line
-	4250 4800 4350 4800
-Text Label 4350 4400 0    50   ~ 0
-T_IRQ
-Text Label 4350 4500 0    50   ~ 0
-T_DO
-Text Label 4350 4600 0    50   ~ 0
-T_DIN
-Text Label 4350 4700 0    50   ~ 0
-T_~CS
-Text Label 4350 4800 0    50   ~ 0
-T_CLK
-Wire Wire Line
-	4250 5000 4350 5000
-Wire Wire Line
-	4250 5100 4350 5100
-Wire Wire Line
-	4250 5200 4350 5200
-Wire Wire Line
-	4250 5300 4350 5300
-Wire Wire Line
-	4250 5400 4350 5400
-Wire Wire Line
-	4250 5500 4350 5500
-Text Label 4350 5000 0    50   ~ 0
-LCD_SDO
-Text Label 4350 5100 0    50   ~ 0
-LCD_SCK
-Text Label 4350 5200 0    50   ~ 0
-LCD_SDI
-Text Label 4350 5300 0    50   ~ 0
-LCD_DC\~RS
-Text Label 4350 5400 0    50   ~ 0
-LCD_~RESET
-Text Label 4350 5500 0    50   ~ 0
-LCD_~CS
-Wire Wire Line
-	3150 4200 3050 4200
-Wire Wire Line
-	3150 4400 3050 4400
-Wire Wire Line
-	3150 4700 3050 4700
-Wire Wire Line
-	3150 5300 3050 5300
-Wire Wire Line
-	3150 5400 3050 5400
-Wire Wire Line
-	3150 5500 3050 5500
-Wire Wire Line
-	3150 5700 3050 5700
-Wire Wire Line
-	3150 5800 3050 5800
-Wire Wire Line
-	3150 5900 3050 5900
-$Comp
-L ulib_Digital_Potentiometers:MCP4551-MS U?
-U 1 1 5DF8DC69
-P 6500 4500
-AR Path="/5DF8DC69" Ref="U?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC69" Ref="U22"  Part="1" 
-F 0 "U22" H 6150 4750 50  0000 C CNN
-F 1 "MCP4551-103E/MS" H 6000 4250 50  0000 C CNN
-F 2 "Housings_SSOP:MSOP-8_3x3mm_Pitch0.65mm" H 6500 4500 50  0001 C CNN
-F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/22096b.pdf" H 6500 4500 50  0001 C CNN
-	1    6500 4500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6000 4400 5900 4400
-Wire Wire Line
-	6000 4500 5900 4500
-Wire Wire Line
-	6000 4600 5900 4600
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DF8DC75
-P 5900 4600
-AR Path="/5DF8DC75" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC75" Ref="#PWR0220"  Part="1" 
-F 0 "#PWR0220" H 5900 4350 50  0001 C CNN
-F 1 "GNDD" V 5904 4490 50  0000 R CNN
-F 2 "" H 5900 4600 50  0001 C CNN
-F 3 "" H 5900 4600 50  0001 C CNN
-	1    5900 4600
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6500 4800 6500 4900
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DF8DC7C
-P 6500 4900
-AR Path="/5DF8DC7C" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC7C" Ref="#PWR0221"  Part="1" 
-F 0 "#PWR0221" H 6500 4650 50  0001 C CNN
-F 1 "GNDD" H 6504 4745 50  0000 C CNN
-F 2 "" H 6500 4900 50  0001 C CNN
-F 3 "" H 6500 4900 50  0001 C CNN
-	1    6500 4900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6500 4200 6500 4100
-$Comp
-L Device:C C?
-U 1 1 5DF8DC83
-P 6300 4100
-AR Path="/5DF8DC83" Ref="C?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC83" Ref="C42"  Part="1" 
-F 0 "C42" V 6048 4100 50  0000 C CNN
-F 1 "100nF" V 6139 4100 50  0000 C CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 6338 3950 50  0001 C CNN
-F 3 "~" H 6300 4100 50  0001 C CNN
-	1    6300 4100
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6450 4100 6500 4100
-Connection ~ 6500 4100
-Wire Wire Line
-	6500 4100 6500 4000
-Wire Wire Line
-	6150 4100 6100 4100
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DF8DC8E
-P 6100 4100
-AR Path="/5DF8DC8E" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC8E" Ref="#PWR0222"  Part="1" 
-F 0 "#PWR0222" H 6100 3850 50  0001 C CNN
-F 1 "GNDD" V 6104 3990 50  0000 R CNN
-F 2 "" H 6100 4100 50  0001 C CNN
-F 3 "" H 6100 4100 50  0001 C CNN
-	1    6100 4100
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	7000 4400 7100 4400
-$Comp
-L power:+3.3V #PWR?
-U 1 1 5DF8DC9C
-P 7100 4100
-AR Path="/5DF8DC9C" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DC9C" Ref="#PWR0224"  Part="1" 
-F 0 "#PWR0224" H 7100 3950 50  0001 C CNN
-F 1 "+3.3V" H 7115 4273 50  0000 C CNN
-F 2 "" H 7100 4100 50  0001 C CNN
-F 3 "" H 7100 4100 50  0001 C CNN
-	1    7100 4100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7000 4600 7100 4600
-Wire Wire Line
-	7100 4600 7100 4700
-$Comp
-L power:GNDD #PWR?
-U 1 1 5DF8DCA4
-P 7100 4700
-AR Path="/5DF8DCA4" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DCA4" Ref="#PWR0225"  Part="1" 
-F 0 "#PWR0225" H 7100 4450 50  0001 C CNN
-F 1 "GNDD" H 7104 4545 50  0000 C CNN
-F 2 "" H 7100 4700 50  0001 C CNN
-F 3 "" H 7100 4700 50  0001 C CNN
-	1    7100 4700
-	1    0    0    -1  
-$EndComp
-Text Label 7300 4500 0    50   ~ 0
-LCD_LED
-Text Label 7100 2350 0    50   ~ 0
-LCD_LED
 $Comp
 L power:GNDD #PWR?
 U 1 1 5DF8DCBB
-P 8100 2950
+P 8100 2400
 AR Path="/5DF8DCBB" Ref="#PWR?"  Part="1" 
-AR Path="/5DF89F54/5DF8DCBB" Ref="#PWR0227"  Part="1" 
-F 0 "#PWR0227" H 8100 2700 50  0001 C CNN
-F 1 "GNDD" V 8104 2840 50  0000 R CNN
-F 2 "" H 8100 2950 50  0001 C CNN
-F 3 "" H 8100 2950 50  0001 C CNN
-	1    8100 2950
+AR Path="/5DF89F54/5DF8DCBB" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 8100 2150 50  0001 C CNN
+F 1 "GNDD" V 8104 2290 50  0000 R CNN
+F 2 "" H 8100 2400 50  0001 C CNN
+F 3 "" H 8100 2400 50  0001 C CNN
+	1    8100 2400
 	0    1    -1   0   
 $EndComp
-Text Label 8100 1650 2    50   ~ 0
+Text Label 8100 1100 2    50   ~ 0
 T_IRQ
-Text Label 8100 1750 2    50   ~ 0
-T_DO
-Text Label 8100 1850 2    50   ~ 0
-T_DIN
-Text Label 8100 1950 2    50   ~ 0
+Text Label 8100 1400 2    50   ~ 0
 T_~CS
-Text Label 8100 2050 2    50   ~ 0
-T_CLK
-Text Label 8100 2250 2    50   ~ 0
-LCD_SDO
-Text Label 8100 2450 2    50   ~ 0
-LCD_SCK
-Text Label 8100 2550 2    50   ~ 0
-LCD_SDI
-Text Label 8100 2650 2    50   ~ 0
+Text Label 8100 2100 2    50   ~ 0
 LCD_DC\~RS
-Text Label 8100 2750 2    50   ~ 0
+Text Label 8100 2200 2    50   ~ 0
 LCD_~RESET
-Text Label 8100 2850 2    50   ~ 0
+Text Label 8100 2300 2    50   ~ 0
 LCD_~CS
-Text Label 8100 2350 2    50   ~ 0
-LCD_LED
-Text Label 2250 2200 0    50   ~ 0
-SD_SCK
-Text Label 2250 2300 0    50   ~ 0
-SD_MISO
-Text Label 2250 2400 0    50   ~ 0
-SD_MOSI
-Text Label 2250 2500 0    50   ~ 0
+Text Label 2250 1950 0    50   ~ 0
 SD_~CS
 Wire Wire Line
-	7050 2350 7100 2350
+	7050 1800 7100 1800
 Wire Wire Line
-	7050 2250 7100 2250
+	7050 1700 7100 1700
 Wire Wire Line
-	7050 2050 7100 2050
+	7050 1500 7100 1500
 Wire Wire Line
-	7050 1950 7100 1950
+	7050 1400 7100 1400
 Wire Wire Line
-	7050 1850 7100 1850
+	7050 1300 7100 1300
 Wire Wire Line
-	7050 1750 7100 1750
+	7050 1200 7100 1200
 Wire Wire Line
-	7050 1650 7100 1650
+	7050 1100 7100 1100
 Wire Wire Line
-	3050 2500 3000 2500
+	3050 1950 3000 1950
 Wire Wire Line
-	3050 2400 3000 2400
+	3050 1850 3000 1850
 Wire Wire Line
-	3050 2300 3000 2300
+	3050 1750 3000 1750
 Wire Wire Line
-	3050 2200 3000 2200
+	3050 1650 3000 1650
 Wire Wire Line
-	2250 2500 2200 2500
+	2250 1950 2200 1950
 Wire Wire Line
-	2250 2400 2200 2400
+	2250 1850 2200 1850
 Wire Wire Line
-	2250 2300 2200 2300
+	2250 1750 2200 1750
 Wire Wire Line
-	2250 2200 2200 2200
+	2250 1650 2200 1650
 Wire Wire Line
-	8100 1650 8150 1650
+	8100 1100 8150 1100
 Wire Wire Line
-	8100 1750 8150 1750
+	8100 1200 8150 1200
 Wire Wire Line
-	8100 1850 8150 1850
+	8100 1300 8150 1300
 Wire Wire Line
-	8100 1950 8150 1950
+	8100 1400 8150 1400
 Wire Wire Line
-	8100 2050 8150 2050
+	8100 1500 8150 1500
 Wire Wire Line
-	8100 2250 8150 2250
+	8100 1700 8150 1700
 Wire Wire Line
-	8100 2350 8150 2350
+	8100 1800 8150 1800
 Wire Wire Line
-	8100 2450 8150 2450
+	8100 1900 8150 1900
 Wire Wire Line
-	8100 2550 8150 2550
+	8100 2000 8150 2000
 Wire Wire Line
-	8100 2650 8150 2650
+	8100 2100 8150 2100
 Wire Wire Line
-	8100 2750 8150 2750
+	8100 2200 8150 2200
 Wire Wire Line
-	8100 2850 8150 2850
+	8100 2300 8150 2300
 Wire Wire Line
-	8100 2950 8150 2950
+	8100 2400 8150 2400
 Wire Wire Line
-	8100 3050 8150 3050
-Text HLabel 5900 4400 0    50   Input ~ 0
-SDA
-Text HLabel 5900 4500 0    50   Input ~ 0
-SCL
+	8100 2500 8150 2500
 $Comp
-L Connector_Generic:Conn_01x09 J13
+L Connector_Generic:Conn_01x09 J?
 U 1 1 5DFB8DFB
-P 8350 2650
-F 0 "J13" H 8500 2550 50  0000 C CNN
-F 1 "LCD_Conn" H 8600 2650 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x09_Pitch2.54mm" H 8350 2650 50  0001 C CNN
-F 3 "~" H 8350 2650 50  0001 C CNN
-	1    8350 2650
+P 8350 2100
+F 0 "J?" H 8500 2000 50  0000 C CNN
+F 1 "LCD_Conn" H 8600 2100 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x09_Pitch2.54mm" H 8350 2100 50  0001 C CNN
+F 3 "~" H 8350 2100 50  0001 C CNN
+	1    8350 2100
 	1    0    0    1   
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x05 J12
+L Connector_Generic:Conn_01x05 J?
 U 1 1 5DFB8ED1
-P 8350 1850
-F 0 "J12" H 8500 1750 50  0000 C CNN
-F 1 "TP_Conn" H 8600 1850 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm" H 8350 1850 50  0001 C CNN
-F 3 "~" H 8350 1850 50  0001 C CNN
-	1    8350 1850
+P 8350 1300
+F 0 "J?" H 8500 1200 50  0000 C CNN
+F 1 "TP_Conn" H 8600 1300 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x05_Pitch2.54mm" H 8350 1300 50  0001 C CNN
+F 3 "~" H 8350 1300 50  0001 C CNN
+	1    8350 1300
 	1    0    0    1   
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x04 J11
+L Connector_Generic:Conn_01x04 J?
 U 1 1 5DFBC023
-P 2000 2400
-F 0 "J11" H 2150 2300 50  0000 C CNN
-F 1 "SD_Card_Conn" H 2350 2400 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2000 2400 50  0001 C CNN
-F 3 "~" H 2000 2400 50  0001 C CNN
-	1    2000 2400
+P 2000 1850
+F 0 "J?" H 2150 1750 50  0000 C CNN
+F 1 "SD_Card_Conn" H 2350 1850 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2000 1850 50  0001 C CNN
+F 3 "~" H 2000 1850 50  0001 C CNN
+	1    2000 1850
 	-1   0    0    1   
 $EndComp
-Text HLabel 3050 5700 0    50   Input ~ 0
-SCK
-Text HLabel 3050 5800 0    50   Input ~ 0
-MOSI
-Text HLabel 3050 5900 0    50   Input ~ 0
-MISO
-Text HLabel 3050 5300 0    50   Input ~ 0
-DC\~RS~_LCD
-Text HLabel 3050 5400 0    50   Input ~ 0
-~RESET~_LCD
-Text HLabel 3050 5500 0    50   Input ~ 0
-~CS~_LCD
-Text HLabel 3050 4700 0    50   Input ~ 0
-~CS~_T
-Text HLabel 3050 4400 0    50   Input ~ 0
-IRQ_T
-Text HLabel 3050 4200 0    50   Input ~ 0
-~CS~_SD
 $Comp
-L power:+5VD #PWR07
+L power:+5VD #PWR?
 U 1 1 5E0A0514
-P 8100 3050
-F 0 "#PWR07" H 8100 2900 50  0001 C CNN
-F 1 "+5VD" V 8115 3178 50  0000 L CNN
-F 2 "" H 8100 3050 50  0001 C CNN
-F 3 "" H 8100 3050 50  0001 C CNN
-	1    8100 3050
+P 8100 2500
+F 0 "#PWR?" H 8100 2350 50  0001 C CNN
+F 1 "+5VD" V 8115 2628 50  0000 L CNN
+F 2 "" H 8100 2500 50  0001 C CNN
+F 3 "" H 8100 2500 50  0001 C CNN
+	1    8100 2500
 	0    -1   -1   0   
 $EndComp
 $Comp
-L power:+5VD #PWR06
+L power:+5VD #PWR?
 U 1 1 5E0A0544
-P 7100 3050
-F 0 "#PWR06" H 7100 2900 50  0001 C CNN
-F 1 "+5VD" V 7115 3178 50  0000 L CNN
-F 2 "" H 7100 3050 50  0001 C CNN
-F 3 "" H 7100 3050 50  0001 C CNN
-	1    7100 3050
+P 7100 2500
+F 0 "#PWR?" H 7100 2350 50  0001 C CNN
+F 1 "+5VD" V 7115 2628 50  0000 L CNN
+F 2 "" H 7100 2500 50  0001 C CNN
+F 3 "" H 7100 2500 50  0001 C CNN
+	1    7100 2500
 	0    1    1    0   
 $EndComp
 $Comp
-L power:+5VD #PWR05
-U 1 1 5E0A2195
-P 6500 4000
-F 0 "#PWR05" H 6500 3850 50  0001 C CNN
-F 1 "+5VD" H 6515 4173 50  0000 C CNN
-F 2 "" H 6500 4000 50  0001 C CNN
-F 3 "" H 6500 4000 50  0001 C CNN
-	1    6500 4000
+L Device:Jumper_NO_Small JP?
+U 1 1 5E0A7E69
+P 10000 2100
+F 0 "JP?" V 9954 2148 50  0000 L CNN
+F 1 "Always_On_Backlight" V 10045 2148 50  0000 L CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 10000 2100 50  0001 C CNN
+F 3 "~" H 10000 2100 50  0001 C CNN
+	1    10000 2100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	10000 2000 10000 1900
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5DFF8E1A
+P 10000 1900
+F 0 "#PWR?" H 10000 1750 50  0001 C CNN
+F 1 "+3.3V" H 10015 2073 50  0000 C CNN
+F 2 "" H 10000 1900 50  0001 C CNN
+F 3 "" H 10000 1900 50  0001 C CNN
+	1    10000 1900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7200 4400 7200 4500
+	10000 2200 10000 2250
+Connection ~ 10000 2250
 Wire Wire Line
-	7000 4500 7200 4500
-Wire Wire Line
-	7200 4500 7300 4500
-Connection ~ 7200 4500
+	10000 2250 10000 2300
 $Comp
-L Device:Jumper_NO_Small JP1
-U 1 1 5E0A7E69
-P 7200 4300
-F 0 "JP1" V 7154 4348 50  0000 L CNN
-F 1 "Always_On_Backlight" V 7245 4348 50  0000 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 7200 4300 50  0001 C CNN
-F 3 "~" H 7200 4300 50  0001 C CNN
-	1    7200 4300
+L power:GNDD #PWR?
+U 1 1 5E00F4BB
+P 10000 2300
+F 0 "#PWR?" H 10000 2050 50  0001 C CNN
+F 1 "GNDD" H 10004 2145 50  0000 C CNN
+F 2 "" H 10000 2300 50  0001 C CNN
+F 3 "" H 10000 2300 50  0001 C CNN
+	1    10000 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C300
+P 9050 4150
+AR Path="/5DF89F54/5DF8DBFF/5E04C300" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C300" Ref="Q?"  Part="1" 
+F 0 "Q?" V 9300 4150 50  0000 C CNN
+F 1 "AP2310GN" V 9391 4150 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 10100 4000 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 10900 3900 50  0001 C CNN
+	1    9050 4150
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	9050 3950 9050 3850
+$Comp
+L Device:R R?
+U 1 1 5E04C307
+P 9450 4050
+AR Path="/5DF89F54/5DF8DBFF/5E04C307" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C307" Ref="R?"  Part="1" 
+F 0 "R?" H 9520 4096 50  0000 L CNN
+F 1 "910R" H 9520 4005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 9380 4050 50  0001 C CNN
+F 3 "~" H 9450 4050 50  0001 C CNN
+	1    9450 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9250 4250 9450 4250
+Wire Wire Line
+	9450 4250 9450 4200
+Wire Wire Line
+	9050 3850 9450 3850
+Wire Wire Line
+	9450 3850 9450 3900
+$Comp
+L Device:R R?
+U 1 1 5E04C311
+P 8650 4050
+AR Path="/5DF89F54/5DF8DBFF/5E04C311" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C311" Ref="R?"  Part="1" 
+F 0 "R?" H 8720 4096 50  0000 L CNN
+F 1 "910R" H 8720 4005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 8580 4050 50  0001 C CNN
+F 3 "~" H 8650 4050 50  0001 C CNN
+	1    8650 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8650 4200 8650 4250
+Wire Wire Line
+	8650 4250 8850 4250
+Wire Wire Line
+	8650 3900 8650 3750
+Wire Wire Line
+	9450 3850 9450 3750
+Connection ~ 9450 3850
+Wire Wire Line
+	9450 4250 9650 4250
+Connection ~ 9450 4250
+Wire Wire Line
+	8650 4250 8450 4250
+Connection ~ 8650 4250
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C320
+P 9450 3750
+AR Path="/5DF89F54/5DF8DBFF/5E04C320" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C320" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 9450 3600 50  0001 C CNN
+F 1 "+3.3V" H 9465 3923 50  0000 C CNN
+F 2 "" H 9450 3750 50  0001 C CNN
+F 3 "" H 9450 3750 50  0001 C CNN
+	1    9450 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C326
+P 8650 3750
+AR Path="/5DF89F54/5DF8DBFF/5E04C326" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C326" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 8650 3600 50  0001 C CNN
+F 1 "+5VD" H 8665 3923 50  0000 C CNN
+F 2 "" H 8650 3750 50  0001 C CNN
+F 3 "" H 8650 3750 50  0001 C CNN
+	1    8650 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C332
+P 6950 4150
+AR Path="/5DF89F54/5DF8DBFF/5E04C332" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C332" Ref="Q?"  Part="1" 
+F 0 "Q?" V 7200 4150 50  0000 C CNN
+F 1 "AP2310GN" V 7291 4150 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 8000 4000 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 8800 3900 50  0001 C CNN
+	1    6950 4150
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	6950 3950 6950 3850
+$Comp
+L Device:R R?
+U 1 1 5E04C339
+P 7350 4050
+AR Path="/5DF89F54/5DF8DBFF/5E04C339" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C339" Ref="R?"  Part="1" 
+F 0 "R?" H 7420 4096 50  0000 L CNN
+F 1 "1k6" H 7420 4005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 7280 4050 50  0001 C CNN
+F 3 "~" H 7350 4050 50  0001 C CNN
+	1    7350 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7150 4250 7350 4250
+Wire Wire Line
+	7350 4250 7350 4200
+Wire Wire Line
+	6950 3850 7350 3850
+Wire Wire Line
+	7350 3850 7350 3900
+$Comp
+L Device:R R?
+U 1 1 5E04C343
+P 6550 4050
+AR Path="/5DF89F54/5DF8DBFF/5E04C343" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C343" Ref="R?"  Part="1" 
+F 0 "R?" H 6620 4096 50  0000 L CNN
+F 1 "1k6" H 6620 4005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 6480 4050 50  0001 C CNN
+F 3 "~" H 6550 4050 50  0001 C CNN
+	1    6550 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6550 4200 6550 4250
+Wire Wire Line
+	6550 4250 6750 4250
+Wire Wire Line
+	6550 3900 6550 3750
+Wire Wire Line
+	7350 3850 7350 3750
+Connection ~ 7350 3850
+Wire Wire Line
+	7350 4250 7550 4250
+Connection ~ 7350 4250
+Wire Wire Line
+	6550 4250 6350 4250
+Connection ~ 6550 4250
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C352
+P 7350 3750
+AR Path="/5DF89F54/5DF8DBFF/5E04C352" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C352" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 7350 3600 50  0001 C CNN
+F 1 "+3.3V" H 7365 3923 50  0000 C CNN
+F 2 "" H 7350 3750 50  0001 C CNN
+F 3 "" H 7350 3750 50  0001 C CNN
+	1    7350 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C358
+P 6550 3750
+AR Path="/5DF89F54/5DF8DBFF/5E04C358" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C358" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 6550 3600 50  0001 C CNN
+F 1 "+5VD" H 6565 3923 50  0000 C CNN
+F 2 "" H 6550 3750 50  0001 C CNN
+F 3 "" H 6550 3750 50  0001 C CNN
+	1    6550 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C35E
+P 6950 4950
+AR Path="/5DF89F54/5DF8DBFF/5E04C35E" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C35E" Ref="Q?"  Part="1" 
+F 0 "Q?" V 7200 4950 50  0000 C CNN
+F 1 "AP2310GN" V 7291 4950 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 8000 4800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 8800 4700 50  0001 C CNN
+	1    6950 4950
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	6950 4750 6950 4650
+$Comp
+L Device:R R?
+U 1 1 5E04C365
+P 7350 4850
+AR Path="/5DF89F54/5DF8DBFF/5E04C365" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C365" Ref="R?"  Part="1" 
+F 0 "R?" H 7420 4896 50  0000 L CNN
+F 1 "1k6" H 7420 4805 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 7280 4850 50  0001 C CNN
+F 3 "~" H 7350 4850 50  0001 C CNN
+	1    7350 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7150 5050 7350 5050
+Wire Wire Line
+	7350 5050 7350 5000
+Wire Wire Line
+	6950 4650 7350 4650
+Wire Wire Line
+	7350 4650 7350 4700
+$Comp
+L Device:R R?
+U 1 1 5E04C36F
+P 6550 4850
+AR Path="/5DF89F54/5DF8DBFF/5E04C36F" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C36F" Ref="R?"  Part="1" 
+F 0 "R?" H 6620 4896 50  0000 L CNN
+F 1 "1k6" H 6620 4805 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 6480 4850 50  0001 C CNN
+F 3 "~" H 6550 4850 50  0001 C CNN
+	1    6550 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6550 5000 6550 5050
+Wire Wire Line
+	6550 5050 6750 5050
+Wire Wire Line
+	6550 4700 6550 4550
+Wire Wire Line
+	7350 4650 7350 4550
+Connection ~ 7350 4650
+Wire Wire Line
+	7350 5050 7550 5050
+Connection ~ 7350 5050
+Wire Wire Line
+	6550 5050 6350 5050
+Connection ~ 6550 5050
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C37E
+P 7350 4550
+AR Path="/5DF89F54/5DF8DBFF/5E04C37E" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C37E" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 7350 4400 50  0001 C CNN
+F 1 "+3.3V" H 7365 4723 50  0000 C CNN
+F 2 "" H 7350 4550 50  0001 C CNN
+F 3 "" H 7350 4550 50  0001 C CNN
+	1    7350 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C384
+P 6550 4550
+AR Path="/5DF89F54/5DF8DBFF/5E04C384" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C384" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 6550 4400 50  0001 C CNN
+F 1 "+5VD" H 6565 4723 50  0000 C CNN
+F 2 "" H 6550 4550 50  0001 C CNN
+F 3 "" H 6550 4550 50  0001 C CNN
+	1    6550 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C38F
+P 2250 4150
+AR Path="/5DF89F54/5DF8DBFF/5E04C38F" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C38F" Ref="Q?"  Part="1" 
+F 0 "Q?" V 2500 4150 50  0000 C CNN
+F 1 "AP2310GN" V 2591 4150 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 3300 4000 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 4100 3900 50  0001 C CNN
+	1    2250 4150
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	2250 3950 2250 3850
+$Comp
+L Device:R R?
+U 1 1 5E04C396
+P 2650 4050
+AR Path="/5DF89F54/5DF8DBFF/5E04C396" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C396" Ref="R?"  Part="1" 
+F 0 "R?" H 2720 4096 50  0000 L CNN
+F 1 "560R" H 2720 4005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 2580 4050 50  0001 C CNN
+F 3 "~" H 2650 4050 50  0001 C CNN
+	1    2650 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2450 4250 2650 4250
+Wire Wire Line
+	2650 4250 2650 4200
+Wire Wire Line
+	2250 3850 2650 3850
+Wire Wire Line
+	2650 3850 2650 3900
+$Comp
+L Device:R R?
+U 1 1 5E04C3A0
+P 1850 4050
+AR Path="/5DF89F54/5DF8DBFF/5E04C3A0" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C3A0" Ref="R?"  Part="1" 
+F 0 "R?" H 1920 4096 50  0000 L CNN
+F 1 "560R" H 1920 4005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 1780 4050 50  0001 C CNN
+F 3 "~" H 1850 4050 50  0001 C CNN
+	1    1850 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 4200 1850 4250
+Wire Wire Line
+	1850 4250 2050 4250
+Wire Wire Line
+	1850 3900 1850 3750
+Wire Wire Line
+	2650 3850 2650 3750
+Connection ~ 2650 3850
+Wire Wire Line
+	2650 4250 2850 4250
+Connection ~ 2650 4250
+Wire Wire Line
+	1850 4250 1650 4250
+Connection ~ 1850 4250
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C3AF
+P 2650 3750
+AR Path="/5DF89F54/5DF8DBFF/5E04C3AF" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C3AF" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 2650 3600 50  0001 C CNN
+F 1 "+3.3V" H 2665 3923 50  0000 C CNN
+F 2 "" H 2650 3750 50  0001 C CNN
+F 3 "" H 2650 3750 50  0001 C CNN
+	1    2650 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C3B5
+P 1850 3750
+AR Path="/5DF89F54/5DF8DBFF/5E04C3B5" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C3B5" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 1850 3600 50  0001 C CNN
+F 1 "+5VD" H 1865 3923 50  0000 C CNN
+F 2 "" H 1850 3750 50  0001 C CNN
+F 3 "" H 1850 3750 50  0001 C CNN
+	1    1850 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C3BB
+P 2250 4950
+AR Path="/5DF89F54/5DF8DBFF/5E04C3BB" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C3BB" Ref="Q?"  Part="1" 
+F 0 "Q?" V 2500 4950 50  0000 C CNN
+F 1 "AP2310GN" V 2591 4950 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 3300 4800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 4100 4700 50  0001 C CNN
+	1    2250 4950
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	2250 4750 2250 4650
+$Comp
+L Device:R R?
+U 1 1 5E04C3C2
+P 2650 4850
+AR Path="/5DF89F54/5DF8DBFF/5E04C3C2" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C3C2" Ref="R?"  Part="1" 
+F 0 "R?" H 2720 4896 50  0000 L CNN
+F 1 "560R" H 2720 4805 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 2580 4850 50  0001 C CNN
+F 3 "~" H 2650 4850 50  0001 C CNN
+	1    2650 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2450 5050 2650 5050
+Wire Wire Line
+	2650 5050 2650 5000
+Wire Wire Line
+	2250 4650 2650 4650
+Wire Wire Line
+	2650 4650 2650 4700
+$Comp
+L Device:R R?
+U 1 1 5E04C3CC
+P 1850 4850
+AR Path="/5DF89F54/5DF8DBFF/5E04C3CC" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C3CC" Ref="R?"  Part="1" 
+F 0 "R?" H 1920 4896 50  0000 L CNN
+F 1 "560R" H 1920 4805 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 1780 4850 50  0001 C CNN
+F 3 "~" H 1850 4850 50  0001 C CNN
+	1    1850 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 5000 1850 5050
+Wire Wire Line
+	1850 5050 2050 5050
+Wire Wire Line
+	1850 4700 1850 4550
+Wire Wire Line
+	2650 4650 2650 4550
+Connection ~ 2650 4650
+Wire Wire Line
+	2650 5050 2850 5050
+Connection ~ 2650 5050
+Wire Wire Line
+	1850 5050 1650 5050
+Connection ~ 1850 5050
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C3DB
+P 2650 4550
+AR Path="/5DF89F54/5DF8DBFF/5E04C3DB" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C3DB" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 2650 4400 50  0001 C CNN
+F 1 "+3.3V" H 2665 4723 50  0000 C CNN
+F 2 "" H 2650 4550 50  0001 C CNN
+F 3 "" H 2650 4550 50  0001 C CNN
+	1    2650 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C3E1
+P 1850 4550
+AR Path="/5DF89F54/5DF8DBFF/5E04C3E1" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C3E1" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 1850 4400 50  0001 C CNN
+F 1 "+5VD" H 1865 4723 50  0000 C CNN
+F 2 "" H 1850 4550 50  0001 C CNN
+F 3 "" H 1850 4550 50  0001 C CNN
+	1    1850 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C3E7
+P 2250 5750
+AR Path="/5DF89F54/5DF8DBFF/5E04C3E7" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C3E7" Ref="Q?"  Part="1" 
+F 0 "Q?" V 2500 5750 50  0000 C CNN
+F 1 "AP2310GN" V 2591 5750 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 3300 5600 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 4100 5500 50  0001 C CNN
+	1    2250 5750
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	2250 5550 2250 5450
+$Comp
+L Device:R R?
+U 1 1 5E04C3EE
+P 2650 5650
+AR Path="/5DF89F54/5DF8DBFF/5E04C3EE" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C3EE" Ref="R?"  Part="1" 
+F 0 "R?" H 2720 5696 50  0000 L CNN
+F 1 "560R" H 2720 5605 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 2580 5650 50  0001 C CNN
+F 3 "~" H 2650 5650 50  0001 C CNN
+	1    2650 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2450 5850 2650 5850
+Wire Wire Line
+	2650 5850 2650 5800
+Wire Wire Line
+	2250 5450 2650 5450
+Wire Wire Line
+	2650 5450 2650 5500
+$Comp
+L Device:R R?
+U 1 1 5E04C3F8
+P 1850 5650
+AR Path="/5DF89F54/5DF8DBFF/5E04C3F8" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C3F8" Ref="R?"  Part="1" 
+F 0 "R?" H 1920 5696 50  0000 L CNN
+F 1 "560R" H 1920 5605 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 1780 5650 50  0001 C CNN
+F 3 "~" H 1850 5650 50  0001 C CNN
+	1    1850 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 5800 1850 5850
+Wire Wire Line
+	1850 5850 2050 5850
+Wire Wire Line
+	1850 5500 1850 5350
+Wire Wire Line
+	2650 5450 2650 5350
+Connection ~ 2650 5450
+Wire Wire Line
+	2650 5850 2850 5850
+Connection ~ 2650 5850
+Wire Wire Line
+	1850 5850 1650 5850
+Connection ~ 1850 5850
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C407
+P 2650 5350
+AR Path="/5DF89F54/5DF8DBFF/5E04C407" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C407" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 2650 5200 50  0001 C CNN
+F 1 "+3.3V" H 2665 5523 50  0000 C CNN
+F 2 "" H 2650 5350 50  0001 C CNN
+F 3 "" H 2650 5350 50  0001 C CNN
+	1    2650 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C40D
+P 1850 5350
+AR Path="/5DF89F54/5DF8DBFF/5E04C40D" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C40D" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 1850 5200 50  0001 C CNN
+F 1 "+5VD" H 1865 5523 50  0000 C CNN
+F 2 "" H 1850 5350 50  0001 C CNN
+F 3 "" H 1850 5350 50  0001 C CNN
+	1    1850 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C413
+P 4650 4150
+AR Path="/5DF89F54/5DF8DBFF/5E04C413" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C413" Ref="Q?"  Part="1" 
+F 0 "Q?" V 4900 4150 50  0000 C CNN
+F 1 "AP2310GN" V 4991 4150 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 5700 4000 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 6500 3900 50  0001 C CNN
+	1    4650 4150
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	4650 3950 4650 3850
+$Comp
+L Device:R R?
+U 1 1 5E04C41A
+P 5050 4050
+AR Path="/5DF89F54/5DF8DBFF/5E04C41A" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C41A" Ref="R?"  Part="1" 
+F 0 "R?" H 5120 4096 50  0000 L CNN
+F 1 "560R" H 5120 4005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4980 4050 50  0001 C CNN
+F 3 "~" H 5050 4050 50  0001 C CNN
+	1    5050 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 4250 5050 4250
+Wire Wire Line
+	5050 4250 5050 4200
+Wire Wire Line
+	4650 3850 5050 3850
+Wire Wire Line
+	5050 3850 5050 3900
+$Comp
+L Device:R R?
+U 1 1 5E04C424
+P 4250 4050
+AR Path="/5DF89F54/5DF8DBFF/5E04C424" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C424" Ref="R?"  Part="1" 
+F 0 "R?" H 4320 4096 50  0000 L CNN
+F 1 "560R" H 4320 4005 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4180 4050 50  0001 C CNN
+F 3 "~" H 4250 4050 50  0001 C CNN
+	1    4250 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 4200 4250 4250
+Wire Wire Line
+	4250 4250 4450 4250
+Wire Wire Line
+	4250 3900 4250 3750
+Wire Wire Line
+	5050 3850 5050 3750
+Connection ~ 5050 3850
+Wire Wire Line
+	5050 4250 5250 4250
+Connection ~ 5050 4250
+Wire Wire Line
+	4250 4250 4050 4250
+Connection ~ 4250 4250
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C433
+P 5050 3750
+AR Path="/5DF89F54/5DF8DBFF/5E04C433" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C433" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 5050 3600 50  0001 C CNN
+F 1 "+3.3V" H 5065 3923 50  0000 C CNN
+F 2 "" H 5050 3750 50  0001 C CNN
+F 3 "" H 5050 3750 50  0001 C CNN
+	1    5050 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C439
+P 4250 3750
+AR Path="/5DF89F54/5DF8DBFF/5E04C439" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C439" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 4250 3600 50  0001 C CNN
+F 1 "+5VD" H 4265 3923 50  0000 C CNN
+F 2 "" H 4250 3750 50  0001 C CNN
+F 3 "" H 4250 3750 50  0001 C CNN
+	1    4250 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C43F
+P 4650 4950
+AR Path="/5DF89F54/5DF8DBFF/5E04C43F" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C43F" Ref="Q?"  Part="1" 
+F 0 "Q?" V 4900 4950 50  0000 C CNN
+F 1 "AP2310GN" V 4991 4950 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 5700 4800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 6500 4700 50  0001 C CNN
+	1    4650 4950
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	4650 4750 4650 4650
+$Comp
+L Device:R R?
+U 1 1 5E04C446
+P 5050 4850
+AR Path="/5DF89F54/5DF8DBFF/5E04C446" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C446" Ref="R?"  Part="1" 
+F 0 "R?" H 5120 4896 50  0000 L CNN
+F 1 "560R" H 5120 4805 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4980 4850 50  0001 C CNN
+F 3 "~" H 5050 4850 50  0001 C CNN
+	1    5050 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 5050 5050 5050
+Wire Wire Line
+	5050 5050 5050 5000
+Wire Wire Line
+	4650 4650 5050 4650
+Wire Wire Line
+	5050 4650 5050 4700
+$Comp
+L Device:R R?
+U 1 1 5E04C450
+P 4250 4850
+AR Path="/5DF89F54/5DF8DBFF/5E04C450" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C450" Ref="R?"  Part="1" 
+F 0 "R?" H 4320 4896 50  0000 L CNN
+F 1 "560R" H 4320 4805 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4180 4850 50  0001 C CNN
+F 3 "~" H 4250 4850 50  0001 C CNN
+	1    4250 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 5000 4250 5050
+Wire Wire Line
+	4250 5050 4450 5050
+Wire Wire Line
+	4250 4700 4250 4550
+Wire Wire Line
+	5050 4650 5050 4550
+Connection ~ 5050 4650
+Wire Wire Line
+	5050 5050 5250 5050
+Connection ~ 5050 5050
+Wire Wire Line
+	4250 5050 4050 5050
+Connection ~ 4250 5050
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C45F
+P 5050 4550
+AR Path="/5DF89F54/5DF8DBFF/5E04C45F" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C45F" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 5050 4400 50  0001 C CNN
+F 1 "+3.3V" H 5065 4723 50  0000 C CNN
+F 2 "" H 5050 4550 50  0001 C CNN
+F 3 "" H 5050 4550 50  0001 C CNN
+	1    5050 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C465
+P 4250 4550
+AR Path="/5DF89F54/5DF8DBFF/5E04C465" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C465" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 4250 4400 50  0001 C CNN
+F 1 "+5VD" H 4265 4723 50  0000 C CNN
+F 2 "" H 4250 4550 50  0001 C CNN
+F 3 "" H 4250 4550 50  0001 C CNN
+	1    4250 4550
+	1    0    0    -1  
+$EndComp
+Text HLabel 1650 5050 0    50   Input ~ 0
+SCK
+Text HLabel 1650 5850 0    50   Input ~ 0
+MOSI
+Text HLabel 1650 4250 0    50   Input ~ 0
+MISO
+Text HLabel 8450 4250 0    50   Input ~ 0
+~CS~_SD
+Text HLabel 6350 5050 0    50   Input ~ 0
+~CS~_T
+$Comp
+L ulib_MY_Transistor_FET:AP2310GN Q?
+U 1 1 5E04C471
+P 4650 5750
+AR Path="/5DF89F54/5DF8DBFF/5E04C471" Ref="Q?"  Part="1" 
+AR Path="/5DF89F54/5E04C471" Ref="Q?"  Part="1" 
+F 0 "Q?" V 4900 5750 50  0000 C CNN
+F 1 "AP2310GN" V 4991 5750 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23_Handsoldering" H 5700 5600 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/szlcsc/Advanced-Power-Elec-AP2310GN-HF_C46746.pdf" H 6500 5500 50  0001 C CNN
+	1    4650 5750
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	4650 5550 4650 5450
+$Comp
+L Device:R R?
+U 1 1 5E04C478
+P 5050 5650
+AR Path="/5DF89F54/5DF8DBFF/5E04C478" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C478" Ref="R?"  Part="1" 
+F 0 "R?" H 5120 5696 50  0000 L CNN
+F 1 "560R" H 5120 5605 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4980 5650 50  0001 C CNN
+F 3 "~" H 5050 5650 50  0001 C CNN
+	1    5050 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4850 5850 5050 5850
+Wire Wire Line
+	5050 5850 5050 5800
+Wire Wire Line
+	4650 5450 5050 5450
+Wire Wire Line
+	5050 5450 5050 5500
+$Comp
+L Device:R R?
+U 1 1 5E04C482
+P 4250 5650
+AR Path="/5DF89F54/5DF8DBFF/5E04C482" Ref="R?"  Part="1" 
+AR Path="/5DF89F54/5E04C482" Ref="R?"  Part="1" 
+F 0 "R?" H 4320 5696 50  0000 L CNN
+F 1 "560R" H 4320 5605 50  0000 L CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4180 5650 50  0001 C CNN
+F 3 "~" H 4250 5650 50  0001 C CNN
+	1    4250 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 5800 4250 5850
+Wire Wire Line
+	4250 5850 4450 5850
+Wire Wire Line
+	4250 5500 4250 5350
+Wire Wire Line
+	5050 5450 5050 5350
+Connection ~ 5050 5450
+Wire Wire Line
+	5050 5850 5250 5850
+Connection ~ 5050 5850
+Wire Wire Line
+	4250 5850 4050 5850
+Connection ~ 4250 5850
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5E04C491
+P 5050 5350
+AR Path="/5DF89F54/5DF8DBFF/5E04C491" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C491" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 5050 5200 50  0001 C CNN
+F 1 "+3.3V" H 5065 5523 50  0000 C CNN
+F 2 "" H 5050 5350 50  0001 C CNN
+F 3 "" H 5050 5350 50  0001 C CNN
+	1    5050 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR?
+U 1 1 5E04C497
+P 4250 5350
+AR Path="/5DF89F54/5DF8DBFF/5E04C497" Ref="#PWR?"  Part="1" 
+AR Path="/5DF89F54/5E04C497" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 4250 5200 50  0001 C CNN
+F 1 "+5VD" H 4265 5523 50  0000 C CNN
+F 2 "" H 4250 5350 50  0001 C CNN
+F 3 "" H 4250 5350 50  0001 C CNN
+	1    4250 5350
+	1    0    0    -1  
+$EndComp
+Text HLabel 4050 5850 0    50   Input ~ 0
+~CS~_LCD
+Text HLabel 4050 5050 0    50   Input ~ 0
+~RESET~_LCD
+Text HLabel 4050 4250 0    50   Input ~ 0
+DC\~RS~_LCD
+Text HLabel 6350 4250 0    50   Input ~ 0
+IRQ_T
+Wire Notes Line
+	10150 3450 8050 3450
+Text Notes 6050 3450 0    50   ~ 0
+TOUCH PANEL (2 MHz)
+Text Notes 3450 3450 0    50   ~ 0
+LCD DRIVER (4 MHz)
+Text Label 2850 4250 0    50   ~ 0
+MISO_3.3
+Text Label 2850 5850 0    50   ~ 0
+MOSI_3.3
+Text Label 2850 5050 0    50   ~ 0
+SCK_3.3
+Text Label 7100 1700 0    50   ~ 0
+MISO_3.3
+Text Label 7100 2000 0    50   ~ 0
+MOSI_3.3
+Text Label 7100 1900 0    50   ~ 0
+SCK_3.3
+Text Label 7100 1200 0    50   ~ 0
+MISO_3.3
+Text Label 7100 1300 0    50   ~ 0
+MOSI_3.3
+Wire Notes Line
+	7850 3450 6050 3450
+Wire Notes Line
+	5850 3450 3450 3450
+Wire Notes Line
+	1350 3450 1350 6250
+Wire Notes Line
+	1350 6250 3250 6250
+Wire Notes Line
+	3250 6250 3250 3450
+Wire Notes Line
+	3250 3450 1350 3450
+Text Notes 1350 3450 0    50   ~ 0
+COMMON SPI LINES (up to 4 MHz)
+Text Label 5250 4250 0    50   ~ 0
+LCD_DC\~RS
+Text Label 5250 5050 0    50   ~ 0
+LCD_~RESET
+Text Label 5250 5850 0    50   ~ 0
+LCD_~CS
+Text Label 8100 1700 2    50   ~ 0
+MISO_3.3
+Text Label 8100 1900 2    50   ~ 0
+SCK_3.3
+Text Label 8100 2000 2    50   ~ 0
+MOSI_3.3
+Text Label 7550 4250 0    50   ~ 0
+T_IRQ
+Text Label 7550 5050 0    50   ~ 0
+T_~CS
+Text Label 8100 1200 2    50   ~ 0
+MISO_3.3
+Text Label 8100 1300 2    50   ~ 0
+MOSI_3.3
+Text Label 7100 1500 0    50   ~ 0
+SCK_3.3
+Text Label 8100 1500 2    50   ~ 0
+SCK_3.3
+Text Label 9650 4250 0    50   ~ 0
+SD_~CS
+Text Label 2250 1650 0    50   ~ 0
+SCK_3.3
+Text Label 3000 1650 2    50   ~ 0
+SCK_3.3
+Text Label 3000 1750 2    50   ~ 0
+MISO_3.3
+Text Label 2250 1750 0    50   ~ 0
+MISO_3.3
+Text Label 2250 1850 0    50   ~ 0
+MOSI_3.3
+Text Label 3000 1850 2    50   ~ 0
+MOSI_3.3
+Wire Notes Line
+	3450 3450 3450 6250
+Wire Notes Line
+	3450 6250 5850 6250
+Wire Notes Line
+	5850 6250 5850 3450
+Wire Notes Line
+	7850 3450 7850 5450
+Wire Notes Line
+	7850 5450 6050 5450
+Wire Notes Line
+	6050 5450 6050 3450
+Wire Notes Line
+	8050 3450 8050 4650
+Wire Notes Line
+	8050 4650 10150 4650
+Wire Notes Line
+	10150 4650 10150 3450
+Wire Notes Line
+	1250 3300 10250 3300
+Wire Notes Line
+	10250 3300 10250 6350
+Wire Notes Line
+	10250 6350 1250 6350
+Wire Notes Line
+	1250 6350 1250 3300
+Text Notes 1250 3300 0    50   ~ 0
+LEVEL SHITERS 5V -> 3.3V
+Text Notes 8050 3450 0    50   ~ 0
+SD CARD (4 MHz)
+Text Label 8100 1800 2    50   ~ 0
+LCD_BL
+Text Label 7100 1800 0    50   ~ 0
+LCD_BL
+Text Label 10100 2250 0    50   ~ 0
+LCD_BL
+Wire Wire Line
+	9900 2250 10000 2250
+$Comp
+L Device:R R?
+U 1 1 5E02F4A6
+P 9750 2250
+F 0 "R?" V 9543 2250 50  0000 C CNN
+F 1 "680R" V 9634 2250 50  0000 C CNN
+F 2 "" V 9680 2250 50  0001 C CNN
+F 3 "~" H 9750 2250 50  0001 C CNN
+	1    9750 2250
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	7200 4200 7200 4150
+	10000 2250 10100 2250
 Wire Wire Line
-	7200 4150 7100 4150
-Wire Wire Line
-	7100 4150 7100 4400
-Connection ~ 7100 4150
-Wire Wire Line
-	7100 4100 7100 4150
+	9600 2250 9500 2250
+Text HLabel 9500 2250 0    50   Input ~ 0
+BL_LCD
 $EndSCHEMATC
