@@ -40,10 +40,10 @@ Q11
 Wire Wire Line
 	3650 5300 3850 5300
 $Comp
-L Device:C C?
+L Device:C C29
 U 1 1 5DBB7F3D
 P 4000 4600
-F 0 "C?" V 3748 4600 50  0000 C CNN
+F 0 "C29" V 3748 4600 50  0000 C CNN
 F 1 "100nF" V 3839 4600 50  0000 C CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4038 4450 50  0001 C CNN
 F 3 "~" H 4000 4600 50  0001 C CNN
@@ -59,10 +59,10 @@ Wire Wire Line
 Wire Wire Line
 	3750 4600 3750 4700
 $Comp
-L power:GNDD #PWR?
+L power:GNDD #PWR077
 U 1 1 5DBB9690
 P 3750 4700
-F 0 "#PWR?" H 3750 4450 50  0001 C CNN
+F 0 "#PWR077" H 3750 4450 50  0001 C CNN
 F 1 "GNDD" H 3754 4545 50  0000 C CNN
 F 2 "" H 3750 4700 50  0001 C CNN
 F 3 "" H 3750 4700 50  0001 C CNN
@@ -73,10 +73,10 @@ Wire Wire Line
 	4250 4600 4250 4500
 Connection ~ 4250 4600
 $Comp
-L power:+5VD #PWR?
+L power:+5VD #PWR080
 U 1 1 5DBB9DC1
 P 4250 4500
-F 0 "#PWR?" H 4250 4350 50  0001 C CNN
+F 0 "#PWR080" H 4250 4350 50  0001 C CNN
 F 1 "+5VD" H 4265 4673 50  0000 C CNN
 F 2 "" H 4250 4500 50  0001 C CNN
 F 3 "" H 4250 4500 50  0001 C CNN
@@ -84,10 +84,10 @@ F 3 "" H 4250 4500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C?
+L Device:C C28
 U 1 1 5DBBA88D
 P 4000 1250
-F 0 "C?" V 3748 1250 50  0000 C CNN
+F 0 "C28" V 3748 1250 50  0000 C CNN
 F 1 "100nF" V 3839 1250 50  0000 C CNN
 F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4038 1100 50  0001 C CNN
 F 3 "~" H 4000 1250 50  0001 C CNN
@@ -103,10 +103,10 @@ Wire Wire Line
 Wire Wire Line
 	3750 1250 3750 1350
 $Comp
-L power:GNDD #PWR?
+L power:GNDD #PWR076
 U 1 1 5DBBB94E
 P 3750 1350
-F 0 "#PWR?" H 3750 1100 50  0001 C CNN
+F 0 "#PWR076" H 3750 1100 50  0001 C CNN
 F 1 "GNDD" H 3754 1195 50  0000 C CNN
 F 2 "" H 3750 1350 50  0001 C CNN
 F 3 "" H 3750 1350 50  0001 C CNN
@@ -117,10 +117,10 @@ Wire Wire Line
 	4250 1250 4250 1150
 Connection ~ 4250 1250
 $Comp
-L power:+5VD #PWR?
+L power:+5VD #PWR078
 U 1 1 5DBBC2D6
 P 4250 1150
-F 0 "#PWR?" H 4250 1000 50  0001 C CNN
+F 0 "#PWR078" H 4250 1000 50  0001 C CNN
 F 1 "+5VD" H 4265 1323 50  0000 C CNN
 F 2 "" H 4250 1150 50  0001 C CNN
 F 3 "" H 4250 1150 50  0001 C CNN
@@ -130,10 +130,10 @@ $EndComp
 Wire Wire Line
 	4250 2850 4250 2950
 $Comp
-L power:GNDD #PWR?
+L power:GNDD #PWR079
 U 1 1 5DBBD1F3
 P 4250 2950
-F 0 "#PWR?" H 4250 2700 50  0001 C CNN
+F 0 "#PWR079" H 4250 2700 50  0001 C CNN
 F 1 "GNDD" H 4254 2795 50  0000 C CNN
 F 2 "" H 4250 2950 50  0001 C CNN
 F 3 "" H 4250 2950 50  0001 C CNN
@@ -143,10 +143,10 @@ $EndComp
 Wire Wire Line
 	4250 6200 4250 6300
 $Comp
-L power:GNDD #PWR?
+L power:GNDD #PWR081
 U 1 1 5DBBE1A2
 P 4250 6300
-F 0 "#PWR?" H 4250 6050 50  0001 C CNN
+F 0 "#PWR081" H 4250 6050 50  0001 C CNN
 F 1 "GNDD" H 4254 6145 50  0000 C CNN
 F 2 "" H 4250 6300 50  0001 C CNN
 F 3 "" H 4250 6300 50  0001 C CNN
@@ -190,10 +190,10 @@ Wire Wire Line
 Wire Wire Line
 	2950 4900 2950 4800
 $Comp
-L power:+5VD #PWR?
+L power:+5VD #PWR075
 U 1 1 5DBCA96D
 P 2950 4800
-F 0 "#PWR?" H 2950 4650 50  0001 C CNN
+F 0 "#PWR075" H 2950 4650 50  0001 C CNN
 F 1 "+5VD" H 2965 4973 50  0000 C CNN
 F 2 "" H 2950 4800 50  0001 C CNN
 F 3 "" H 2950 4800 50  0001 C CNN
@@ -517,10 +517,10 @@ Wire Notes Line
 Text Notes 3900 4200 0    50   ~ 0
 12-BIT BINARY COUNTER 2
 $Comp
-L 74xx:74HC04 U?
+L 74xx:74HC04 U1
 U 1 1 5DBD607E
 P 3450 2950
-F 0 "U?" V 3404 3130 50  0000 L CNN
+F 0 "U1" V 3404 3130 50  0000 L CNN
 F 1 "74HC04" V 3495 3130 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 3450 2950 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 3450 2950 50  0001 C CNN
@@ -541,10 +541,10 @@ Connection ~ 3450 1950
 Wire Wire Line
 	3450 1950 3850 1950
 $Comp
-L ulib_MY_74xx:74HC4040 U?
+L ulib_MY_74xx:74HC4040 U13
 U 1 1 5DDE79E4
 P 4250 2100
-F 0 "U?" H 4000 2800 50  0000 C CNN
+F 0 "U13" H 4000 2800 50  0000 C CNN
 F 1 "74HC4040" H 4500 2800 50  0000 C CNN
 F 2 "Housings_SOIC:SOIC-16_3.9x9.9mm_Pitch1.27mm" H 4250 2050 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT4040.pdf" H 4250 2150 50  0001 C CNN
@@ -552,10 +552,10 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT4040.pdf" H 4250 2
 	1    0    0    -1  
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC4040 U?
+L ulib_MY_74xx:74HC4040 U14
 U 1 1 5DDE7D79
 P 4250 5450
-F 0 "U?" H 4000 6150 50  0000 C CNN
+F 0 "U14" H 4000 6150 50  0000 C CNN
 F 1 "74HC4040" H 4500 6150 50  0000 C CNN
 F 2 "Housings_SOIC:SOIC-16_3.9x9.9mm_Pitch1.27mm" H 4250 5400 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT4040.pdf" H 4250 5500 50  0001 C CNN
@@ -563,10 +563,10 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT4040.pdf" H 4250 5
 	1    0    0    -1  
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC30 U?
+L ulib_MY_74xx:74HC30 U4
 U 1 1 5DDE81EA
 P 3350 5300
-F 0 "U?" H 3350 4722 50  0000 C CNN
+F 0 "U4" H 3350 4722 50  0000 C CNN
 F 1 "74HC30" H 3350 4813 50  0000 C CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 3350 5250 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT30.pdf" H 3350 5350 50  0001 C CNN
@@ -574,10 +574,10 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT30.pdf" H 3350 535
 	1    0    0    1   
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC08 U?
+L ulib_MY_74xx:74HC08 U2
 U 1 1 5DDE88D1
 P 5050 3350
-F 0 "U?" V 5300 3100 50  0000 L CNN
+F 0 "U2" V 5300 3100 50  0000 L CNN
 F 1 "74HC08" H 4850 3150 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5050 3300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5050 3400 50  0001 C CNN
@@ -585,10 +585,10 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5050 340
 	0    1    1    0   
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC08 U?
+L ulib_MY_74xx:74HC08 U2
 U 2 1 5DDE89F7
 P 5450 3350
-F 0 "U?" V 5700 3100 50  0000 L CNN
+F 0 "U2" V 5700 3100 50  0000 L CNN
 F 1 "74HC08" H 5250 3150 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5450 3300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5450 3400 50  0001 C CNN
@@ -596,10 +596,10 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5450 340
 	0    1    1    0   
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC08 U?
+L ulib_MY_74xx:74HC08 U3
 U 3 1 5DDE8B26
 P 5850 3350
-F 0 "U?" V 6100 3100 50  0000 L CNN
+F 0 "U3" V 6100 3100 50  0000 L CNN
 F 1 "74HC08" H 5650 3150 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5850 3300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5850 3400 50  0001 C CNN
@@ -607,10 +607,10 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5850 340
 	0    1    1    0   
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC08 U?
+L ulib_MY_74xx:74HC08 U3
 U 4 1 5DDE8C64
 P 6250 3350
-F 0 "U?" V 6500 3100 50  0000 L CNN
+F 0 "U3" V 6500 3100 50  0000 L CNN
 F 1 "74HC08" H 6050 3150 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6250 3300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6250 3400 50  0001 C CNN
@@ -618,10 +618,10 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6250 340
 	0    1    1    0   
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC08 U?
+L ulib_MY_74xx:74HC08 U3
 U 1 1 5DDE8DB3
 P 6650 3350
-F 0 "U?" V 6900 3100 50  0000 L CNN
+F 0 "U3" V 6900 3100 50  0000 L CNN
 F 1 "74HC08" H 6450 3150 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6650 3300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6650 3400 50  0001 C CNN
@@ -629,10 +629,10 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6650 340
 	0    1    1    0   
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC08 U?
+L ulib_MY_74xx:74HC08 U3
 U 2 1 5DDE8F14
 P 7050 3350
-F 0 "U?" V 7300 3100 50  0000 L CNN
+F 0 "U3" V 7300 3100 50  0000 L CNN
 F 1 "74HC08" H 6850 3150 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7050 3300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7050 3400 50  0001 C CNN
