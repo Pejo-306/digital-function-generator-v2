@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 4 5
 Title "Digital Function Generator v2 - Output Circuitry"
-Date "2019-12-20"
+Date "2019-12-21"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -406,14 +406,7 @@ Wire Wire Line
 	1950 5100 2050 5100
 Wire Wire Line
 	2050 5100 2050 5050
-Wire Wire Line
-	1650 5050 1650 5100
-Wire Wire Line
-	1650 5100 1550 5100
-Wire Wire Line
-	1550 5100 1550 5050
 Connection ~ 1950 5100
-Connection ~ 1550 5100
 Wire Wire Line
 	3450 6100 3650 6100
 Wire Wire Line
@@ -784,17 +777,6 @@ Text HLabel 4550 5750 0    50   Input ~ 0
 SCL
 $Comp
 L power:+5VA #PWR?
-U 1 1 5DF1680B
-P 4550 5850
-F 0 "#PWR?" H 4550 5700 50  0001 C CNN
-F 1 "+5VA" V 4565 5977 50  0000 L CNN
-F 2 "" H 4550 5850 50  0001 C CNN
-F 3 "" H 4550 5850 50  0001 C CNN
-	1    4550 5850
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:+5VA #PWR?
 U 1 1 5DF338CA
 P 5700 5600
 F 0 "#PWR?" H 5700 5450 50  0001 C CNN
@@ -874,13 +856,9 @@ Wire Wire Line
 Wire Wire Line
 	1850 5050 1850 5400
 Wire Wire Line
-	1550 5100 1550 5900
-Wire Wire Line
 	1550 5900 2250 5900
 Wire Wire Line
 	1450 5900 1250 5900
-Wire Wire Line
-	1450 5050 1450 5900
 Wire Wire Line
 	10900 5250 10500 5250
 Connection ~ 10500 5250
@@ -1171,8 +1149,6 @@ Wire Notes Line
 Text Notes 4150 3700 0    50   ~ 0
 WAVEFORM DC OFFSET
 Wire Wire Line
-	3850 4950 5950 4950
-Wire Wire Line
 	3850 4950 3850 6100
 Wire Notes Line
 	3950 7250 3950 3700
@@ -1397,4 +1373,36 @@ Wire Wire Line
 Wire Wire Line
 	1250 6600 1550 6600
 Connection ~ 1550 6600
+Wire Wire Line
+	1550 5050 1550 5100
+Wire Wire Line
+	1450 5050 1450 5100
+Wire Wire Line
+	1450 5100 1550 5100
+Connection ~ 1550 5100
+Wire Wire Line
+	1550 5100 1550 5900
+Wire Wire Line
+	1650 5200 1450 5200
+Wire Wire Line
+	1450 5200 1450 5900
+Wire Wire Line
+	1650 5050 1650 5200
+$Comp
+L power:GNDA #PWR?
+U 1 1 5E095BC7
+P 4550 5850
+F 0 "#PWR?" H 4550 5600 50  0001 C CNN
+F 1 "GNDA" V 4555 5723 50  0000 R CNN
+F 2 "" H 4550 5850 50  0001 C CNN
+F 3 "" H 4550 5850 50  0001 C CNN
+	1    4550 5850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3850 4950 5950 4950
+Wire Wire Line
+	3650 6100 3650 6200
+Text HLabel 3650 6200 3    50   Input ~ 0
+OCAL
 $EndSCHEMATC
