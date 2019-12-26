@@ -1,4 +1,4 @@
-update=Wed 25 Dec 2019 18:13:37 EET
+update=Thu 26 Dec 2019 17:19:47 EET
 version=1
 last_client=kicad
 [general]
@@ -39,7 +39,7 @@ MinMicroViaDiameter=0.2
 MinMicroViaDrill=0.09999999999999999
 MinHoleToHole=0.25
 TrackWidth1=0.25
-TrackWidth2=0.254
+TrackWidth2=0.15
 ViaDiameter1=0.8
 ViaDrill1=0.4
 ViaDiameter2=0.6
@@ -250,6 +250,28 @@ dPairWidth=0.2
 dPairGap=0.25
 dPairViaGap=0.25
 [pcbnew/Netclasses/1]
+Name=Analog Signal
+Clearance=0.15
+TrackWidth=0.25
+ViaDiameter=0.6
+ViaDrill=0.3
+uViaDiameter=0.3
+uViaDrill=0.1
+dPairWidth=0.2
+dPairGap=0.25
+dPairViaGap=0.25
+[pcbnew/Netclasses/2]
+Name=Analog Supply
+Clearance=0.15
+TrackWidth=0.5
+ViaDiameter=0.8
+ViaDrill=0.4
+uViaDiameter=0.3
+uViaDrill=0.1
+dPairWidth=0.2
+dPairGap=0.25
+dPairViaGap=0.25
+[pcbnew/Netclasses/3]
 Name=Digital HS Signal
 Clearance=0.127
 TrackWidth=0.2
@@ -260,7 +282,7 @@ uViaDrill=0.1
 dPairWidth=0.2
 dPairGap=0.25
 dPairViaGap=0.25
-[pcbnew/Netclasses/2]
+[pcbnew/Netclasses/4]
 Name=Digital Signal
 Clearance=0.127
 TrackWidth=0.15
@@ -271,7 +293,18 @@ uViaDrill=0.1
 dPairWidth=0.2
 dPairGap=0.25
 dPairViaGap=0.25
-[pcbnew/Netclasses/3]
+[pcbnew/Netclasses/5]
+Name=Digital Supply
+Clearance=0.15
+TrackWidth=0.25
+ViaDiameter=0.6
+ViaDrill=0.3
+uViaDiameter=0.3
+uViaDrill=0.1
+dPairWidth=0.2
+dPairGap=0.25
+dPairViaGap=0.25
+[pcbnew/Netclasses/6]
 Name=Digital UHS Signal
 Clearance=0.2
 TrackWidth=0.25

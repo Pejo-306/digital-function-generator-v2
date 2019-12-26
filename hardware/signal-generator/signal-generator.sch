@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 5
 Title "Digital Function Generator v2"
-Date "2019-12-21"
+Date "2019-12-26"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -1017,17 +1017,6 @@ Wire Wire Line
 	9650 4400 9650 4300
 Wire Wire Line
 	8650 5100 8550 5100
-$Comp
-L 74xx:74HC04 U1
-U 3 1 5E03ECE0
-P 8050 4600
-F 0 "U1" H 8050 4917 50  0000 C CNN
-F 1 "74HC04" H 8050 4826 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 8050 4600 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 8050 4600 50  0001 C CNN
-	3    8050 4600
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	8350 4600 8550 4600
 Wire Wire Line
@@ -1273,12 +1262,6 @@ Wire Notes Line
 	6250 3900 6250 600 
 Text Notes 6250 4050 0    50   ~ 0
 WAVEFORM PROCESSING CIRCUITRY
-NoConn ~ 1750 6150
-NoConn ~ 1750 6350
-NoConn ~ 1750 6850
-NoConn ~ 1750 7050
-NoConn ~ 2350 6950
-NoConn ~ 2350 6250
 $Comp
 L Device:C C?
 U 1 1 5DE933F9
@@ -1517,45 +1500,6 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 2750 675
 	1    0    0    -1  
 $EndComp
 $Comp
-L ulib_MY_74xx:74HC08 U?
-U 3 1 5DE93472
-P 2050 6250
-AR Path="/5DB72CF6/5DBBB708/5DE93472" Ref="U?"  Part="3" 
-AR Path="/5DE65B3D/5DE93472" Ref="U?"  Part="3" 
-AR Path="/5DE93472" Ref="U2"  Part="3" 
-F 0 "U2" H 2050 6575 50  0000 C CNN
-F 1 "74HC08" H 2050 6484 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 2050 6200 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 2050 6300 50  0001 C CNN
-	3    2050 6250
-	1    0    0    -1  
-$EndComp
-$Comp
-L ulib_MY_74xx:74HC08 U?
-U 4 1 5DE93479
-P 2050 6950
-AR Path="/5DB72CF6/5DBBB708/5DE93479" Ref="U?"  Part="4" 
-AR Path="/5DE65B3D/5DE93479" Ref="U?"  Part="4" 
-AR Path="/5DE93479" Ref="U2"  Part="4" 
-F 0 "U2" H 2050 7275 50  0000 C CNN
-F 1 "74HC08" H 2050 7184 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 2050 6900 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 2050 7000 50  0001 C CNN
-	4    2050 6950
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74xx:74HC04 U1
-U 4 1 5DE93480
-P 1250 6250
-F 0 "U1" H 1250 6567 50  0000 C CNN
-F 1 "74HC04" H 1250 6476 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 1250 6250 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 1250 6250 50  0001 C CNN
-	4    1250 6250
-	1    0    0    -1  
-$EndComp
-$Comp
 L 74xx:74HC04 U1
 U 5 1 5DE93487
 P 1250 6750
@@ -1564,17 +1508,6 @@ F 1 "74HC04" H 1250 6976 50  0000 C CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 1250 6750 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 1250 6750 50  0001 C CNN
 	5    1250 6750
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74xx:74HC04 U1
-U 6 1 5DE9348E
-P 1250 7250
-F 0 "U1" H 1250 7567 50  0000 C CNN
-F 1 "74HC04" H 1250 7476 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 1250 7250 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 1250 7250 50  0001 C CNN
-	6    1250 7250
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1644,12 +1577,8 @@ F 3 "" H 5600 6200 50  0001 C CNN
 	1    5600 6200
 	1    0    0    -1  
 $EndComp
-NoConn ~ 1550 7250
 NoConn ~ 1550 6750
-NoConn ~ 1550 6250
-NoConn ~ 950  6250
 NoConn ~ 950  6750
-NoConn ~ 950  7250
 Wire Notes Line
 	850  7550 850  5750
 Wire Notes Line
@@ -1926,4 +1855,77 @@ Wire Wire Line
 	8650 6000 8550 6000
 Text Label 8550 6000 2    50   ~ 0
 OCAL
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 1 1 5E18D9E0
+P 2050 6450
+AR Path="/5DB72CF6/5DBBB708/5E18D9E0" Ref="U?"  Part="1" 
+AR Path="/5E18D9E0" Ref="U3"  Part="1" 
+F 0 "U3" H 1950 6750 50  0000 L CNN
+F 1 "74HC08" H 1900 6650 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 2050 6400 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 2050 6500 50  0001 C CNN
+	1    2050 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U?
+U 2 1 5E18D9E6
+P 2050 7000
+AR Path="/5DB72CF6/5DBBB708/5E18D9E6" Ref="U?"  Part="2" 
+AR Path="/5E18D9E6" Ref="U3"  Part="2" 
+F 0 "U3" H 1950 7300 50  0000 L CNN
+F 1 "74HC08" H 1900 7200 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 2050 6950 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 2050 7050 50  0001 C CNN
+	2    2050 7000
+	1    0    0    -1  
+$EndComp
+NoConn ~ 1750 6350
+NoConn ~ 1750 6550
+NoConn ~ 1750 6900
+NoConn ~ 1750 7100
+NoConn ~ 2350 7000
+NoConn ~ 2350 6450
+$Comp
+L 74xx:74HC04 U?
+U 1 1 5E394027
+P 1250 6150
+AR Path="/5DB72CF6/5DBBB708/5E394027" Ref="U?"  Part="1" 
+AR Path="/5E394027" Ref="U1"  Part="1" 
+F 0 "U1" H 1150 6450 50  0000 L CNN
+F 1 "74HC04" H 1100 6350 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 1250 6150 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 1250 6150 50  0001 C CNN
+	1    1250 6150
+	1    0    0    -1  
+$EndComp
+NoConn ~ 1550 6150
+NoConn ~ 950  6150
+$Comp
+L 74xx:74HC04 U1
+U 4 1 5E3FD50C
+P 1250 7300
+AR Path="/5E3FD50C" Ref="U1"  Part="4" 
+AR Path="/5DB72CF6/5DBBB708/5E3FD50C" Ref="U?"  Part="4" 
+F 0 "U1" H 1250 7617 50  0000 C CNN
+F 1 "74HC04" H 1250 7526 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 1250 7300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 1250 7300 50  0001 C CNN
+	4    1250 7300
+	1    0    0    -1  
+$EndComp
+NoConn ~ 950  7300
+NoConn ~ 1550 7300
+$Comp
+L 74xx:74HC04 U1
+U 6 1 5E460C5F
+P 8050 4600
+F 0 "U1" H 8050 4917 50  0000 C CNN
+F 1 "74HC04" H 8050 4826 50  0000 C CNN
+F 2 "" H 8050 4600 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 8050 4600 50  0001 C CNN
+	6    8050 4600
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
