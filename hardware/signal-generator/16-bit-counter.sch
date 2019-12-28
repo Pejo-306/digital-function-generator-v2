@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 3 5
 Title "Digital Function Generator v2 - DDS 16-bit counter"
-Date "2019-12-26"
+Date "2019-12-28"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -250,33 +250,33 @@ Wire Wire Line
 	3850 5600 3750 5600
 Text HLabel 3750 5600 0    50   Input ~ 0
 MR2
-Text Label 2750 5000 0    50   ~ 0
-CP2I0
 Text Label 2750 5600 0    50   ~ 0
-CP2I1
+CP2I0
 Text Label 2750 5500 0    50   ~ 0
-CP2I2
+CP2I1
 Text Label 2750 5400 0    50   ~ 0
-CP2I3
+CP2I2
 Text Label 2750 5300 0    50   ~ 0
-CP2I4
+CP2I3
 Text Label 2750 5200 0    50   ~ 0
-CP2I5
+CP2I4
 Text Label 2750 5100 0    50   ~ 0
+CP2I5
+Text Label 2750 5000 0    50   ~ 0
 CP2I6
 Text Label 2650 3950 2    50   ~ 0
 CP2I[0..6]
-Text Label 5450 3750 0    50   ~ 0
-CP2I0
 Text Label 5050 3750 0    50   ~ 0
+CP2I0
+Text Label 5450 3750 0    50   ~ 0
 CP2I1
 Text Label 5850 3750 0    50   ~ 0
 CP2I2
 Text Label 6250 3750 0    50   ~ 0
 CP2I3
-Text Label 7050 3750 0    50   ~ 0
-CP2I4
 Text Label 6650 3750 0    50   ~ 0
+CP2I4
+Text Label 7050 3750 0    50   ~ 0
 CP2I5
 Text Label 3450 3750 0    50   ~ 0
 CP2I6
@@ -565,45 +565,31 @@ $EndComp
 $Comp
 L ulib_MY_74xx:74HC08 U2
 U 2 1 5DDE89F7
-P 5850 3350
-F 0 "U2" V 6100 3100 50  0000 L CNN
-F 1 "74HC08" H 5650 3150 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5850 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5850 3400 50  0001 C CNN
-	2    5850 3350
+P 6650 3350
+F 0 "U2" V 6900 3100 50  0000 L CNN
+F 1 "74HC08" H 6450 3150 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6650 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6650 3400 50  0001 C CNN
+	2    6650 3350
 	0    1    1    0   
 $EndComp
 $Comp
 L ulib_MY_74xx:74HC08 U3
 U 3 1 5DDE8B26
-P 6650 3350
-F 0 "U3" V 6900 3450 50  0000 L CNN
-F 1 "74HC08" H 6450 3550 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6650 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6650 3400 50  0001 C CNN
-	3    6650 3350
+P 5050 3350
+F 0 "U3" V 5300 3450 50  0000 L CNN
+F 1 "74HC08" H 4850 3550 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5050 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5050 3400 50  0001 C CNN
+	3    5050 3350
 	0    -1   1    0   
 $EndComp
 $Comp
 L ulib_MY_74xx:74HC08 U3
 U 4 1 5DDE8C64
-P 7050 3350
-F 0 "U3" V 7300 3450 50  0000 L CNN
-F 1 "74HC08" H 6850 3550 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7050 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7050 3400 50  0001 C CNN
-	4    7050 3350
-	0    -1   1    0   
-$EndComp
-$Comp
-L ulib_MY_74xx:74HC08 U2
-U 4 1 5E0FAF21
 P 5450 3350
-AR Path="/5DB72CF6/5DBBB708/5E0FAF21" Ref="U2"  Part="4" 
-AR Path="/5DE65B3D/5E0FAF21" Ref="U?"  Part="4" 
-AR Path="/5E0FAF21" Ref="U?"  Part="4" 
-F 0 "U2" V 5700 3500 50  0000 C CNN
-F 1 "74HC08" H 5400 3150 50  0000 C CNN
+F 0 "U3" V 5700 3450 50  0000 L CNN
+F 1 "74HC08" H 5250 3550 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5450 3300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5450 3400 50  0001 C CNN
 	4    5450 3350
@@ -611,40 +597,54 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5450 340
 $EndComp
 $Comp
 L ulib_MY_74xx:74HC08 U2
+U 4 1 5E0FAF21
+P 6250 3350
+AR Path="/5DB72CF6/5DBBB708/5E0FAF21" Ref="U2"  Part="4" 
+AR Path="/5DE65B3D/5E0FAF21" Ref="U?"  Part="4" 
+AR Path="/5E0FAF21" Ref="U?"  Part="4" 
+F 0 "U2" V 6500 3500 50  0000 C CNN
+F 1 "74HC08" H 6200 3550 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6250 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6250 3400 50  0001 C CNN
+	4    6250 3350
+	0    -1   1    0   
+$EndComp
+$Comp
+L ulib_MY_74xx:74HC08 U2
 U 3 1 5E137EE3
-P 5050 3350
+P 5850 3350
 AR Path="/5DB72CF6/5DBBB708/5E137EE3" Ref="U2"  Part="3" 
 AR Path="/5DE65B3D/5E137EE3" Ref="U?"  Part="3" 
 AR Path="/5E137EE3" Ref="U?"  Part="3" 
-F 0 "U2" V 5300 3500 50  0000 C CNN
-F 1 "74HC08" H 5000 3550 50  0000 C CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5050 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5050 3400 50  0001 C CNN
-	3    5050 3350
+F 0 "U2" V 6100 3500 50  0000 C CNN
+F 1 "74HC08" H 5800 3550 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 5850 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 5850 3400 50  0001 C CNN
+	3    5850 3350
 	0    -1   1    0   
 $EndComp
 $Comp
 L ulib_MY_74xx:74HC08 U2
 U 1 1 5DDE88D1
-P 6250 3350
-F 0 "U2" V 6500 3100 50  0000 L CNN
-F 1 "74HC08" H 6050 3150 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 6250 3300 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 6250 3400 50  0001 C CNN
-	1    6250 3350
+P 7050 3350
+F 0 "U2" V 7300 3100 50  0000 L CNN
+F 1 "74HC08" H 6850 3150 50  0000 L CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 7050 3300 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 7050 3400 50  0001 C CNN
+	1    7050 3350
 	0    1    1    0   
 $EndComp
 $Comp
-L 74xx:74HC04 U?
-U 3 1 5E4488E7
+L 74xx:74HC04 U1
+U 1 1 5E0C4B22
 P 3450 2950
-AR Path="/5E4488E7" Ref="U?"  Part="3" 
-AR Path="/5DB72CF6/5DBBB708/5E4488E7" Ref="U1"  Part="3" 
-F 0 "U1" V 3400 3200 50  0000 C CNN
-F 1 "74HC04" V 3500 3200 50  0000 C CNN
+AR Path="/5DB72CF6/5DBBB708/5E0C4B22" Ref="U1"  Part="1" 
+AR Path="/5E0C4B22" Ref="U?"  Part="1" 
+F 0 "U1" V 3400 3100 50  0000 L CNN
+F 1 "74HC04" V 3500 3050 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 3450 2950 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 3450 2950 50  0001 C CNN
-	3    3450 2950
+	1    3450 2950
 	0    1    1    0   
 $EndComp
 Wire Bus Line

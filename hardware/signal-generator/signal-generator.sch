@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 5
 Title "Digital Function Generator v2"
-Date "2019-12-26"
+Date "2019-12-28"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -1888,21 +1888,6 @@ NoConn ~ 1750 7100
 NoConn ~ 2350 7000
 NoConn ~ 2350 6450
 $Comp
-L 74xx:74HC04 U?
-U 1 1 5E394027
-P 1250 6150
-AR Path="/5DB72CF6/5DBBB708/5E394027" Ref="U?"  Part="1" 
-AR Path="/5E394027" Ref="U1"  Part="1" 
-F 0 "U1" H 1150 6450 50  0000 L CNN
-F 1 "74HC04" H 1100 6350 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 1250 6150 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 1250 6150 50  0001 C CNN
-	1    1250 6150
-	1    0    0    -1  
-$EndComp
-NoConn ~ 1550 6150
-NoConn ~ 950  6150
-$Comp
 L 74xx:74HC04 U1
 U 4 1 5E3FD50C
 P 1250 7300
@@ -1928,4 +1913,19 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 8050 460
 	6    8050 4600
 	1    0    0    -1  
 $EndComp
+$Comp
+L 74xx:74HC04 U1
+U 3 1 5E0D16A8
+P 1250 6150
+AR Path="/5E0D16A8" Ref="U1"  Part="3" 
+AR Path="/5DB72CF6/5DBBB708/5E0D16A8" Ref="U?"  Part="3" 
+F 0 "U1" H 1250 6450 50  0000 C CNN
+F 1 "74HC04" H 1250 6350 50  0000 C CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 1250 6150 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 1250 6150 50  0001 C CNN
+	3    1250 6150
+	1    0    0    -1  
+$EndComp
+NoConn ~ 1550 6150
+NoConn ~ 950  6150
 $EndSCHEMATC
