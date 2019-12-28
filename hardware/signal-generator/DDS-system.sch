@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 5
 Title "Digital Function Generator v2 - DDS System"
-Date "2019-12-20"
+Date "2019-12-28"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -258,34 +258,6 @@ Wire Wire Line
 	4550 1200 4550 1100
 Wire Wire Line
 	4550 1100 4650 1100
-Wire Wire Line
-	5950 1700 6100 1700
-Wire Wire Line
-	5950 1800 6150 1800
-Wire Wire Line
-	5950 1900 6200 1900
-Wire Wire Line
-	5950 2000 6250 2000
-Wire Wire Line
-	5950 2100 6300 2100
-Wire Wire Line
-	5950 2200 6350 2200
-Wire Wire Line
-	5950 2300 6400 2300
-Wire Wire Line
-	5950 2400 6450 2400
-Wire Wire Line
-	5950 2500 6500 2500
-Wire Wire Line
-	5950 2600 6550 2600
-Wire Wire Line
-	5950 2700 6600 2700
-Wire Wire Line
-	5950 2800 6650 2800
-Wire Wire Line
-	5950 2900 6700 2900
-Wire Wire Line
-	5950 3000 6750 3000
 Wire Wire Line
 	5950 1500 6000 1500
 Wire Wire Line
@@ -603,70 +575,6 @@ Wire Wire Line
 	4550 4900 4450 4900
 Wire Wire Line
 	4550 5000 4450 5000
-Wire Wire Line
-	6000 5800 5950 5800
-Wire Wire Line
-	6000 1500 6000 5800
-Wire Wire Line
-	5950 5900 6050 5900
-Wire Wire Line
-	6050 1600 6050 5900
-Wire Wire Line
-	6100 6000 5950 6000
-Wire Wire Line
-	6100 1700 6100 6000
-Wire Wire Line
-	5950 6100 6150 6100
-Wire Wire Line
-	6150 1800 6150 6100
-Wire Wire Line
-	6200 6200 5950 6200
-Wire Wire Line
-	6200 1900 6200 6200
-Wire Wire Line
-	5950 6300 6250 6300
-Wire Wire Line
-	6250 2000 6250 6300
-Wire Wire Line
-	6300 6400 5950 6400
-Wire Wire Line
-	6300 2100 6300 6400
-Wire Wire Line
-	5950 6500 6350 6500
-Wire Wire Line
-	6350 2200 6350 6500
-Wire Wire Line
-	6400 4900 5950 4900
-Wire Wire Line
-	6400 2300 6400 4900
-Wire Wire Line
-	5950 5000 6450 5000
-Wire Wire Line
-	6450 2400 6450 5000
-Wire Wire Line
-	6500 5100 5950 5100
-Wire Wire Line
-	6500 2500 6500 5100
-Wire Wire Line
-	5950 5200 6550 5200
-Wire Wire Line
-	6550 2600 6550 5200
-Wire Wire Line
-	6600 5300 5950 5300
-Wire Wire Line
-	6600 2700 6600 5300
-Wire Wire Line
-	5950 5400 6650 5400
-Wire Wire Line
-	6650 2800 6650 5400
-Wire Wire Line
-	6700 5500 5950 5500
-Wire Wire Line
-	6700 2900 6700 5500
-Wire Wire Line
-	5950 5600 6750 5600
-Wire Wire Line
-	6750 3000 6750 5600
 $Comp
 L power:GNDD #PWR056
 U 1 1 5DD6EE44
@@ -844,48 +752,6 @@ Wire Wire Line
 	2150 3200 2150 3100
 Text Label 2150 3100 1    50   ~ 0
 DACCLK
-Wire Wire Line
-	6100 1700 7500 1700
-Connection ~ 6100 1700
-Wire Wire Line
-	6150 1800 7500 1800
-Connection ~ 6150 1800
-Wire Wire Line
-	6200 1900 7500 1900
-Connection ~ 6200 1900
-Wire Wire Line
-	6250 2000 7500 2000
-Connection ~ 6250 2000
-Wire Wire Line
-	6300 2100 7500 2100
-Connection ~ 6300 2100
-Wire Wire Line
-	6350 2200 7500 2200
-Connection ~ 6350 2200
-Wire Wire Line
-	6400 2300 7500 2300
-Connection ~ 6400 2300
-Wire Wire Line
-	6700 2900 7500 2900
-Connection ~ 6700 2900
-Wire Wire Line
-	6650 2800 7500 2800
-Connection ~ 6650 2800
-Wire Wire Line
-	6600 2700 7500 2700
-Connection ~ 6600 2700
-Wire Wire Line
-	6550 2600 7500 2600
-Connection ~ 6550 2600
-Wire Wire Line
-	6500 2500 7500 2500
-Connection ~ 6500 2500
-Wire Wire Line
-	6450 2400 7500 2400
-Connection ~ 6450 2400
-Wire Wire Line
-	6750 3000 7500 3000
-Connection ~ 6750 3000
 $Comp
 L power:+5VA #PWR071
 U 1 1 5DC2AD98
@@ -1052,4 +918,138 @@ Wire Notes Line
 	6950 4450 10050 4450
 Wire Notes Line
 	6950 750  10050 750 
+Wire Wire Line
+	5950 1700 6100 1700
+Wire Wire Line
+	5950 1800 6150 1800
+Wire Wire Line
+	5950 1900 6200 1900
+Wire Wire Line
+	5950 2000 6250 2000
+Wire Wire Line
+	5950 2100 6300 2100
+Wire Wire Line
+	5950 2200 6350 2200
+Wire Wire Line
+	5950 2300 6400 2300
+Wire Wire Line
+	5950 2400 6450 2400
+Wire Wire Line
+	5950 2500 6500 2500
+Wire Wire Line
+	5950 2600 6550 2600
+Wire Wire Line
+	5950 2700 6600 2700
+Wire Wire Line
+	5950 2800 6650 2800
+Wire Wire Line
+	5950 2900 6700 2900
+Wire Wire Line
+	5950 3000 6750 3000
+Wire Wire Line
+	5950 5800 6400 5800
+Wire Wire Line
+	5950 5900 6450 5900
+Wire Wire Line
+	5950 6000 6500 6000
+Wire Wire Line
+	5950 6100 6550 6100
+Wire Wire Line
+	5950 6200 6600 6200
+Wire Wire Line
+	5950 6300 6650 6300
+Wire Wire Line
+	5950 6400 6700 6400
+Wire Wire Line
+	5950 6500 6750 6500
+Wire Wire Line
+	5950 4900 6000 4900
+Wire Wire Line
+	5950 5000 6050 5000
+Wire Wire Line
+	5950 5100 6100 5100
+Wire Wire Line
+	5950 5200 6150 5200
+Wire Wire Line
+	5950 5300 6200 5300
+Wire Wire Line
+	5950 5400 6250 5400
+Wire Wire Line
+	5950 5500 6300 5500
+Wire Wire Line
+	5950 5600 6350 5600
+Wire Wire Line
+	6000 4900 6000 1500
+Wire Wire Line
+	6050 1600 6050 5000
+Wire Wire Line
+	6100 5100 6100 1700
+Connection ~ 6100 1700
+Wire Wire Line
+	6100 1700 7500 1700
+Wire Wire Line
+	6150 1800 6150 5200
+Connection ~ 6150 1800
+Wire Wire Line
+	6150 1800 7500 1800
+Wire Wire Line
+	6200 5300 6200 1900
+Connection ~ 6200 1900
+Wire Wire Line
+	6200 1900 7500 1900
+Wire Wire Line
+	6250 2000 6250 5400
+Connection ~ 6250 2000
+Wire Wire Line
+	6250 2000 7500 2000
+Wire Wire Line
+	6300 5500 6300 2100
+Connection ~ 6300 2100
+Wire Wire Line
+	6300 2100 7500 2100
+Wire Wire Line
+	6350 2200 6350 5600
+Connection ~ 6350 2200
+Wire Wire Line
+	6350 2200 7500 2200
+Wire Wire Line
+	6400 5800 6400 2300
+Connection ~ 6400 2300
+Wire Wire Line
+	6400 2300 7500 2300
+Wire Wire Line
+	6450 2400 6450 5900
+Connection ~ 6450 2400
+Wire Wire Line
+	6450 2400 7500 2400
+Wire Wire Line
+	6500 6000 6500 2500
+Connection ~ 6500 2500
+Wire Wire Line
+	6500 2500 7500 2500
+Wire Wire Line
+	6550 2600 6550 6100
+Connection ~ 6550 2600
+Wire Wire Line
+	6550 2600 7500 2600
+Wire Wire Line
+	6600 6200 6600 2700
+Connection ~ 6600 2700
+Wire Wire Line
+	6600 2700 7500 2700
+Wire Wire Line
+	6650 2800 6650 6300
+Connection ~ 6650 2800
+Wire Wire Line
+	6650 2800 7500 2800
+Wire Wire Line
+	6700 6400 6700 2900
+Connection ~ 6700 2900
+Wire Wire Line
+	6700 2900 7500 2900
+Wire Wire Line
+	6750 3000 6750 6500
+Connection ~ 6750 3000
+Wire Wire Line
+	6750 3000 7500 3000
 $EndSCHEMATC
