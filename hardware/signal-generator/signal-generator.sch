@@ -1860,8 +1860,8 @@ L ulib_MY_74xx:74HC08 U?
 U 1 1 5E18D9E0
 P 2050 6450
 AR Path="/5DB72CF6/5DBBB708/5E18D9E0" Ref="U?"  Part="1" 
-AR Path="/5E18D9E0" Ref="U3"  Part="1" 
-F 0 "U3" H 1950 6750 50  0000 L CNN
+AR Path="/5E18D9E0" Ref="U2"  Part="1" 
+F 0 "U2" H 1950 6750 50  0000 L CNN
 F 1 "74HC08" H 1900 6650 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 2050 6400 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 2050 6500 50  0001 C CNN
@@ -1873,8 +1873,8 @@ L ulib_MY_74xx:74HC08 U?
 U 2 1 5E18D9E6
 P 2050 7000
 AR Path="/5DB72CF6/5DBBB708/5E18D9E6" Ref="U?"  Part="2" 
-AR Path="/5E18D9E6" Ref="U3"  Part="2" 
-F 0 "U3" H 1950 7300 50  0000 L CNN
+AR Path="/5E18D9E6" Ref="U2"  Part="2" 
+F 0 "U2" H 1950 7300 50  0000 L CNN
 F 1 "74HC08" H 1900 7200 50  0000 L CNN
 F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 2050 6950 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT08.pdf" H 2050 7050 50  0001 C CNN
@@ -1908,7 +1908,7 @@ U 6 1 5E460C5F
 P 8050 4600
 F 0 "U1" H 8050 4917 50  0000 C CNN
 F 1 "74HC04" H 8050 4826 50  0000 C CNN
-F 2 "" H 8050 4600 50  0001 C CNN
+F 2 "Housings_SOIC:SOIC-14_3.9x8.7mm_Pitch1.27mm" H 8050 4600 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 8050 4600 50  0001 C CNN
 	6    8050 4600
 	1    0    0    -1  
