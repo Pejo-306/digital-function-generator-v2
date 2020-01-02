@@ -1,4 +1,4 @@
-update=Mon 30 Dec 2019 20:56:00 EET
+update=Thu 02 Jan 2020 18:56:43 EET
 version=1
 last_client=kicad
 [general]
@@ -41,7 +41,8 @@ MinHoleToHole=0.25
 TrackWidth1=0.25
 TrackWidth2=0.127
 TrackWidth3=0.254
-TrackWidth4=0.508
+TrackWidth4=0.381
+TrackWidth5=0.508
 ViaDiameter1=0.8
 ViaDrill1=0.4
 ViaDiameter2=0.6
@@ -358,6 +359,17 @@ Clearance=0.127
 TrackWidth=0.1905
 ViaDiameter=0.6
 ViaDrill=0.3
+uViaDiameter=0.3
+uViaDrill=0.1
+dPairWidth=0.2
+dPairGap=0.25
+dPairViaGap=0.25
+[pcbnew/Netclasses/11]
+Name=VOUT
+Clearance=0.1905
+TrackWidth=0.508
+ViaDiameter=0.8
+ViaDrill=0.4
 uViaDiameter=0.3
 uViaDrill=0.1
 dPairWidth=0.2
