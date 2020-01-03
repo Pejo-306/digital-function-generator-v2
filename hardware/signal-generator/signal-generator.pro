@@ -1,4 +1,4 @@
-update=Thu 02 Jan 2020 19:50:53 EET
+update=Thu 02 Jan 2020 23:13:17 EET
 version=1
 last_client=kicad
 [general]
@@ -367,6 +367,17 @@ dPairWidth=0.2
 dPairGap=0.25
 dPairViaGap=0.25
 [pcbnew/Netclasses/11]
+Name=SPI
+Clearance=0.127
+TrackWidth=0.1905
+ViaDiameter=0.6096
+ViaDrill=0.3048
+uViaDiameter=0.3
+uViaDrill=0.1
+dPairWidth=0.2
+dPairGap=0.25
+dPairViaGap=0.25
+[pcbnew/Netclasses/12]
 Name=VOUT
 Clearance=0.1905
 TrackWidth=0.508

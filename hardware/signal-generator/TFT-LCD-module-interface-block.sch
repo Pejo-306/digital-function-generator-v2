@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 5 5
 Title "Digital Function Generator v2 - TFT LCD Module Interface Block"
-Date "2019-12-21"
+Date "2020-01-02"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -230,19 +230,6 @@ $EndComp
 Wire Wire Line
 	10000 2200 10000 2250
 Connection ~ 10000 2250
-Wire Wire Line
-	10000 2250 10000 2300
-$Comp
-L power:GNDD #PWR0152
-U 1 1 5E00F4BB
-P 10000 2300
-F 0 "#PWR0152" H 10000 2050 50  0001 C CNN
-F 1 "GNDD" H 10004 2145 50  0000 C CNN
-F 2 "" H 10000 2300 50  0001 C CNN
-F 3 "" H 10000 2300 50  0001 C CNN
-	1    10000 2300
-	1    0    0    -1  
-$EndComp
 $Comp
 L ulib_MY_Transistor_FET:AP2310GN Q?
 U 1 1 5E04C300

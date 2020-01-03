@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 5
 Title "Digital Function Generator v2"
-Date "2019-12-28"
+Date "2020-01-02"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -1034,8 +1034,8 @@ $Comp
 L Connector_Generic:Conn_01x08 J6
 U 1 1 5E0935FA
 P 5350 1750
-F 0 "J6" H 5430 1742 50  0000 L CNN
-F 1 "PORT_A" H 5430 1651 50  0000 L CNN
+F 0 "J6" H 5450 1750 50  0000 L CNN
+F 1 "PORT_A" H 5450 1650 50  0000 L CNN
 F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 5350 1750 50  0001 C CNN
 F 3 "~" H 5350 1750 50  0001 C CNN
 	1    5350 1750
