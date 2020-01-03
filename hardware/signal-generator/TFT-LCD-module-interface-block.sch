@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 5 5
 Title "Digital Function Generator v2 - TFT LCD Module Interface Block"
-Date "2020-01-02"
+Date "2020-01-03"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -173,13 +173,13 @@ $EndComp
 $Comp
 L Connector_Generic:Conn_01x04 J11
 U 1 1 5DFBC023
-P 2000 1850
+P 2000 1750
 F 0 "J11" H 2150 1750 50  0000 C CNN
-F 1 "SD_Card_Conn" H 2350 1850 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2000 1850 50  0001 C CNN
-F 3 "~" H 2000 1850 50  0001 C CNN
-	1    2000 1850
-	-1   0    0    1   
+F 1 "SD_Card_Conn" H 2350 1650 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2000 1750 50  0001 C CNN
+F 3 "~" H 2000 1750 50  0001 C CNN
+	1    2000 1750
+	-1   0    0    -1  
 $EndComp
 $Comp
 L power:+5VD #PWR0148
