@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 5
 Title "Digital Function Generator v2"
-Date "2020-01-02"
+Date "2020-01-03"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -448,28 +448,6 @@ F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2549-8-bit-AVR-Microc
 	1    4450 3150
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:C C7
-U 1 1 5DD55FF9
-P 4800 1100
-F 0 "C7" V 4750 1000 50  0000 C CNN
-F 1 "100nF" V 4750 1300 50  0000 C CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4838 950 50  0001 C CNN
-F 3 "~" H 4800 1100 50  0001 C CNN
-	1    4800 1100
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:C C6
-U 1 1 5DD570C2
-P 4800 900
-F 0 "C6" V 4750 800 50  0000 C CNN
-F 1 "100nF" V 4750 1100 50  0000 C CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4838 750 50  0001 C CNN
-F 3 "~" H 4800 900 50  0001 C CNN
-	1    4800 900 
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	4550 1150 4550 1100
 Wire Wire Line
@@ -483,20 +461,7 @@ Wire Wire Line
 	4650 900  4550 900 
 Wire Wire Line
 	4550 900  4550 1100
-Wire Wire Line
-	4550 900  4550 850 
 Connection ~ 4550 900 
-$Comp
-L power:+5VD #PWR016
-U 1 1 5DD5BF12
-P 4550 850
-F 0 "#PWR016" H 4550 700 50  0001 C CNN
-F 1 "+5VD" H 4565 1023 50  0000 C CNN
-F 2 "" H 4550 850 50  0001 C CNN
-F 3 "" H 4550 850 50  0001 C CNN
-	1    4550 850 
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4950 900  5050 900 
 Wire Wire Line
@@ -1928,4 +1893,67 @@ F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 1250 615
 $EndComp
 NoConn ~ 1550 6150
 NoConn ~ 950  6150
+$Comp
+L Device:C C7
+U 1 1 5DD55FF9
+P 4800 1100
+F 0 "C7" V 4750 1000 50  0000 C CNN
+F 1 "100nF" V 4750 1300 50  0000 C CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4838 950 50  0001 C CNN
+F 3 "~" H 4800 1100 50  0001 C CNN
+	1    4800 1100
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C6
+U 1 1 5DD570C2
+P 4800 900
+F 0 "C6" V 4750 800 50  0000 C CNN
+F 1 "100nF" V 4750 1100 50  0000 C CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4838 750 50  0001 C CNN
+F 3 "~" H 4800 900 50  0001 C CNN
+	1    4800 900 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4550 900  4550 850 
+$Comp
+L power:+5VD #PWR016
+U 1 1 5DD5BF12
+P 4550 850
+F 0 "#PWR016" H 4550 700 50  0001 C CNN
+F 1 "+5VD" H 4565 1023 50  0000 C CNN
+F 2 "" H 4550 850 50  0001 C CNN
+F 3 "" H 4550 850 50  0001 C CNN
+	1    4550 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 900  4550 900 
+Wire Wire Line
+	4150 900  4050 900 
+Wire Wire Line
+	4050 900  4050 1000
+$Comp
+L power:GNDD #PWR0152
+U 1 1 5E1B9C94
+P 4050 1000
+F 0 "#PWR0152" H 4050 750 50  0001 C CNN
+F 1 "GNDD" H 4054 845 50  0000 C CNN
+F 2 "" H 4050 1000 50  0001 C CNN
+F 3 "" H 4050 1000 50  0001 C CNN
+	1    4050 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C47
+U 1 1 5E1EEB27
+P 4300 900
+F 0 "C47" V 4150 900 50  0000 C CNN
+F 1 "100nF" V 4450 900 50  0000 C CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 4338 750 50  0001 C CNN
+F 3 "~" H 4300 900 50  0001 C CNN
+	1    4300 900 
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
