@@ -45,7 +45,7 @@ NoConn ~ 9050 3600
 NoConn ~ 9550 3600
 Wire Wire Line
 	9050 3400 8950 3400
-Text GLabel 8950 3400 0    50   Input ~ 0
+Text GLabel 9650 3800 2    50   Input ~ 0
 +12VA
 Wire Wire Line
 	9050 3500 8950 3500
@@ -61,17 +61,17 @@ Wire Wire Line
 	9550 3700 9650 3700
 Wire Wire Line
 	9550 3800 9650 3800
-Text GLabel 9650 3400 2    50   Input ~ 0
--12VA
-Text GLabel 9650 3500 2    50   Input ~ 0
-AGND
-Text GLabel 8950 3500 0    50   Input ~ 0
-AGND
 Text GLabel 8950 3800 0    50   Input ~ 0
-+5VD
+-12VA
 Text GLabel 9650 3700 2    50   Input ~ 0
+AGND
+Text GLabel 8950 3700 0    50   Input ~ 0
+AGND
+Text GLabel 9650 3400 2    50   Input ~ 0
++5VD
+Text GLabel 8950 3400 0    50   Input ~ 0
 DGND
-Text GLabel 9650 3800 2    50   Input ~ 0
+Text GLabel 8950 3500 0    50   Input ~ 0
 DGND
 $Comp
 L power:+5VD #PWR029
@@ -1659,7 +1659,7 @@ Wire Notes Line
 	10500 3900 10500 600 
 Wire Notes Line
 	10500 600  6250 600 
-Text GLabel 8950 3700 0    50   Input ~ 0
+Text GLabel 9650 3500 2    50   Input ~ 0
 +5VD
 $Comp
 L Regulator_Linear:TC1017-xCT U7
