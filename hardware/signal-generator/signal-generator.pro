@@ -1,4 +1,4 @@
-update=Sat 04 Jan 2020 23:40:40 EET
+update=Sun 05 Jan 2020 19:02:38 EET
 version=1
 last_client=kicad
 [general]
@@ -86,11 +86,11 @@ Name=F.Cu
 Type=0
 Enabled=1
 [pcbnew/Layer.In1.Cu]
-Name=In1.Cu
+Name=PowerRails.Cu
 Type=1
 Enabled=1
 [pcbnew/Layer.In2.Cu]
-Name=In2.Cu
+Name=Ground.Cu
 Type=1
 Enabled=1
 [pcbnew/Layer.In3.Cu]
