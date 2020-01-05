@@ -25,3 +25,7 @@ fp-info-cache
 *.xml
 *.csv
 
+# Gerber files
+*.gbr
+*.drl
+
