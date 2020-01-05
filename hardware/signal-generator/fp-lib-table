@@ -1,3 +1,4 @@
 (fp_lib_table
   (lib (name SOP80P1176X120-44N)(type Legacy)(uri ${KICAD_USER_LIBRARY}/user-footprints/ulib_TSSOP-44-II/SOP80P1176X120-44N.mod)(options "")(descr ""))
+  (lib (name elsys-logo)(type KiCad)(uri ${KIPRJMOD}/elsys-logo.pretty)(options "")(descr ""))
 )
