@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 2 5
 Title "Digital Function Generator v2 - DDS System"
-Date "2019-12-28"
+Date "2020-01-19"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -641,9 +641,9 @@ Wire Wire Line
 Wire Wire Line
 	2850 2200 2650 2200
 Text HLabel 2650 2100 0    50   Input ~ 0
-~CMR1
+CMR1
 Text HLabel 2650 2200 0    50   Input ~ 0
-~CMR2
+CMR2
 Wire Wire Line
 	4650 3200 4600 3200
 Wire Wire Line

@@ -5,7 +5,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 5
 Title "Digital Function Generator v2"
-Date "2020-01-03"
+Date "2020-01-19"
 Rev "1"
 Comp "Petar Nikolov"
 Comment1 ""
@@ -22,13 +22,13 @@ F2 "IOUTA" I R 8250 5400 50
 F3 "IOUTB" I R 8250 5600 50 
 F4 "~IOExRESET" I L 6950 5500 50 
 F5 "R\\~W" I L 6950 5700 50 
-F6 "~CMR1" I L 6950 5300 50 
-F7 "~CMR2" I L 6950 5400 50 
-F8 "SDA" I R 8250 5200 50 
-F9 "SCL" I R 8250 5100 50 
-F10 "PWRDWN" I L 6950 5100 50 
-F11 "~OSCOE" I L 6950 6000 50 
-F12 "~CP" I L 6950 5800 50 
+F6 "SDA" I R 8250 5200 50 
+F7 "SCL" I R 8250 5100 50 
+F8 "PWRDWN" I L 6950 5100 50 
+F9 "~OSCOE" I L 6950 6000 50 
+F10 "~CP" I L 6950 5800 50 
+F11 "CMR1" I L 6950 5300 50 
+F12 "CMR2" I L 6950 5400 50 
 $EndSheet
 $Comp
 L Connector_Generic:Conn_02x05_Odd_Even J9
@@ -1108,9 +1108,9 @@ Wire Wire Line
 Wire Wire Line
 	6950 5400 6850 5400
 Text Label 6850 5300 2    50   ~ 0
-~CMR1
+CMR1
 Text Label 6850 5400 2    50   ~ 0
-~CMR2
+CMR2
 Text Label 6850 5500 2    50   ~ 0
 ~IOExRESET
 Text Label 6850 5700 2    50   ~ 0
@@ -1202,9 +1202,9 @@ R\~W
 Text Label 5150 3050 0    50   ~ 0
 ~CP
 Text Label 5150 2750 0    50   ~ 0
-~CMR1
+CMR1
 Text Label 5150 2850 0    50   ~ 0
-~CMR2
+CMR2
 Wire Notes Line
 	3100 3900 3100 2500
 Wire Notes Line
