@@ -5,3 +5,7 @@ _private/
 # Archives
 *.zip
 
+# MPLAB X temporary and build files
+/software/DFGv2-Firmware.X/build/
+/software/DFGv2-Firmware.X/dist/
+
