@@ -6,12 +6,15 @@
  */
 
 #include <avr/io.h>
+#include <avr/interrupt.h>
 
 #include "init_mcu.h"
+#include "twi_driver.h"
 
 int main(void) {   
-    init_mcu();
+    // init_mcu();
     
+    /*
     DDRA = 0xff;
     DDRC = 0xff;
     DDRE = 0xff;
@@ -22,8 +25,22 @@ int main(void) {
     PORTE = 0xff;
     PORTF = 0xf0;
     PORTG = 0xf;
+    */
     
-    while (1) {
-        
+    // FOR SIMULATION:
+    
+    PORTD = (1 << PD0) | (1 << PD1);
+
+    twi_init();
+    sei();
+    twi_start();
+    while (1) {    
+        PINA = 0xff;
     }
+}
+
+ISR(TWI_vect)
+{
+    PINC = 0xff;
+    twi_start();
 }

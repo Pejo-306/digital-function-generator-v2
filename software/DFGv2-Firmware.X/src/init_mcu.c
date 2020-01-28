@@ -2,9 +2,6 @@
 
 #include <avr/io.h>
 
-static void _spi_master_init(void);
-static void _twi_init(void);
-
 void init_mcu(void)
 { 
     /* configure all PORT A pins as inputs:
@@ -96,20 +93,4 @@ void init_mcu(void)
      */
     DDRG = 0x20;
     PORTG = 0x00;
-    
-    _spi_master_init();
-}
-
-void _spi_master_init(void)
-{
-    // enable SPI in Master mode
-    SPCR = (1 << SPE) | (1 << MSTR);
-}
-
-void _twi_init(void)
-{
-    // set SCL frequency to 400 kHz
-    TWBR = 0x0C;
-    TWSR = 0x00;
-    TWCR = (1 << TWEN);  // enable TWI
 }

@@ -1,0 +1,38 @@
+/* 
+ * File:   spi_controller.h
+ * Author: pesho
+ *
+ * Created on January 28, 2020, 4:35 PM
+ */
+
+#ifndef SPI_CONTROLLER_H
+#define	SPI_CONTROLLER_H
+
+#include <inttypes.h>
+
+#include "defs.h"
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
+
+struct spi_interface_t {
+    SFR8_p ddr_spi;
+    SFRPIN sck_pin;
+    SFRPIN miso_pin;
+    SFRPIN mosi_pin;
+};
+
+void mspi_init(struct spi_interface_t *);
+
+void spi_set_speed(fbool);
+
+void spi_set_data_mode(fbool);
+
+uint8_t mspi_transmit(uint8_t);
+
+#ifdef	__cplusplus
+}
+#endif
+
+#endif	/* SPI_CONTROLLER_H */
