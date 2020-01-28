@@ -10,6 +10,8 @@
 
 #include "init_mcu.h"
 #include "twi_driver.h"
+#include "avr_controllers/spi_controller.h"
+#include "lcd-driver/lcd-driver.h"
 
 int main(void) {   
     // init_mcu();
@@ -29,6 +31,7 @@ int main(void) {
     
     // FOR SIMULATION:
     
+    /*
     PORTD = (1 << PD0) | (1 << PD1);
 
     twi_init();
@@ -37,6 +40,25 @@ int main(void) {
     while (1) {    
         PINA = 0xff;
     }
+    */
+    // enable internal pull-up on ~SS
+    PORTB = (1 << PB2);
+     
+    struct spi_interface_t spi = {&DDRB, PB5, PB4, PB3};
+    struct pin_ref_t dcx = {&PORTD, PD5};
+    struct pin_ref_t reset = {&PORTD, PD6};
+    struct pin_ref_t csx = {&PORTD, PD7};
+    struct lcd_driver_t driver = {spi, dcx, reset, csx};
+    
+    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
+    DDRD = (1 << PD5) | (1 << PD6) | (1 << PD7);
+    lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
+    spi_set_speed(FBOOL0);
+    
+    while (1) {
+        lcd_nop(&driver);
+    }
+
 }
 
 ISR(TWI_vect)

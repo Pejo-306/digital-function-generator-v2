@@ -34,6 +34,11 @@ typedef uint8_t SFRPIN;
 
 typedef uint8_t fbool;
 
+struct pin_ref_t {
+    SFR8_p port;
+    SFRPIN pin;
+};
+
 #ifdef	__cplusplus
 }
 #endif
