@@ -13,7 +13,8 @@
 #include "avr_controllers/spi_controller.h"
 #include "lcd-driver/lcd-driver.h"
 
-int main(void) {   
+int main(void)
+{   
     // init_mcu();
     
     /*
@@ -42,16 +43,16 @@ int main(void) {
     }
     */
     // enable internal pull-up on ~SS
-    PORTB = (1 << PB2);
+    PORTB = (1 << PB0);
      
-    struct spi_interface_t spi = {&DDRB, PB5, PB4, PB3};
-    struct pin_ref_t dcx = {&PORTD, PD5};
-    struct pin_ref_t reset = {&PORTD, PD6};
-    struct pin_ref_t csx = {&PORTD, PD7};
+    struct spi_interface_t spi = {&DDRB, PB1, PB3, PB2};
+    struct pin_ref_t dcx = {&PORTD, PD2};
+    struct pin_ref_t reset = {&PORTD, PD3};
+    struct pin_ref_t csx = {&PORTD, PD4};
     struct lcd_driver_t driver = {spi, dcx, reset, csx};
     
     // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
-    DDRD = (1 << PD5) | (1 << PD6) | (1 << PD7);
+    DDRD = (1 << PD2) | (1 << PD3) | (1 << PD4);
     lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
     spi_set_speed(FBOOL0);
 

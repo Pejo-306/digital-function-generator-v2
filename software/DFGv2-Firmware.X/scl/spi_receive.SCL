@@ -1,0 +1,13 @@
+testbench for "atmega2561" is
+    begin
+        process is
+            begin
+                wait on SPDR;
+                wait for 1 ic;
+                SPDR <= 16#D3#;
+                SPSR.SPIF <= '1';
+                wait for 8 ic;
+                SPDR <= 16#00#;
+                SPSR.SPIF <= '0';
+            end process;
+    end testbench;
