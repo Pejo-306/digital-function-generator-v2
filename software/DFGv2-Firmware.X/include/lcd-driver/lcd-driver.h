@@ -69,6 +69,10 @@ void lcd_read_display_status(struct lcd_driver_t *, uint8_t *);
 
 uint8_t lcd_read_display_madctl(struct lcd_driver_t *);
 
+signed short lcd_gamma_set(struct lcd_driver_t *, uint8_t);
+
+signed short lcd_column_address_set(struct lcd_driver_t *, uint16_t, uint16_t);
+
 #ifdef	__cplusplus
 }
 #endif
