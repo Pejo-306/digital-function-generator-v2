@@ -8,13 +8,13 @@
 #ifndef LCD_DRIVER_H
 #define	LCD_DRIVER_H
 
+#include <inttypes.h>
+
 #include "defs.h"
 #include "lcd-driver/lcd-driver-chip.h"
 #include "avr_controllers/spi_controller.h"
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
+#define _LCD_DRIVER_NO_VALUE 0x01
 
 // send a data byte via the D/CX line
 #define _dcx_data(lcd_driver) { \
@@ -45,7 +45,11 @@ extern "C" {
 #define _reset_low(lcd_driver) { \
     *lcd_driver->reset.port &= ~(1 << lcd_driver->reset.pin); \
 }
-    
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
+
 struct lcd_driver_t {
     struct spi_interface_t spi;  // SPI interface
     struct pin_ref_t dcx;  // Data/Command
@@ -55,7 +59,15 @@ struct lcd_driver_t {
 
 void lcd_driver_init(struct lcd_driver_t *, fbool);
 
+void lcd_reset(struct lcd_driver_t *);
+
 void lcd_nop(struct lcd_driver_t *);
+
+void lcd_swreset(struct lcd_driver_t *);
+
+void lcd_read_display_status(struct lcd_driver_t *, uint8_t *);
+
+uint8_t lcd_read_display_madctl(struct lcd_driver_t *);
 
 #ifdef	__cplusplus
 }

@@ -54,11 +54,12 @@ int main(void) {
     DDRD = (1 << PD5) | (1 << PD6) | (1 << PD7);
     lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
     spi_set_speed(FBOOL0);
-    
-    while (1) {
-        lcd_nop(&driver);
-    }
 
+    uint8_t status_data[4];
+    lcd_read_display_status(&driver, status_data);    
+    while (1) {
+        uint8_t result = lcd_read_display_madctl(&driver);
+    }
 }
 
 ISR(TWI_vect)
