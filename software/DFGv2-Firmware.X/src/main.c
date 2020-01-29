@@ -56,6 +56,8 @@ int main(void)
     lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
     spi_set_speed(FBOOL0);
 
+    uint32_t res = lcd_read_display_status(&driver);
+    // lcd_gamma_set(&driver, res);
     while (1) {
         uint8_t result = lcd_read_display_madctl(&driver);
     }

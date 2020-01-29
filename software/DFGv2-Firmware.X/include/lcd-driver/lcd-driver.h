@@ -65,7 +65,7 @@ void lcd_nop(struct lcd_driver_t *);
 
 void lcd_swreset(struct lcd_driver_t *);
 
-void lcd_read_display_status(struct lcd_driver_t *, uint8_t *);
+uint32_t lcd_read_display_status(struct lcd_driver_t *);
 
 uint8_t lcd_read_display_madctl(struct lcd_driver_t *);
 

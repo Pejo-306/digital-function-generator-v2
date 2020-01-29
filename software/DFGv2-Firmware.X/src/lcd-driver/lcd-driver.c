@@ -17,14 +17,14 @@ static void _lcd_command_read_data_with_dummy(struct lcd_driver_t *,
 
 static void _lcd_write_command(struct lcd_driver_t *, uint8_t, uint8_t *, short);
 
-void lcd_driver_init(struct lcd_driver_t *driver, fbool init_spi)
+void lcd_driver_init(struct lcd_driver_t *driver, fbool options)
 {
-    /* fbool init_spi:
+    /* fbool options:
      * bit 0: initialize Master SPI
      * bits 1-7: not used
      */
     // optionally initialize the SPI interface
-    if (init_spi & FBOOL0)
+    if (options & FBOOL0)
         mspi_init(&driver->spi);
     
     _dcx_data(driver);
@@ -49,11 +49,17 @@ void lcd_swreset(struct lcd_driver_t *driver)
     _lcd_command_no_parameter(driver, CMD_SOFTWARE_RESET);
 }
 
-void lcd_read_display_status(struct lcd_driver_t *driver, uint8_t *status_data)
+uint32_t lcd_read_display_status(struct lcd_driver_t *driver)
 {
-    // WARNING: 'status_data[]' must be 4 bytes long
-    _lcd_command_read_data_with_dummy(driver, CMD_READ_DISPLAY_STATUS, 
-            status_data, 4);
+    uint8_t data[4];
+    uint32_t result;
+    
+    _lcd_command_read_data_with_dummy(driver, CMD_READ_DISPLAY_STATUS, data, 4);
+    result = (uint32_t)(data[0]) 
+            + ((uint32_t)(data[1]) << 8) 
+            + ((uint32_t)(data[2]) << 16)
+            + ((uint32_t)(data[3]) << 24);
+    return result;
 }
 
 uint8_t lcd_read_display_madctl(struct lcd_driver_t *driver)
