@@ -56,10 +56,19 @@ int main(void)
     lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
     spi_set_speed(FBOOL0);
 
-    uint32_t res = lcd_read_display_status(&driver);
-    // lcd_gamma_set(&driver, res);
+    /*
+    uint8_t res = lcd_read_display_self_diagnostic_result(&driver);
+    lcd_gamma_set(&driver, res);
+     */
+    /*
+    lcd_display_on(&driver);
+    lcd_nop(&driver);
+     */
+    
+    signed short res = lcd_page_address_set(&driver, 0x0ABF, 0x0AEE);
+    lcd_gamma_set(&driver, res);
     while (1) {
-        uint8_t result = lcd_read_display_madctl(&driver);
+        uint8_t result = lcd_read_display_MADCTL(&driver);
     }
 }
 

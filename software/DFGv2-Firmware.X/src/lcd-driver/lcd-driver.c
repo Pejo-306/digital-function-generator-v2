@@ -9,10 +9,10 @@
 
 static void _lcd_command_no_parameter(struct lcd_driver_t *, uint8_t);
 
-static uint8_t _lcd_command_read_single_byte_with_dummy(struct lcd_driver_t *, 
+static uint8_t _lcd_command_read_single_byte(struct lcd_driver_t *, 
         uint8_t);
 
-static void _lcd_command_read_data_with_dummy(struct lcd_driver_t *, 
+static void _lcd_command_read_data(struct lcd_driver_t *, 
         uint8_t, uint8_t *, short);
 
 static void _lcd_write_command(struct lcd_driver_t *, uint8_t, uint8_t *, short);
@@ -46,7 +46,7 @@ void lcd_nop(struct lcd_driver_t *driver)
 
 void lcd_swreset(struct lcd_driver_t *driver)
 {
-    _lcd_command_no_parameter(driver, CMD_SOFTWARE_RESET);
+    _lcd_command_no_parameter(driver, CMD_SWRESET);
 }
 
 uint32_t lcd_read_display_status(struct lcd_driver_t *driver)
@@ -54,7 +54,7 @@ uint32_t lcd_read_display_status(struct lcd_driver_t *driver)
     uint8_t data[4];
     uint32_t result;
     
-    _lcd_command_read_data_with_dummy(driver, CMD_READ_DISPLAY_STATUS, data, 4);
+    _lcd_command_read_data(driver, CMD_RDDST, data, 4);
     result = (uint32_t)(data[0]) 
             + ((uint32_t)(data[1]) << 8) 
             + ((uint32_t)(data[2]) << 16)
@@ -62,10 +62,64 @@ uint32_t lcd_read_display_status(struct lcd_driver_t *driver)
     return result;
 }
 
-uint8_t lcd_read_display_madctl(struct lcd_driver_t *driver)
+uint8_t lcd_read_display_power_mode(struct lcd_driver_t *driver)
 {
-    return _lcd_command_read_single_byte_with_dummy(driver, 
-            CMD_READ_DISPLAY_MADCTL);
+    return _lcd_command_read_single_byte(driver, CMD_RDDPM);
+}
+
+uint8_t lcd_read_display_MADCTL(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDDMADCTL);
+}
+
+uint8_t lcd_read_display_pixel_format(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDDCOLMOD);
+}
+
+uint8_t lcd_read_display_image_format(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDDIM);
+}
+
+uint8_t lcd_read_display_signal_mode(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDDSM);
+}
+
+uint8_t lcd_read_display_self_diagnostic_result(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDDSDR);
+}
+
+void lcd_enter_sleep_mode(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_SPLIN);
+}
+
+void lcd_sleep_out(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_SLPOUT);
+}
+
+void lcd_partial_mode_on(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_PTLON);
+}
+
+void lcd_normal_display_mode_on(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_NORON);
+}
+
+void lcd_display_inversion_off(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_DINVOFF);
+}
+
+void lcd_display_inversion_on(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_DINVON);
 }
 
 signed short lcd_gamma_set(struct lcd_driver_t *driver, uint8_t gamma_curve)
@@ -76,8 +130,18 @@ signed short lcd_gamma_set(struct lcd_driver_t *driver, uint8_t gamma_curve)
     if (gamma_curve < 1 || gamma_curve > 4) return -1;
     
     curve_bit = 1 << (gamma_curve - 1);
-    _lcd_write_command(driver, CMD_GAMMA_SET, &curve_bit, 1);
+    _lcd_write_command(driver, CMD_GAMSET, &curve_bit, 1);
     return 0;
+}
+
+void lcd_display_off(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_DISPOFF);
+}
+
+void lcd_display_on(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_DISPON);
 }
 
 signed short lcd_column_address_set(struct lcd_driver_t *driver, 
@@ -92,7 +156,23 @@ signed short lcd_column_address_set(struct lcd_driver_t *driver,
     data[1] = sc & 0xFF;  // 2nd parameter
     data[2] = ec >> 8;  // 3rd parameter
     data[3] = ec & 0xFF;  // 4th parameter
-    _lcd_write_command(driver, CMD_COLUMN_ADDRESS_SET, data, 4);
+    _lcd_write_command(driver, CMD_CASET, data, 4);
+    return 0;
+}
+
+signed short lcd_page_address_set(struct lcd_driver_t *driver,
+        uint16_t sp, uint16_t ep)
+{
+    uint8_t data[4];
+    
+    // SP[15:0] <= EP[15:0]
+    if (sp > ep) return -1;
+    
+    data[0] = sp >> 8;  // 1st parameter
+    data[1] = sp & 0xFF;  // 2nd parameter
+    data[2] = ep >> 8;  // 3rd parameter
+    data[3] = ep & 0xFF;  // 4th parameter
+    _lcd_write_command(driver, CMD_PASET, data, 4);
     return 0;
 }
 
@@ -105,7 +185,7 @@ static void _lcd_command_no_parameter(struct lcd_driver_t *driver,
     _csx_high(driver);  // deselect the device
 }
 
-static uint8_t _lcd_command_read_single_byte_with_dummy(struct lcd_driver_t *driver, 
+static uint8_t _lcd_command_read_single_byte(struct lcd_driver_t *driver, 
         uint8_t command)
 {
     uint8_t result;
@@ -120,7 +200,7 @@ static uint8_t _lcd_command_read_single_byte_with_dummy(struct lcd_driver_t *dri
     return result;
 }
 
-static void _lcd_command_read_data_with_dummy(struct lcd_driver_t *driver, 
+static void _lcd_command_read_data(struct lcd_driver_t *driver, 
         uint8_t command, uint8_t *data, short nparams)
 {
     // WARNING: the 'data' array must be with length 'nparams'

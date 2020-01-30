@@ -67,11 +67,41 @@ void lcd_swreset(struct lcd_driver_t *);
 
 uint32_t lcd_read_display_status(struct lcd_driver_t *);
 
-uint8_t lcd_read_display_madctl(struct lcd_driver_t *);
+uint8_t lcd_read_display_power_mode(struct lcd_driver_t *);
+
+uint8_t lcd_read_display_MADCTL(struct lcd_driver_t *);
+
+uint8_t lcd_read_display_pixel_format(struct lcd_driver_t *);
+
+uint8_t lcd_read_display_image_format(struct lcd_driver_t *);
+
+uint8_t lcd_read_display_signal_mode(struct lcd_driver_t *);
+
+uint8_t lcd_read_display_self_diagnostic_result(struct lcd_driver_t *);
+
+void lcd_enter_sleep_mode(struct lcd_driver_t *);
+
+void lcd_sleep_out(struct lcd_driver_t *);
+
+void lcd_partial_mode_on(struct lcd_driver_t *);
+
+void lcd_normal_display_mode_on(struct lcd_driver_t *);
+
+void lcd_display_inversion_off(struct lcd_driver_t *);
+
+void lcd_display_inversion_on(struct lcd_driver_t *);
 
 signed short lcd_gamma_set(struct lcd_driver_t *, uint8_t);
 
+void lcd_display_off(struct lcd_driver_t *);
+
+void lcd_display_on(struct lcd_driver_t *);
+
 signed short lcd_column_address_set(struct lcd_driver_t *, uint16_t, uint16_t);
+
+signed short lcd_page_address_set(struct lcd_driver_t *, uint16_t, uint16_t);
+
+// TODO: Continue from Memory Write (2Ch)
 
 #ifdef	__cplusplus
 }
