@@ -184,6 +184,19 @@ signed short lcd_page_address_set(struct lcd_driver_t *driver,
     return 0;
 }
 
+void lcd_memory_write(struct lcd_driver_t *driver, uint16_t *data, uint32_t size)
+{
+    _dcx_command(driver);  // transmit a command
+    _csx_low(driver);  // select the device
+    mspi_transmit(CMD_RAMWR);  // transmit the command
+    _dcx_data(driver);  // transmit data
+    for (uint32_t i = 0; i < size; ++i) {
+        mspi_transmit(data[i] >> 8);
+        mspi_transmit(data[i] & 0xFF);
+    }
+    _csx_high(driver);  // deselect the device
+}
+
 signed short lcd_partial_area(struct lcd_driver_t *driver, 
         uint16_t sr, uint16_t er)
 {
@@ -264,6 +277,20 @@ void lcd_pixel_format_set(struct lcd_driver_t *driver, uint8_t format)
     _lcd_write_command(driver, CMD_PIXSET, &format, 1);
 }
 
+void lcd_write_memory_continue(struct lcd_driver_t *driver, 
+        uint16_t *data, uint32_t size)
+{
+    _dcx_command(driver);  // transmit a command
+    _csx_low(driver);  // select the device
+    mspi_transmit(CMD_WRITE_MEMORY_CONTINUE);  // transmit the command
+    _dcx_data(driver);  // transmit data
+    for (uint32_t i = 0; i < size; ++i) {
+        mspi_transmit(data[i] >> 8);
+        mspi_transmit(data[i] & 0xFF);
+    }
+    _csx_high(driver);  // deselect the device
+}
+
 void lcd_write_display_brightness(struct lcd_driver_t *driver, uint8_t dbv)
 {
     _lcd_write_command(driver, CMD_WRDISBV, &dbv, 1);
@@ -339,7 +366,7 @@ static uint8_t _lcd_command_read_single_byte(struct lcd_driver_t *driver,
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
     mspi_transmit(command);  // transmit the command
-    _dcx_data(driver);  // transmit a data command
+    _dcx_data(driver);  // transmit data
     mspi_transmit(_LCD_DRIVER_NO_VALUE);  // read dummy parameter (1st)
     result = mspi_transmit(_LCD_DRIVER_NO_VALUE);  // read data (2nd)
     _csx_high(driver);  // deselect the device
@@ -353,7 +380,7 @@ static void _lcd_command_read_data(struct lcd_driver_t *driver,
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
     mspi_transmit(command);  // transmit the command
-    _dcx_data(driver);  // transmit a data command
+    _dcx_data(driver);  // transmit data
     mspi_transmit(_LCD_DRIVER_NO_VALUE);  // read dummy parameter (1st)
     for (short i = 0; i < nparams; ++i)
         data[i] = mspi_transmit(_LCD_DRIVER_NO_VALUE);  // receive each data byte
@@ -367,7 +394,7 @@ static void _lcd_write_command(struct lcd_driver_t *driver,
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
     mspi_transmit(command);  // transmit the command
-    _dcx_data(driver);  // transmit a data command
+    _dcx_data(driver);  // transmit data
     for (short i = 0; i < nparams; ++i)
         mspi_transmit(data[i]);
     _csx_high(driver);  // deselect the device

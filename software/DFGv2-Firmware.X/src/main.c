@@ -60,8 +60,22 @@ int main(void)
     uint8_t res = lcd_read_display_self_diagnostic_result(&driver);
     lcd_gamma_set(&driver, res);
      */
+    /*
     uint8_t res = lcd_read_id3(&driver);
     lcd_gamma_set(&driver, res);
+    */
+    uint16_t data[8] = {
+        0x14AF,
+        0x32E2,
+        0xAABA,
+        0xE3E5,
+        0xF002,
+        0x0012,
+        0xBEF2,
+        0x0F2F
+    };
+    lcd_write_memory_continue(&driver, data, 8);
+    lcd_nop(&driver);
     while (1) {
     }
 }

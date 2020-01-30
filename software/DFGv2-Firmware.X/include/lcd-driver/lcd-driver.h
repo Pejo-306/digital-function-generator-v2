@@ -111,7 +111,7 @@ signed short lcd_column_address_set(struct lcd_driver_t *, uint16_t, uint16_t);
 
 signed short lcd_page_address_set(struct lcd_driver_t *, uint16_t, uint16_t);
 
-// TODO: Memory Write (2Ch)
+void lcd_memory_write(struct lcd_driver_t *, uint16_t *, uint32_t);
 
 // NOTE: Color Set (2Dh) is used in 16-bit parallel interface
 
@@ -136,7 +136,7 @@ void lcd_idle_mode_on(struct lcd_driver_t *);
 
 void lcd_pixel_format_set(struct lcd_driver_t *, uint8_t);
 
-// TODO: Write Memory Continue (3Ch)
+void lcd_write_memory_continue(struct lcd_driver_t *, uint16_t *, uint32_t);
 
 // TODO: Read Memory Continue (3Eh)
 
