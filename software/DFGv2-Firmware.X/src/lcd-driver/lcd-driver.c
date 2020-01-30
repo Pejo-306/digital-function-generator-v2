@@ -26,7 +26,10 @@ void lcd_driver_init(struct lcd_driver_t *driver, fbool options)
     // optionally initialize the SPI interface
     if (options & FBOOL0)
         mspi_init(&driver->spi);
-    
+
+    driver->madctl = MADCTL_DEFAULT_VALUE;
+    driver->res_x = (driver->madctl & MADCTL_B5) ? LCD_RESY : LCD_RESX;
+    driver->res_y = (driver->madctl & MADCTL_B5) ? LCD_RESX : LCD_RESY;
     _dcx_data(driver);
     _csx_high(driver);
     _reset_high(driver);
@@ -69,7 +72,8 @@ uint8_t lcd_read_display_power_mode(struct lcd_driver_t *driver)
 
 uint8_t lcd_read_display_MADCTL(struct lcd_driver_t *driver)
 {
-    return _lcd_command_read_single_byte(driver, CMD_RDDMADCTL);
+    driver->madctl = _lcd_command_read_single_byte(driver, CMD_RDDMADCTL);
+    return driver->madctl;
 }
 
 uint8_t lcd_read_display_pixel_format(struct lcd_driver_t *driver)
@@ -151,11 +155,13 @@ signed short lcd_column_address_set(struct lcd_driver_t *driver,
     
     // SC[15:0] <= EC[15:0]
     if (sc > ec) return -1;
+    // SC and EC cannot be out of range
+    if (sc > driver->res_x || ec > driver->res_x) return -2;
     
-    data[0] = sc >> 8;  // 1st parameter
-    data[1] = sc & 0xFF;  // 2nd parameter
-    data[2] = ec >> 8;  // 3rd parameter
-    data[3] = ec & 0xFF;  // 4th parameter
+    data[0] = sc >> 8;      // 1st parameter
+    data[1] = sc & 0xFF;    // 2nd parameter
+    data[2] = ec >> 8;      // 3rd parameter
+    data[3] = ec & 0xFF;    // 4th parameter
     _lcd_write_command(driver, CMD_CASET, data, 4);
     return 0;
 }
@@ -167,13 +173,153 @@ signed short lcd_page_address_set(struct lcd_driver_t *driver,
     
     // SP[15:0] <= EP[15:0]
     if (sp > ep) return -1;
+    // SP and EP cannot be out of range
+    if (sp > driver->res_y || ep > driver->res_y) return -2;
     
-    data[0] = sp >> 8;  // 1st parameter
-    data[1] = sp & 0xFF;  // 2nd parameter
-    data[2] = ep >> 8;  // 3rd parameter
-    data[3] = ep & 0xFF;  // 4th parameter
+    data[0] = sp >> 8;      // 1st parameter
+    data[1] = sp & 0xFF;    // 2nd parameter
+    data[2] = ep >> 8;      // 3rd parameter
+    data[3] = ep & 0xFF;    // 4th parameter
     _lcd_write_command(driver, CMD_PASET, data, 4);
     return 0;
+}
+
+signed short lcd_partial_area(struct lcd_driver_t *driver, 
+        uint16_t sr, uint16_t er)
+{
+    uint8_t data[4];
+    
+    if (sr == 0 || er == 0 
+            || sr > driver->res_y || er > driver->res_y) return -1;
+    
+    data[0] = sr >> 8;      // 1st parameter
+    data[1] = sr & 0xFF;    // 2nd parameter
+    data[2] = er >> 8;      // 3rd parameter
+    data[3] = er & 0xFF;    // 4th parameter
+    _lcd_write_command(driver, CMD_PLTAR, data, 4);
+    return 0;
+}
+
+signed short lcd_vertical_scrolling_definition(struct lcd_driver_t *driver,
+        uint16_t tfa, uint16_t vsa, uint16_t bfa)
+{
+    uint8_t data[6];
+    
+    data[0] = tfa >> 8;     // 1st parameter
+    data[1] = tfa & 0xFF;   // 2nd parameter
+    data[2] = vsa >> 8;     // 3rd parameter
+    data[3] = vsa & 0xFF;   // 4th parameter
+    data[4] = bfa >> 8;     // 5th parameter
+    data[5] = bfa & 0xFF;   // 6th parameter
+    _lcd_write_command(driver, CMD_VSCRDEF, data, 6);
+    return 0;
+}
+
+void lcd_tearing_effect_line_off(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_TEOFF);
+}
+
+void lcd_tearing_effect_line_on(struct lcd_driver_t *driver, uint8_t mode)
+{
+    /* mode:
+     * bit 0: m
+     * bits 1-7: not used
+     */
+    _lcd_write_command(driver, CMD_TEON, &mode, 1);
+}
+
+void lcd_memory_access_control(struct lcd_driver_t *driver, uint8_t madctl)
+{       
+    driver->madctl = madctl;
+    driver->res_x = (madctl & MADCTL_B5) ? LCD_RESY : LCD_RESX;
+    driver->res_y = (madctl & MADCTL_B5) ? LCD_RESX : LCD_RESY;
+    _lcd_write_command(driver, CMD_MADCTL, &madctl, 1);
+}
+
+signed short lcd_vertical_scrolling_start_address(struct lcd_driver_t *driver, 
+        uint16_t vsp)
+{
+    uint8_t data[2];
+    
+    data[0] = vsp >> 8;     // 1st parameter
+    data[1] = vsp & 0xFF;   // 2nd parameter
+    _lcd_write_command(driver, CMD_VSCRSADD, data, 2);
+    return 0;
+}
+
+void lcd_idle_mode_off(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_IDMOFF);
+}
+
+void lcd_idle_mode_on(struct lcd_driver_t *driver)
+{
+    _lcd_command_no_parameter(driver, CMD_IDMON);
+}
+
+void lcd_pixel_format_set(struct lcd_driver_t *driver, uint8_t format)
+{
+    // NOTE: please use the DPI_xBIT/DBI_xBIT macros in the chip's header file
+    _lcd_write_command(driver, CMD_PIXSET, &format, 1);
+}
+
+void lcd_write_display_brightness(struct lcd_driver_t *driver, uint8_t dbv)
+{
+    _lcd_write_command(driver, CMD_WRDISBV, &dbv, 1);
+}
+
+uint8_t lcd_read_display_brightness(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDDISBV);
+}
+
+void lcd_write_ctrl_display(struct lcd_driver_t *driver, uint8_t parameter)
+{
+    // NOTE: please use the BLCTRL_x macros in the chip's header file
+    _lcd_write_command(driver, CMD_WRCTRLD, &parameter, 1);
+}
+
+uint8_t lcd_read_ctrl_display(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDCTRLD);
+}
+
+void lcd_write_content_adaptive_brightness_control(struct lcd_driver_t *driver, 
+        uint8_t cabc)
+{
+    _lcd_write_command(driver, CMD_WRCABC, &cabc, 1);
+}
+
+uint8_t lcd_read_content_adaptive_brightness_control(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDCABC);
+}
+
+void lcd_write_cabc_minimum_brightness(struct lcd_driver_t *driver,
+        uint8_t cmb)
+{
+    _lcd_write_command(driver, CMD_WRITE_CABC_MINIMUM_BRIGHTNESS, &cmb, 1);
+}
+
+uint8_t lcd_read_cabc_minimum_brightness(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_READ_CABC_MINIMUM_BRIGHTNESS);
+}
+
+uint8_t lcd_read_id1(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDID1);
+}
+
+uint8_t lcd_read_id2(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDID2);
+}
+
+uint8_t lcd_read_id3(struct lcd_driver_t *driver)
+{
+    return _lcd_command_read_single_byte(driver, CMD_RDID3);
 }
 
 static void _lcd_command_no_parameter(struct lcd_driver_t *driver, 

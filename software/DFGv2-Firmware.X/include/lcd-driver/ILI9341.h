@@ -8,9 +8,8 @@
 #ifndef ILI9341_H
 #define	ILI9341_H
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
+#define LCD_RESX 240  // 0x00EF
+#define LCD_RESY 320  // 0x013F
 
 // Level 1 commands
 #define CMD_NOP                                 0x00
@@ -100,6 +99,21 @@ extern "C" {
 #define CMD_POWER_ON_SEQUENCE_CONTROL           0xED
 #define CMD_ENABLE_3G                           0xF2
 #define CMD_PUMP_RATIO_CONTROL                  0xF7
+    
+#define MADCTL_DEFAULT_VALUE 0x00
+
+#define DPI_16BIT 0x50
+#define DPI_18BIT 0x60
+#define DBI_16BIT 0x05
+#define DBI_18BIT 0x06
+
+#define BLCTRL_BCTRL    0x20
+#define BLCTRL_DD       0x08
+#define BLCTRL_BL       0x04
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
     
 #ifdef	__cplusplus
 }

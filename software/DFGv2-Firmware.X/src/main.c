@@ -60,15 +60,9 @@ int main(void)
     uint8_t res = lcd_read_display_self_diagnostic_result(&driver);
     lcd_gamma_set(&driver, res);
      */
-    /*
-    lcd_display_on(&driver);
-    lcd_nop(&driver);
-     */
-    
-    signed short res = lcd_page_address_set(&driver, 0x0ABF, 0x0AEE);
+    uint8_t res = lcd_read_id3(&driver);
     lcd_gamma_set(&driver, res);
     while (1) {
-        uint8_t result = lcd_read_display_MADCTL(&driver);
     }
 }
 

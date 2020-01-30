@@ -14,7 +14,14 @@
 #include "lcd-driver/lcd-driver-chip.h"
 #include "avr_controllers/spi_controller.h"
 
-#define _LCD_DRIVER_NO_VALUE 0x01
+#define _LCD_DRIVER_NO_VALUE 0x00
+
+#define MADCTL_B2 0x04
+#define MADCTL_B3 0x08
+#define MADCTL_B4 0x10
+#define MADCTL_B5 0x20
+#define MADCTL_B6 0x40
+#define MADCTL_B7 0x80
 
 // send a data byte via the D/CX line
 #define _dcx_data(lcd_driver) { \
@@ -55,6 +62,9 @@ struct lcd_driver_t {
     struct pin_ref_t dcx;  // Data/Command
     struct pin_ref_t reset;  // Reset
     struct pin_ref_t csx;  // Chip Select
+    uint8_t madctl;
+    uint16_t res_x;
+    uint16_t res_y;
 };
 
 void lcd_driver_init(struct lcd_driver_t *, fbool);
@@ -101,7 +111,60 @@ signed short lcd_column_address_set(struct lcd_driver_t *, uint16_t, uint16_t);
 
 signed short lcd_page_address_set(struct lcd_driver_t *, uint16_t, uint16_t);
 
-// TODO: Continue from Memory Write (2Ch)
+// TODO: Memory Write (2Ch)
+
+// NOTE: Color Set (2Dh) is used in 16-bit parallel interface
+
+// TODO: Memory Read (2Eh)
+
+signed short lcd_partial_area(struct lcd_driver_t *, uint16_t, uint16_t);
+
+signed short lcd_vertical_scrolling_definition(struct lcd_driver_t *,
+        uint16_t, uint16_t, uint16_t);
+
+void lcd_tearing_effect_line_off(struct lcd_driver_t *);
+
+void lcd_tearing_effect_line_on(struct lcd_driver_t *, uint8_t);
+
+void lcd_memory_access_control(struct lcd_driver_t *, uint8_t);
+
+signed short lcd_vertical_scrolling_start_address(struct lcd_driver_t *, uint16_t);
+
+void lcd_idle_mode_off(struct lcd_driver_t *);
+
+void lcd_idle_mode_on(struct lcd_driver_t *);
+
+void lcd_pixel_format_set(struct lcd_driver_t *, uint8_t);
+
+// TODO: Write Memory Continue (3Ch)
+
+// TODO: Read Memory Continue (3Eh)
+
+// TODO: Set Tear Scanline (44h)
+
+// TODO: Get Scanline (45h)
+
+void lcd_write_display_brightness(struct lcd_driver_t *, uint8_t);
+
+uint8_t lcd_read_display_brightness(struct lcd_driver_t *);
+
+void lcd_write_ctrl_display(struct lcd_driver_t *, uint8_t);
+
+uint8_t lcd_read_ctrl_display(struct lcd_driver_t *);
+
+void lcd_write_content_adaptive_brightness_control(struct lcd_driver_t *, uint8_t);
+
+uint8_t lcd_read_content_adaptive_brightness_control(struct lcd_driver_t *);
+
+void lcd_write_cabc_minimum_brightness(struct lcd_driver_t *, uint8_t);
+
+uint8_t lcd_read_cabc_minimum_brightness(struct lcd_driver_t *);
+
+uint8_t lcd_read_id1(struct lcd_driver_t *);
+
+uint8_t lcd_read_id2(struct lcd_driver_t *);
+
+uint8_t lcd_read_id3(struct lcd_driver_t *);
 
 #ifdef	__cplusplus
 }
