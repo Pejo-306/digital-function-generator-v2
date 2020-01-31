@@ -7,11 +7,13 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
 
 #include "init_mcu.h"
 #include "twi_driver.h"
 #include "avr_controllers/spi_controller.h"
 #include "lcd-driver/lcd-driver.h"
+#include "lcd-driver/graphics.h"
 
 int main(void)
 {   
@@ -42,6 +44,7 @@ int main(void)
         PINA = 0xff;
     }
     */
+    /*
     // enable internal pull-up on ~SS
     PORTB = (1 << PB0);
      
@@ -53,8 +56,23 @@ int main(void)
     
     // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
     DDRD = (1 << PD2) | (1 << PD3) | (1 << PD4);
+    */
+    // NOTE: for ATmega328p
+    // enable internal pull-up on ~SS
+    PORTB = (1 << PB2);
+     
+    struct spi_interface_t spi = {&DDRB, PB5, PB4, PB3};
+    struct pin_ref_t dcx = {&PORTC, PC0};
+    struct pin_ref_t reset = {&PORTC, PC1};
+    struct pin_ref_t csx = {&PORTC, PC2};
+    struct lcd_driver_t driver = {spi, dcx, reset, csx};
+    
+    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
+    DDRC = (1 << PC0) | (1 << PC1) | (1 << PC2);
+    
     lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
     spi_set_speed(FBOOL0);
+    // spi_set_data_mode(FBOOL2);
 
     /*
     uint8_t res = lcd_read_display_self_diagnostic_result(&driver);
@@ -64,6 +82,7 @@ int main(void)
     uint8_t res = lcd_read_id3(&driver);
     lcd_gamma_set(&driver, res);
     */
+    /*
     uint16_t data[8] = {
         0x14AF,
         0x32E2,
@@ -74,8 +93,22 @@ int main(void)
         0xBEF2,
         0x0F2F
     };
-    lcd_write_memory_continue(&driver, data, 8);
+    lcd_memory_write_continue(&driver, data, 8);
     lcd_nop(&driver);
+    */
+    /*
+    lcd_sleep_out(&driver);
+    lcd_display_on(&driver);
+    lcd_pixel_format_set(&driver, DBI_16BIT);
+    // Write CTRL display?
+    uint16_t color = color565(0xE5, 0xB7, 0x5E);  // 0xE5AB
+    draw_pixel(&driver, color);
+    */
+    lcd_reset(&driver);
+    _delay_ms(200);
+    lcd_power_on(&driver);
+    uint16_t color = color565(0xE5, 0xB7, 0x5E);  // 0xE5AB
+    draw_pixel(&driver, color);
     while (1) {
     }
 }

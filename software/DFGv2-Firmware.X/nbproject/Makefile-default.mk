@@ -57,21 +57,21 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=src/main.c src/init_mcu.c src/twi_driver.c src/avr_controllers/spi_controller.c src/lcd-driver/lcd-driver.c
+SOURCEFILES_QUOTED_IF_SPACED=src/main.c src/init_mcu.c src/twi_driver.c src/avr_controllers/spi_controller.c src/lcd-driver/lcd-driver.c src/lcd-driver/graphics.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/init_mcu.o ${OBJECTDIR}/src/twi_driver.o ${OBJECTDIR}/src/avr_controllers/spi_controller.o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/init_mcu.o.d ${OBJECTDIR}/src/twi_driver.o.d ${OBJECTDIR}/src/avr_controllers/spi_controller.o.d ${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/init_mcu.o ${OBJECTDIR}/src/twi_driver.o ${OBJECTDIR}/src/avr_controllers/spi_controller.o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o ${OBJECTDIR}/src/lcd-driver/graphics.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/init_mcu.o.d ${OBJECTDIR}/src/twi_driver.o.d ${OBJECTDIR}/src/avr_controllers/spi_controller.o.d ${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d ${OBJECTDIR}/src/lcd-driver/graphics.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/init_mcu.o ${OBJECTDIR}/src/twi_driver.o ${OBJECTDIR}/src/avr_controllers/spi_controller.o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o
+OBJECTFILES=${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/init_mcu.o ${OBJECTDIR}/src/twi_driver.o ${OBJECTDIR}/src/avr_controllers/spi_controller.o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o ${OBJECTDIR}/src/lcd-driver/graphics.o
 
 # Source Files
-SOURCEFILES=src/main.c src/init_mcu.c src/twi_driver.c src/avr_controllers/spi_controller.c src/lcd-driver/lcd-driver.c
+SOURCEFILES=src/main.c src/init_mcu.c src/twi_driver.c src/avr_controllers/spi_controller.c src/lcd-driver/lcd-driver.c src/lcd-driver/graphics.c
 
 # Pack Options 
 PACK_COMPILER_OPTIONS=-I ${DFP_DIR}/include
-PACK_COMMON_OPTIONS=-B ${DFP_DIR}/gcc/dev/atmega2561
+PACK_COMMON_OPTIONS=-B ${DFP_DIR}/gcc/dev/atmega328p
 
 
 
@@ -94,7 +94,7 @@ ifneq ($(INFORMATION_MESSAGE), )
 endif
 	${MAKE}  -f nbproject/Makefile-default.mk dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
-MP_PROCESSOR_OPTION=ATmega2561
+MP_PROCESSOR_OPTION=ATmega328P
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
@@ -114,62 +114,74 @@ ${OBJECTDIR}/src/main.o: src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/main.o.d 
 	@${RM} ${OBJECTDIR}/src/main.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/main.o.d" -MT "${OBJECTDIR}/src/main.o.d" -MT ${OBJECTDIR}/src/main.o  -o ${OBJECTDIR}/src/main.o src/main.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/main.o.d" -MT "${OBJECTDIR}/src/main.o.d" -MT ${OBJECTDIR}/src/main.o  -o ${OBJECTDIR}/src/main.o src/main.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 ${OBJECTDIR}/src/init_mcu.o: src/init_mcu.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/init_mcu.o.d 
 	@${RM} ${OBJECTDIR}/src/init_mcu.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/init_mcu.o.d" -MT "${OBJECTDIR}/src/init_mcu.o.d" -MT ${OBJECTDIR}/src/init_mcu.o  -o ${OBJECTDIR}/src/init_mcu.o src/init_mcu.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/init_mcu.o.d" -MT "${OBJECTDIR}/src/init_mcu.o.d" -MT ${OBJECTDIR}/src/init_mcu.o  -o ${OBJECTDIR}/src/init_mcu.o src/init_mcu.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 ${OBJECTDIR}/src/twi_driver.o: src/twi_driver.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/twi_driver.o.d 
 	@${RM} ${OBJECTDIR}/src/twi_driver.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/twi_driver.o.d" -MT "${OBJECTDIR}/src/twi_driver.o.d" -MT ${OBJECTDIR}/src/twi_driver.o  -o ${OBJECTDIR}/src/twi_driver.o src/twi_driver.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/twi_driver.o.d" -MT "${OBJECTDIR}/src/twi_driver.o.d" -MT ${OBJECTDIR}/src/twi_driver.o  -o ${OBJECTDIR}/src/twi_driver.o src/twi_driver.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 ${OBJECTDIR}/src/avr_controllers/spi_controller.o: src/avr_controllers/spi_controller.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src/avr_controllers" 
 	@${RM} ${OBJECTDIR}/src/avr_controllers/spi_controller.o.d 
 	@${RM} ${OBJECTDIR}/src/avr_controllers/spi_controller.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/avr_controllers/spi_controller.o.d" -MT "${OBJECTDIR}/src/avr_controllers/spi_controller.o.d" -MT ${OBJECTDIR}/src/avr_controllers/spi_controller.o  -o ${OBJECTDIR}/src/avr_controllers/spi_controller.o src/avr_controllers/spi_controller.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/avr_controllers/spi_controller.o.d" -MT "${OBJECTDIR}/src/avr_controllers/spi_controller.o.d" -MT ${OBJECTDIR}/src/avr_controllers/spi_controller.o  -o ${OBJECTDIR}/src/avr_controllers/spi_controller.o src/avr_controllers/spi_controller.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 ${OBJECTDIR}/src/lcd-driver/lcd-driver.o: src/lcd-driver/lcd-driver.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src/lcd-driver" 
 	@${RM} ${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d 
 	@${RM} ${OBJECTDIR}/src/lcd-driver/lcd-driver.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d" -MT "${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d" -MT ${OBJECTDIR}/src/lcd-driver/lcd-driver.o  -o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o src/lcd-driver/lcd-driver.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d" -MT "${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d" -MT ${OBJECTDIR}/src/lcd-driver/lcd-driver.o  -o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o src/lcd-driver/lcd-driver.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/src/lcd-driver/graphics.o: src/lcd-driver/graphics.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/lcd-driver" 
+	@${RM} ${OBJECTDIR}/src/lcd-driver/graphics.o.d 
+	@${RM} ${OBJECTDIR}/src/lcd-driver/graphics.o 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/lcd-driver/graphics.o.d" -MT "${OBJECTDIR}/src/lcd-driver/graphics.o.d" -MT ${OBJECTDIR}/src/lcd-driver/graphics.o  -o ${OBJECTDIR}/src/lcd-driver/graphics.o src/lcd-driver/graphics.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 else
 ${OBJECTDIR}/src/main.o: src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/main.o.d 
 	@${RM} ${OBJECTDIR}/src/main.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/main.o.d" -MT "${OBJECTDIR}/src/main.o.d" -MT ${OBJECTDIR}/src/main.o  -o ${OBJECTDIR}/src/main.o src/main.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/main.o.d" -MT "${OBJECTDIR}/src/main.o.d" -MT ${OBJECTDIR}/src/main.o  -o ${OBJECTDIR}/src/main.o src/main.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 ${OBJECTDIR}/src/init_mcu.o: src/init_mcu.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/init_mcu.o.d 
 	@${RM} ${OBJECTDIR}/src/init_mcu.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/init_mcu.o.d" -MT "${OBJECTDIR}/src/init_mcu.o.d" -MT ${OBJECTDIR}/src/init_mcu.o  -o ${OBJECTDIR}/src/init_mcu.o src/init_mcu.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/init_mcu.o.d" -MT "${OBJECTDIR}/src/init_mcu.o.d" -MT ${OBJECTDIR}/src/init_mcu.o  -o ${OBJECTDIR}/src/init_mcu.o src/init_mcu.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 ${OBJECTDIR}/src/twi_driver.o: src/twi_driver.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src" 
 	@${RM} ${OBJECTDIR}/src/twi_driver.o.d 
 	@${RM} ${OBJECTDIR}/src/twi_driver.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/twi_driver.o.d" -MT "${OBJECTDIR}/src/twi_driver.o.d" -MT ${OBJECTDIR}/src/twi_driver.o  -o ${OBJECTDIR}/src/twi_driver.o src/twi_driver.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/twi_driver.o.d" -MT "${OBJECTDIR}/src/twi_driver.o.d" -MT ${OBJECTDIR}/src/twi_driver.o  -o ${OBJECTDIR}/src/twi_driver.o src/twi_driver.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 ${OBJECTDIR}/src/avr_controllers/spi_controller.o: src/avr_controllers/spi_controller.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src/avr_controllers" 
 	@${RM} ${OBJECTDIR}/src/avr_controllers/spi_controller.o.d 
 	@${RM} ${OBJECTDIR}/src/avr_controllers/spi_controller.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/avr_controllers/spi_controller.o.d" -MT "${OBJECTDIR}/src/avr_controllers/spi_controller.o.d" -MT ${OBJECTDIR}/src/avr_controllers/spi_controller.o  -o ${OBJECTDIR}/src/avr_controllers/spi_controller.o src/avr_controllers/spi_controller.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/avr_controllers/spi_controller.o.d" -MT "${OBJECTDIR}/src/avr_controllers/spi_controller.o.d" -MT ${OBJECTDIR}/src/avr_controllers/spi_controller.o  -o ${OBJECTDIR}/src/avr_controllers/spi_controller.o src/avr_controllers/spi_controller.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 ${OBJECTDIR}/src/lcd-driver/lcd-driver.o: src/lcd-driver/lcd-driver.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src/lcd-driver" 
 	@${RM} ${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d 
 	@${RM} ${OBJECTDIR}/src/lcd-driver/lcd-driver.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega2561 ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d" -MT "${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d" -MT ${OBJECTDIR}/src/lcd-driver/lcd-driver.o  -o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o src/lcd-driver/lcd-driver.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d" -MT "${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d" -MT ${OBJECTDIR}/src/lcd-driver/lcd-driver.o  -o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o src/lcd-driver/lcd-driver.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/src/lcd-driver/graphics.o: src/lcd-driver/graphics.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/lcd-driver" 
+	@${RM} ${OBJECTDIR}/src/lcd-driver/graphics.o.d 
+	@${RM} ${OBJECTDIR}/src/lcd-driver/graphics.o 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/lcd-driver/graphics.o.d" -MT "${OBJECTDIR}/src/lcd-driver/graphics.o.d" -MT ${OBJECTDIR}/src/lcd-driver/graphics.o  -o ${OBJECTDIR}/src/lcd-driver/graphics.o src/lcd-driver/graphics.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 endif
 
@@ -184,7 +196,7 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mmcu=atmega2561 ${PACK_COMMON_OPTIONS}  -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2 -D__$(MP_PROCESSOR_OPTION)__  -Wl,-Map="dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.map"    -o dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}      -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_SIMULATOR=1 -Wl,--gc-sections -Wl,--start-group  -Wl,-lm -Wl,--end-group 
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mmcu=atmega328p ${PACK_COMMON_OPTIONS}  -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2 -D__$(MP_PROCESSOR_OPTION)__  -Wl,-Map="dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.map"    -o dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}      -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_SIMULATOR=1 -Wl,--gc-sections -Wl,--start-group  -Wl,-lm -Wl,--end-group 
 	
 	
 	
@@ -194,7 +206,7 @@ dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: 
 else
 dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mmcu=atmega2561 ${PACK_COMMON_OPTIONS}  -D__$(MP_PROCESSOR_OPTION)__  -Wl,-Map="dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.map"    -o dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}      -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION) -Wl,--gc-sections -Wl,--start-group  -Wl,-lm -Wl,--end-group 
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mmcu=atmega328p ${PACK_COMMON_OPTIONS}  -D__$(MP_PROCESSOR_OPTION)__  -Wl,-Map="dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.map"    -o dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}      -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION) -Wl,--gc-sections -Wl,--start-group  -Wl,-lm -Wl,--end-group 
 	${MP_CC_DIR}/avr-objcopy -O ihex "dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}" "dist/${CND_CONF}/${IMAGE_TYPE}/DFGv2-Firmware.X.${IMAGE_TYPE}.hex"
 	
 	

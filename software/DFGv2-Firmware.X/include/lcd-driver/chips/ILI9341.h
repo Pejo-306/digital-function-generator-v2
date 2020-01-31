@@ -101,6 +101,12 @@
 #define CMD_PUMP_RATIO_CONTROL                  0xF7
     
 #define MADCTL_DEFAULT_VALUE 0x00
+#define MADCTL_MY   0x80
+#define MADCTL_MX   0x40
+#define MADCTL_MV   0x20
+#define MADCTL_ML   0x10
+#define MADCTL_BGR  0x08
+#define MADCTL_MH   0x04
 
 #define DPI_16BIT 0x50
 #define DPI_18BIT 0x60

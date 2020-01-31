@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 #ifdef _ILI9341_
-    #include "ILI9341.h"
+    #include "lcd-driver/chips/ILI9341.h"
 #endif
 
 #ifdef	__cplusplus

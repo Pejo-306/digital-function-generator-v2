@@ -4,11 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/main.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/avr_controllers/spi_controller.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/defs.h</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/lcd-driver/ILI9341.h</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/lcd-driver/lcd-driver.c</file>
             <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/lcd-driver/lcd-driver.h</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/lcd-driver/graphics.h</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/lcd-driver/graphics.c</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/lcd-driver/lcd-driver.c</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/avr_controllers/spi_controller.c</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/lcd-driver/chips/ILI9341.h</file>
         </group>
     </open-files>
 </project-private>

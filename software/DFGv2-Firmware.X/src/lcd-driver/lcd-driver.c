@@ -28,19 +28,57 @@ void lcd_driver_init(struct lcd_driver_t *driver, fbool options)
         mspi_init(&driver->spi);
 
     driver->madctl = MADCTL_DEFAULT_VALUE;
-    driver->res_x = (driver->madctl & MADCTL_B5) ? LCD_RESY : LCD_RESX;
-    driver->res_y = (driver->madctl & MADCTL_B5) ? LCD_RESX : LCD_RESY;
+    driver->res_x = (driver->madctl & MADCTL_MV) ? LCD_RESY : LCD_RESX;
+    driver->res_y = (driver->madctl & MADCTL_MV) ? LCD_RESX : LCD_RESY;
     _dcx_data(driver);
     _csx_high(driver);
     _reset_high(driver);
 }
 
+void lcd_power_on(struct lcd_driver_t *driver)
+{
+    uint8_t pgc_values[15] = { 0x0f, 0x26, 0x24, 0x0b, 0x0e, 0x09, 0x54, 0xa8, 0x46, 0x0c, 0x17, 0x09, 0x0f, 0x07, 0x00 };
+    uint8_t ngc_values[15] = { 0x00, 0x19, 0x1b, 0x04, 0x10, 0x07, 0x2a, 0x47, 0x39, 0x03, 0x06, 0x06, 0x30, 0x38, 0x0f };
+    
+    lcd_swreset(driver);
+    _delay_ms(10);
+    lcd_display_off(driver);
+    lcd_interface_control(driver, 0x01, 0x01, 0x00);
+    lcd_power_control_b(driver, 0x81, 0x30);
+    lcd_power_on_sequence_control(driver, 0x64, 0x03, 0x12, 0x81);
+    lcd_driver_timing_control_a(driver, 0x85, 0x10, 0x78);
+    lcd_power_control_a(driver, 0x34, 0x02);
+    lcd_pump_ratio_control(driver, 0x20);
+    lcd_driver_timing_control_b(driver, 0x00);
+    lcd_rgb_interface_signal_control(driver, 0x00);
+    lcd_display_inversion_control(driver, 0x00);
+    lcd_power_control_1(driver, 0x21);
+    lcd_power_control_2(driver, 0x11);
+    lcd_vcom_control_1(driver, 0x3F, 0x3C);
+    lcd_vcom_control_2(driver, 0xB5);
+    // lcd_memory_access_control(driver, MADCTL_MY | MADCTL_BGR);
+    lcd_pixel_format_set(driver, DPI_16BIT | DBI_16BIT);
+    lcd_frame_rate_control_1(driver, 0x00, 0x1B);
+    // lcd_memory_access_control(driver, MADCTL_MX | MADCTL_BGR);
+    lcd_enable_3G(driver, 0x00);
+    lcd_gamma_set(driver, 0x01);
+    lcd_positive_gamma_correction(driver, pgc_values);
+    lcd_negative_gamma_correction(driver, ngc_values);
+    lcd_entry_mode_set(driver, 0x07);
+    lcd_sleep_out(driver);
+    _delay_ms(150);
+    lcd_display_on(driver);
+}
+
 void lcd_reset(struct lcd_driver_t *driver)
 {
+    _csx_high(driver);
     _reset_low(driver);
-    _delay_us(10);
+    _delay_us(20);
     _reset_high(driver);
 }
+
+// Level 1 commands
 
 void lcd_nop(struct lcd_driver_t *driver)
 {
@@ -104,6 +142,7 @@ void lcd_enter_sleep_mode(struct lcd_driver_t *driver)
 void lcd_sleep_out(struct lcd_driver_t *driver)
 {
     _lcd_command_no_parameter(driver, CMD_SLPOUT);
+    _delay_us(5);  // wait for LCD chip to stabilize
 }
 
 void lcd_partial_mode_on(struct lcd_driver_t *driver)
@@ -188,11 +227,11 @@ void lcd_memory_write(struct lcd_driver_t *driver, uint16_t *data, uint32_t size
 {
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
-    mspi_transmit(CMD_RAMWR);  // transmit the command
+    spi_transfer(CMD_RAMWR);  // transmit the command
     _dcx_data(driver);  // transmit data
     for (uint32_t i = 0; i < size; ++i) {
-        mspi_transmit(data[i] >> 8);
-        mspi_transmit(data[i] & 0xFF);
+        spi_transfer(data[i] >> 8);
+        spi_transfer(data[i] & 0xFF);
     }
     _csx_high(driver);  // deselect the device
 }
@@ -245,8 +284,8 @@ void lcd_tearing_effect_line_on(struct lcd_driver_t *driver, uint8_t mode)
 void lcd_memory_access_control(struct lcd_driver_t *driver, uint8_t madctl)
 {       
     driver->madctl = madctl;
-    driver->res_x = (madctl & MADCTL_B5) ? LCD_RESY : LCD_RESX;
-    driver->res_y = (madctl & MADCTL_B5) ? LCD_RESX : LCD_RESY;
+    driver->res_x = (madctl & MADCTL_MV) ? LCD_RESY : LCD_RESX;
+    driver->res_y = (madctl & MADCTL_MV) ? LCD_RESX : LCD_RESY;
     _lcd_write_command(driver, CMD_MADCTL, &madctl, 1);
 }
 
@@ -277,16 +316,16 @@ void lcd_pixel_format_set(struct lcd_driver_t *driver, uint8_t format)
     _lcd_write_command(driver, CMD_PIXSET, &format, 1);
 }
 
-void lcd_write_memory_continue(struct lcd_driver_t *driver, 
+void lcd_memory_write_continue(struct lcd_driver_t *driver, 
         uint16_t *data, uint32_t size)
 {
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
-    mspi_transmit(CMD_WRITE_MEMORY_CONTINUE);  // transmit the command
+    spi_transfer(CMD_WRITE_MEMORY_CONTINUE);  // transmit the command
     _dcx_data(driver);  // transmit data
     for (uint32_t i = 0; i < size; ++i) {
-        mspi_transmit(data[i] >> 8);
-        mspi_transmit(data[i] & 0xFF);
+        spi_transfer(data[i] >> 8);
+        spi_transfer(data[i] & 0xFF);
     }
     _csx_high(driver);  // deselect the device
 }
@@ -349,12 +388,158 @@ uint8_t lcd_read_id3(struct lcd_driver_t *driver)
     return _lcd_command_read_single_byte(driver, CMD_RDID3);
 }
 
+// Level 2 commands
+
+void lcd_rgb_interface_signal_control(struct lcd_driver_t *driver, uint8_t settings)
+{
+    _lcd_write_command(driver, CMD_IFMODE, &settings, 1);
+}
+
+void lcd_frame_rate_control_1(struct lcd_driver_t *driver, 
+        uint8_t diva, uint8_t rtna)
+{
+    uint8_t data[2];
+    
+    data[0] = diva;
+    data[1] = rtna;
+    _lcd_write_command(driver, CMD_FRMCTR1, data, 2);
+}
+
+void lcd_display_inversion_control(struct lcd_driver_t *driver, uint8_t inv_mode)
+{
+    _lcd_write_command(driver, CMD_INVTR, &inv_mode, 1);
+}
+
+void lcd_entry_mode_set(struct lcd_driver_t *driver, uint8_t settings)
+{
+    _lcd_write_command(driver, CMD_ETMOD, &settings, 1);
+}
+
+void lcd_power_control_1(struct lcd_driver_t *driver, uint8_t vrh)
+{
+    _lcd_write_command(driver, CMD_PWCTRL1, &vrh, 1);
+}
+
+void lcd_power_control_2(struct lcd_driver_t *driver, uint8_t bt)
+{
+    _lcd_write_command(driver, CMD_PWCTRL2, &bt, 1);
+}
+
+void lcd_vcom_control_1(struct lcd_driver_t *driver, uint8_t vmh, uint8_t vml)
+{
+    uint8_t data[2];
+    
+    data[0] = vmh;
+    data[1] = vml;
+    _lcd_write_command(driver, CMD_VMCTRL1, data, 2);
+}
+
+void lcd_vcom_control_2(struct lcd_driver_t *driver, uint8_t vmf)
+{
+    _lcd_write_command(driver, CMD_VMCTRL2, &vmf, 1);
+}
+
+void lcd_positive_gamma_correction(struct lcd_driver_t *driver, uint8_t *data)
+{
+    _lcd_write_command(driver, CMD_PGAMCTRL, data, 15);
+}
+
+void lcd_negative_gamma_correction(struct lcd_driver_t *driver, uint8_t *data)
+{
+    _lcd_write_command(driver, CMD_NGAMCTRL, data, 15);
+}
+
+// Extended register command set
+
+void lcd_interface_control(struct lcd_driver_t *driver, 
+        uint8_t first, uint8_t second, uint8_t third)
+{
+    uint8_t data[3];
+    
+    data[0] = first;  // 1st parameter
+    data[1] = second;  // 1st parameter
+    data[2] = third;  // 1st parameter
+    _lcd_write_command(driver, CMD_IFCTL, data, 3);
+}
+
+void lcd_power_control_a(struct lcd_driver_t *driver,
+        uint8_t vcore_control, uint8_t ddvdh_control)
+{
+    uint8_t data[5];
+    
+    data[0] = 0x39;
+    data[1] = 0x2C;
+    data[2] = 0x00;
+    data[3] = vcore_control;
+    data[4] = ddvdh_control;
+    _lcd_write_command(driver, CMD_POWER_CONTROL_A, data, 5);
+}
+
+void lcd_power_control_b(struct lcd_driver_t *driver,
+        uint8_t power_control, uint8_t dc_ena)
+{
+    uint8_t data[3];
+    
+    data[0] = 0x00;
+    data[1] = power_control;
+    data[2] = dc_ena;
+    _lcd_write_command(driver, CMD_POWER_CONTROL_B, data, 3);
+}
+
+void lcd_driver_timing_control_a(struct lcd_driver_t *driver,
+        uint8_t first, uint8_t second, uint8_t third)
+{
+    uint8_t data[3];
+    
+    data[0] = first;
+    data[1] = second;
+    data[2] = third;
+    _lcd_write_command(driver, CMD_DRIVER_TIMING_CONTROL_A, data, 3);
+}
+
+void lcd_driver_timing_control_b(struct lcd_driver_t *driver, uint8_t first)
+{
+    uint8_t data[2];
+    
+    data[0] = first;
+    data[1] = 0x00;
+    _lcd_write_command(driver, CMD_DRIVER_TIMING_CONTROL_B, data, 2);
+}
+
+void lcd_power_on_sequence_control(struct lcd_driver_t *driver, 
+        uint8_t first, uint8_t second, uint8_t third, uint8_t forth)
+{
+    uint8_t data[4];
+    
+    data[0] = first;
+    data[1] = second;
+    data[2] = third;
+    data[3] = forth;
+    _lcd_write_command(driver, CMD_POWER_ON_SEQUENCE_CONTROL, data, 4);
+}
+
+void lcd_enable_3G(struct lcd_driver_t *driver, uint8_t enb_3G)
+{
+    _lcd_write_command(driver, CMD_ENABLE_3G, &enb_3G, 1);
+}
+
+void lcd_pump_ratio_control(struct lcd_driver_t *driver, uint8_t ratio_control)
+{
+    _lcd_write_command(driver, CMD_PUMP_RATIO_CONTROL, &ratio_control, 1);
+}
+
+uint16_t color565(uint8_t r, uint8_t g, uint8_t b)
+{
+    return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | ((b & 0xF8) >> 3);
+}
+
 static void _lcd_command_no_parameter(struct lcd_driver_t *driver, 
         uint8_t command)
 {
-    _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
-    mspi_transmit(command);  // transmit the command
+    _dcx_command(driver);  // transmit a command
+    spi_transfer(0x00);
+    spi_transfer(command);  // transmit the command
     _csx_high(driver);  // deselect the device
 }
 
@@ -365,10 +550,10 @@ static uint8_t _lcd_command_read_single_byte(struct lcd_driver_t *driver,
     
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
-    mspi_transmit(command);  // transmit the command
+    spi_transfer(command);  // transmit the command
     _dcx_data(driver);  // transmit data
-    mspi_transmit(_LCD_DRIVER_NO_VALUE);  // read dummy parameter (1st)
-    result = mspi_transmit(_LCD_DRIVER_NO_VALUE);  // read data (2nd)
+    spi_transfer(_LCD_DRIVER_NO_VALUE);  // read dummy parameter (1st)
+    result = spi_transfer(_LCD_DRIVER_NO_VALUE);  // read data (2nd)
     _csx_high(driver);  // deselect the device
     return result;
 }
@@ -379,11 +564,11 @@ static void _lcd_command_read_data(struct lcd_driver_t *driver,
     // WARNING: the 'data' array must be with length 'nparams'
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
-    mspi_transmit(command);  // transmit the command
+    spi_transfer(command);  // transmit the command
     _dcx_data(driver);  // transmit data
-    mspi_transmit(_LCD_DRIVER_NO_VALUE);  // read dummy parameter (1st)
+    spi_transfer(_LCD_DRIVER_NO_VALUE);  // read dummy parameter (1st)
     for (short i = 0; i < nparams; ++i)
-        data[i] = mspi_transmit(_LCD_DRIVER_NO_VALUE);  // receive each data byte
+        data[i] = spi_transfer(_LCD_DRIVER_NO_VALUE);  // receive each data byte
     _csx_high(driver);  // deselect the device
 }
 
@@ -393,9 +578,10 @@ static void _lcd_write_command(struct lcd_driver_t *driver,
     // WARNING: the 'data' array must be with length 'nparams'
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
-    mspi_transmit(command);  // transmit the command
+    spi_transfer(0x00);
+    spi_transfer(command);  // transmit the command
     _dcx_data(driver);  // transmit data
     for (short i = 0; i < nparams; ++i)
-        mspi_transmit(data[i]);
+        spi_transfer(data[i]);
     _csx_high(driver);  // deselect the device
 }

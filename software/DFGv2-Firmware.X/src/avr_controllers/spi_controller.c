@@ -47,12 +47,12 @@ void spi_set_data_mode(fbool data_mode)
     setrst(SPCR, DORD, data_mode & FBOOL2);
 }
 
-uint8_t mspi_transmit(uint8_t data)
+uint8_t spi_transfer(uint8_t data)
 {
     // start SPI transmission
     SPDR = data;
     // wait for transmission to complete
-    while (!(SPSR & (1 << SPIF)));
+    while (!(SPSR & _BV(SPIF)));
     // return received data from slave
     return SPDR;
 }

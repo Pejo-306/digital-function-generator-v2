@@ -16,13 +16,6 @@
 
 #define _LCD_DRIVER_NO_VALUE 0x00
 
-#define MADCTL_B2 0x04
-#define MADCTL_B3 0x08
-#define MADCTL_B4 0x10
-#define MADCTL_B5 0x20
-#define MADCTL_B6 0x40
-#define MADCTL_B7 0x80
-
 // send a data byte via the D/CX line
 #define _dcx_data(lcd_driver) { \
     *lcd_driver->dcx.port |= (1 << lcd_driver->dcx.pin); \
@@ -69,7 +62,11 @@ struct lcd_driver_t {
 
 void lcd_driver_init(struct lcd_driver_t *, fbool);
 
+void lcd_power_on(struct lcd_driver_t *);
+
 void lcd_reset(struct lcd_driver_t *);
+
+// Level 1 commands
 
 void lcd_nop(struct lcd_driver_t *);
 
@@ -136,7 +133,7 @@ void lcd_idle_mode_on(struct lcd_driver_t *);
 
 void lcd_pixel_format_set(struct lcd_driver_t *, uint8_t);
 
-void lcd_write_memory_continue(struct lcd_driver_t *, uint16_t *, uint32_t);
+void lcd_memory_write_continue(struct lcd_driver_t *, uint16_t *, uint32_t);
 
 // TODO: Read Memory Continue (3Eh)
 
@@ -165,6 +162,49 @@ uint8_t lcd_read_id1(struct lcd_driver_t *);
 uint8_t lcd_read_id2(struct lcd_driver_t *);
 
 uint8_t lcd_read_id3(struct lcd_driver_t *);
+
+// Level 2 commands
+
+void lcd_rgb_interface_signal_control(struct lcd_driver_t *, uint8_t);
+
+void lcd_frame_rate_control_1(struct lcd_driver_t *, uint8_t, uint8_t);
+
+void lcd_display_inversion_control(struct lcd_driver_t *, uint8_t);
+
+void lcd_entry_mode_set(struct lcd_driver_t *, uint8_t);
+
+void lcd_power_control_1(struct lcd_driver_t *, uint8_t);
+
+void lcd_power_control_2(struct lcd_driver_t *, uint8_t);
+
+void lcd_vcom_control_1(struct lcd_driver_t *, uint8_t, uint8_t);
+
+void lcd_vcom_control_2(struct lcd_driver_t *, uint8_t);
+
+void lcd_positive_gamma_correction(struct lcd_driver_t *, uint8_t *);
+
+void lcd_negative_gamma_correction(struct lcd_driver_t *, uint8_t *);
+
+// Extended register command set
+
+void lcd_interface_control(struct lcd_driver_t *, uint8_t, uint8_t, uint8_t);
+
+void lcd_power_control_a(struct lcd_driver_t *, uint8_t, uint8_t);
+
+void lcd_power_control_b(struct lcd_driver_t *, uint8_t, uint8_t);
+
+void lcd_driver_timing_control_a(struct lcd_driver_t *, uint8_t, uint8_t, uint8_t);
+
+void lcd_driver_timing_control_b(struct lcd_driver_t *, uint8_t);
+
+void lcd_power_on_sequence_control(struct lcd_driver_t *, 
+        uint8_t, uint8_t, uint8_t, uint8_t);
+
+void lcd_enable_3G(struct lcd_driver_t *, uint8_t);
+
+void lcd_pump_ratio_control(struct lcd_driver_t *, uint8_t);
+
+uint16_t color565(uint8_t, uint8_t, uint8_t);
 
 #ifdef	__cplusplus
 }

@@ -14,8 +14,8 @@ void init_mcu(void)
      * PA6 - input/pull-up disabled
      * PA7 - input/pull-up disabled
      */
-    DDRA = 0x00;
-    PORTA = 0x00;
+    // DDRA = 0x00;
+    // PORTA = 0x00;
     
     /* configure the 4 most significant pins as digital outputs:
      * PB0 (~SS)  - output/LOW level
@@ -67,8 +67,8 @@ void init_mcu(void)
      * PE6 - input/pull-up disabled
      * PE7 - input/pull-up disabled
      */
-    DDRE = 0x00;
-    PORTE = 0x00;
+    // DDRE = 0x00;
+    // PORTE = 0x00;
     
     /* configure PORT F pins:
      * PF0 - output/LOW level
@@ -80,8 +80,8 @@ void init_mcu(void)
      * PF6 - input/pull-up disabled
      * PF7 - input/pull-up disabled
      */
-    DDRF = 0x07;
-    PORTF = 0x06;
+    // DDRF = 0x07;
+    // PORTF = 0x06;
     
     /* configure PORT G pins:
      * PG0 - input/pull-up disabled
@@ -91,6 +91,6 @@ void init_mcu(void)
      * PG4 - input/pull-up disabled
      * PG5 - output/LOW level
      */
-    DDRG = 0x20;
-    PORTG = 0x00;
+    // DDRG = 0x20;
+    // PORTG = 0x00;
 }

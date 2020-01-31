@@ -29,7 +29,7 @@ void spi_set_speed(fbool);
 
 void spi_set_data_mode(fbool);
 
-uint8_t mspi_transmit(uint8_t);
+uint8_t spi_transfer(uint8_t);
 
 #ifdef	__cplusplus
 }
