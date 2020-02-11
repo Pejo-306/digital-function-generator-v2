@@ -59,7 +59,7 @@ void lcd_power_on(struct lcd_driver_t *driver)
     // lcd_memory_access_control(driver, MADCTL_MY | MADCTL_BGR);
     lcd_pixel_format_set(driver, DPI_16BIT | DBI_16BIT);
     lcd_frame_rate_control_1(driver, 0x00, 0x1B);
-    // lcd_memory_access_control(driver, MADCTL_MX | MADCTL_BGR);
+    lcd_memory_access_control(driver, MADCTL_BGR);
     lcd_enable_3G(driver, 0x00);
     lcd_gamma_set(driver, 0x01);
     lcd_positive_gamma_correction(driver, pgc_values);

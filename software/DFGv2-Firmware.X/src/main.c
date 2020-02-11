@@ -108,7 +108,20 @@ int main(void)
     _delay_ms(200);
     lcd_power_on(&driver);
     uint16_t color = color565(0xE5, 0xB7, 0x5E);  // 0xE5AB
-    draw_pixel(&driver, color);
+    // area_draw_pixel(&driver, color);
+    struct graphic_area_t area;
+    graphic_area_init(&area, 0x00, 0x0F, 0x00, 0x0F);
+    area_fill(&driver, &area, color);
+    uint16_t color2 = color565(0xFF, 0x00, 0x00);  // red
+    area_draw_pixel(&driver, &area, 7, 7, color2);
+    uint16_t pixels[25] = {
+        0x0, 0x0, 0x0, 0x0, 0x0,
+        0x0, color2, 0x0, 0x0, 0x0,
+        color2, 0x0, color2, 0x0, color2,
+        0x0, 0x0, 0x0, color2, 0x0,
+        0x0, 0x0, 0x0, 0x0, 0x0
+    };
+    //area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     while (1) {
     }
 }
