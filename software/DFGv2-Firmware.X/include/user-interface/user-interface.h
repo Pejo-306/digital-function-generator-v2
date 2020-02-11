@@ -24,7 +24,11 @@ struct menu_t {
 
 struct menu_t main_menu_init(struct lcd_driver_t *);
 
-void main_menu(struct menu_t *);
+void draw_main_menu(struct menu_t *);
+
+struct menu_t options_menu_init(struct lcd_driver_t *);
+
+void draw_options_menu(struct menu_t *);
 
 #ifdef	__cplusplus
 }

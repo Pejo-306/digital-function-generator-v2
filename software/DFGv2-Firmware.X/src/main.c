@@ -93,8 +93,12 @@ int main(void)
     };
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
+    /*
     struct menu_t mm = main_menu_init(&driver);
     main_menu(&mm);
+    */
+    struct menu_t options_menu = options_menu_init(&driver);
+    draw_options_menu(&options_menu);
     while (1) {
     }
 }
