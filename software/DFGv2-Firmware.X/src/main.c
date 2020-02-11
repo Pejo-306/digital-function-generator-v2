@@ -17,6 +17,8 @@
 
 #include "lcd-driver/font8x8.h"
 
+#include "user-interface/user-interface.h"
+
 int main(void)
 {   
     // init_mcu();
@@ -77,47 +79,11 @@ int main(void)
     spi_set_speed(0);
     // spi_set_data_mode(FBOOL2);
 
-    /*
-    uint8_t res = lcd_read_display_self_diagnostic_result(&driver);
-    lcd_gamma_set(&driver, res);
-     */
-    /*
-    uint8_t res = lcd_read_id3(&driver);
-    lcd_gamma_set(&driver, res);
-    */
-    /*
-    uint16_t data[8] = {
-        0x14AF,
-        0x32E2,
-        0xAABA,
-        0xE3E5,
-        0xF002,
-        0x0012,
-        0xBEF2,
-        0x0F2F
-    };
-    lcd_memory_write_continue(&driver, data, 8);
-    lcd_nop(&driver);
-    */
-    /*
-    lcd_sleep_out(&driver);
-    lcd_display_on(&driver);
-    lcd_pixel_format_set(&driver, DBI_16BIT);
-    // Write CTRL display?
-    uint16_t color = color565(0xE5, 0xB7, 0x5E);  // 0xE5AB
-    draw_pixel(&driver, color);
-    */
     lcd_reset(&driver);
     _delay_ms(200);
     lcd_power_on(&driver);
-    uint16_t color = color565(0xE5, 0xB7, 0x5E);  // 0xE5AB
-    // area_draw_pixel(&driver, color);
-    struct graphic_area_t area;
-    graphic_area_init(&area, 0x00, LCD_RESY, 0x00, LCD_RESX);
     lcd_memory_access_control(&driver, MADCTL_MV | MADCTL_BGR);
-    area_fill(&driver, &area, color);
-    uint16_t color2 = color565(0xFF, 0x00, 0x00);  // red
-    //area_draw_pixel(&driver, &area, 7, 7, color2);
+    /*
     uint16_t pixels[25] = {
         0x0, 0x0, 0x0, 0x0, 0x0,
         0x0, color2, 0x0, 0x0, 0x0,
@@ -125,11 +91,10 @@ int main(void)
         0x0, 0x0, 0x0, color2, 0x0,
         0x0, 0x0, 0x0, 0x0, 0x0
     };
-    //area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
-    // area_draw_char(&driver, &area, 0, 0, 'a', color2);
-    // area_draw_char(&driver, &area, CHAR_WIDTH, CHAR_HEIGHT, 'b', color2);
-    area_draw_string(&driver, &area, "abcABC", color2, 5);
-    // area_fill_rectangle(&driver, &area, 8, 8, 32, 64, color2);
+    area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
+    */
+    struct menu_t mm = main_menu_init(&driver);
+    main_menu(&mm);
     while (1) {
     }
 }

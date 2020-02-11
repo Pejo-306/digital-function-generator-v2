@@ -13,6 +13,7 @@
       <itemPath>include/lcd-driver/chips/ILI9341.h</itemPath>
       <itemPath>include/lcd-driver/graphics.h</itemPath>
       <itemPath>include/lcd-driver/font8x8.h</itemPath>
+      <itemPath>include/user-interface/user-interface.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -27,6 +28,7 @@
       <itemPath>src/avr_controllers/spi_controller.c</itemPath>
       <itemPath>src/lcd-driver/lcd-driver.c</itemPath>
       <itemPath>src/lcd-driver/graphics.c</itemPath>
+      <itemPath>src/user-interface/user-interface.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
