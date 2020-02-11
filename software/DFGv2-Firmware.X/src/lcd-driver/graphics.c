@@ -38,6 +38,7 @@ void area_draw_pixel(struct lcd_driver_t *driver, struct graphic_area_t *area,
 void area_fill(struct lcd_driver_t *driver, struct graphic_area_t *area,
         uint16_t color)
 {
+    /*
     lcd_column_address_set(driver, area->sc, area->ec);
     lcd_page_address_set(driver, area->sp, area->ep);
     // the first write operation must be a 'write_memory_start'
@@ -47,6 +48,26 @@ void area_fill(struct lcd_driver_t *driver, struct graphic_area_t *area,
     for (uint16_t i = area->sp; i <= area->ep; ++i) {
         for (uint16_t j = area->sc; j <= area->ec; ++j) {
             if (i == area->sp && j == area->sc) continue;  // skip first pixel
+            lcd_memory_write_continue(driver, &color, 1);
+        }
+    }
+    */
+    area_fill_rectangle(driver, area, 0, 0, 
+            get_area_width(area), get_area_height(area), color);
+}
+
+void area_fill_rectangle(struct lcd_driver_t *driver, struct graphic_area_t *area,
+        uint16_t offx, uint16_t offy, uint16_t width, uint16_t height, uint16_t color)
+{
+    lcd_column_address_set(driver, area->sc + offx, area->sc + offx + width - 1);
+    lcd_page_address_set(driver, area->sp + offy, area->sp + offy + height - 1);
+    // the first write operation must be a 'write_memory_start'
+    // in order to set the value of the column register to 'SC'
+    // and the value of the page register to 'SP'
+    lcd_memory_write(driver, &color, 1);
+    for (uint16_t i = 0; i < height; ++i) {
+        for (uint16_t j = 0; j < width; ++j) {
+            if (i == 0 && j == 0) continue;  // skip first pixel
             lcd_memory_write_continue(driver, &color, 1);
         }
     }
@@ -62,22 +83,30 @@ void area_draw_figure(struct lcd_driver_t *driver, struct graphic_area_t *area,
 }
 
 void area_draw_char(struct lcd_driver_t *driver, struct graphic_area_t *area,
-        uint16_t offx, uint16_t offy, unsigned char ch, uint16_t color)
+        uint16_t offx, uint16_t offy, unsigned char ch, uint16_t color, uint8_t thickness)
 {
     uint8_t row;
+    uint16_t offset_x, offset_y;
     
     for (short i = 0; i < CHAR_HEIGHT; ++i) {
         row = pgm_read_byte(&font[ch][i]);
         for (short j = 0; j < CHAR_WIDTH; ++j) {
-            if (row & (1 << j))
-                area_draw_pixel(driver, area, offx + j, offy + i, color);
+            if (row & (1 << j)) {
+                offset_x = offx + j * thickness;
+                offset_y = offy + i * thickness;
+                if (thickness == 1)
+                    area_draw_pixel(driver, area, offset_x, offset_y, color);    
+                else
+                    area_fill_rectangle(driver, area, 
+                            offset_x, offset_y, thickness, thickness, color);
+            }
         }
     }
 }
 
 void area_draw_string(struct lcd_driver_t *driver, struct graphic_area_t *area,
-        char *str, uint16_t color)
+        char *str, uint16_t color, uint8_t thickness)
 {
     for (short i = 0; i < strlen(str); ++i)
-        area_draw_char(driver, area, CHAR_WIDTH * i, 0, str[i], color);
+        area_draw_char(driver, area, CHAR_WIDTH * i * thickness, 0, str[i], color, thickness);
 }

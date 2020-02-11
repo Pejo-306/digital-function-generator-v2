@@ -127,9 +127,9 @@ int main(void)
     };
     //area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     // area_draw_char(&driver, &area, 0, 0, 'a', color2);
-    area_draw_char(&driver, &area, CHAR_WIDTH, CHAR_HEIGHT, 'b', color2);
-    // area_draw_string(&driver, &area, "abcABC", color2);
-    
+    // area_draw_char(&driver, &area, CHAR_WIDTH, CHAR_HEIGHT, 'b', color2);
+    area_draw_string(&driver, &area, "abcABC", color2, 5);
+    // area_fill_rectangle(&driver, &area, 8, 8, 32, 64, color2);
     while (1) {
     }
 }
