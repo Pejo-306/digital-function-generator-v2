@@ -15,6 +15,8 @@
 #include "lcd-driver/lcd-driver.h"
 #include "lcd-driver/graphics.h"
 
+#include "lcd-driver/font8x8.h"
+
 int main(void)
 {   
     // init_mcu();
@@ -71,7 +73,8 @@ int main(void)
     DDRC = (1 << PC0) | (1 << PC1) | (1 << PC2);
     
     lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
-    spi_set_speed(FBOOL0);
+    // spi_set_speed(FBOOL0);
+    spi_set_speed(0);
     // spi_set_data_mode(FBOOL2);
 
     /*
@@ -110,10 +113,11 @@ int main(void)
     uint16_t color = color565(0xE5, 0xB7, 0x5E);  // 0xE5AB
     // area_draw_pixel(&driver, color);
     struct graphic_area_t area;
-    graphic_area_init(&area, 0x00, 0x0F, 0x00, 0x0F);
+    graphic_area_init(&area, 0x00, LCD_RESY, 0x00, LCD_RESX);
+    lcd_memory_access_control(&driver, MADCTL_MV | MADCTL_BGR);
     area_fill(&driver, &area, color);
     uint16_t color2 = color565(0xFF, 0x00, 0x00);  // red
-    area_draw_pixel(&driver, &area, 7, 7, color2);
+    //area_draw_pixel(&driver, &area, 7, 7, color2);
     uint16_t pixels[25] = {
         0x0, 0x0, 0x0, 0x0, 0x0,
         0x0, color2, 0x0, 0x0, 0x0,
@@ -122,6 +126,10 @@ int main(void)
         0x0, 0x0, 0x0, 0x0, 0x0
     };
     //area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
+    // area_draw_char(&driver, &area, 0, 0, 'a', color2);
+    area_draw_char(&driver, &area, CHAR_WIDTH, CHAR_HEIGHT, 'b', color2);
+    // area_draw_string(&driver, &area, "abcABC", color2);
+    
     while (1) {
     }
 }

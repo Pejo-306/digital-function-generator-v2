@@ -12,6 +12,7 @@
       <itemPath>include/lcd-driver/lcd-driver.h</itemPath>
       <itemPath>include/lcd-driver/chips/ILI9341.h</itemPath>
       <itemPath>include/lcd-driver/graphics.h</itemPath>
+      <itemPath>include/lcd-driver/font8x8.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

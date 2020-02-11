@@ -28,8 +28,6 @@ uint16_t get_area_width(struct graphic_area_t *);
 
 uint16_t get_area_height(struct graphic_area_t *);
 
-void select_area(struct lcd_driver_t *, struct graphic_area_t *);
-
 void area_draw_pixel(struct lcd_driver_t *, struct graphic_area_t *,
         uint16_t, uint16_t, uint16_t);
 
@@ -37,6 +35,12 @@ void area_fill(struct lcd_driver_t *, struct graphic_area_t *, uint16_t);
 
 void area_draw_figure(struct lcd_driver_t *, struct graphic_area_t *,
         uint16_t, uint16_t, uint16_t, uint16_t, uint16_t *);
+
+void area_draw_char(struct lcd_driver_t *, struct graphic_area_t *,
+        uint16_t, uint16_t, unsigned char, uint16_t);
+
+void area_draw_string(struct lcd_driver_t *, struct graphic_area_t *,
+        char *, uint16_t);
 
 #ifdef	__cplusplus
 }
