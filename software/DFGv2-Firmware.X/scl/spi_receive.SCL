@@ -2,6 +2,11 @@ testbench for "atmega2561" is
     begin
         process is
             begin
+                SPDR <= 16#D3#;
+                wait;
+            end process;
+        process is
+            begin
                 wait on SPDR;
                 wait for 1 ic;
                 SPDR <= 16#D3#;

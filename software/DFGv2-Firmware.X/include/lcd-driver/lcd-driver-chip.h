@@ -8,12 +8,12 @@
 #ifndef LCD_DRIVER_CHIP_H
 #define	LCD_DRIVER_CHIP_H
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
-
 #ifdef _ILI9341_
     #include "lcd-driver/chips/ILI9341.h"
+#endif
+
+#ifdef	__cplusplus
+extern "C" {
 #endif
 
 #ifdef	__cplusplus

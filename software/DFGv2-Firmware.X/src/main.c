@@ -18,6 +18,7 @@
 #include "lcd-driver/font8x8.h"
 
 #include "user-interface/user-interface.h"
+#include "touch-panel-driver/touch-panel-driver.h"
 
 int main(void)
 {   
@@ -79,10 +80,13 @@ int main(void)
     spi_set_speed(0);
     // spi_set_data_mode(FBOOL2);
 
+
+/*    
     lcd_reset(&driver);
     _delay_ms(200);
     lcd_power_on(&driver);
     lcd_memory_access_control(&driver, MADCTL_MV | MADCTL_BGR);
+ */  
     /*
     uint16_t pixels[25] = {
         0x0, 0x0, 0x0, 0x0, 0x0,
@@ -93,13 +97,27 @@ int main(void)
     };
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
-    /*
     struct menu_t mm = main_menu_init(&driver);
-    main_menu(&mm);
-    */
+    draw_main_menu(&mm);
+    /*
     struct menu_t options_menu = options_menu_init(&driver);
     draw_options_menu(&options_menu);
+    */
+    
+    struct pin_ref_t tcs = {&PORTC, PC3};
+    struct pin_ref_t tirq = {&PINC, PC4};
+    struct touch_driver_t touch = { &spi, tcs, tirq };
+    touch_driver_init(&touch, 0);
+
+    uint16_t x, y;
+    DDRC |= (1 << PC3) | (1 << PC5);
     while (1) {
+        if (touch_scan(&touch, &x, &y)) {
+            PORTC |= (1 << PC5);
+        }
+        else {
+            PORTC &= ~(1 << PC5);
+        }
     }
 }
 
