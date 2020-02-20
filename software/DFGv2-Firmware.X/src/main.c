@@ -81,12 +81,12 @@ int main(void)
     // spi_set_data_mode(FBOOL2);
 
 
-/*    
+
     lcd_reset(&driver);
     _delay_ms(200);
     lcd_power_on(&driver);
     lcd_memory_access_control(&driver, MADCTL_MV | MADCTL_BGR);
- */  
+ 
     /*
     uint16_t pixels[25] = {
         0x0, 0x0, 0x0, 0x0, 0x0,
@@ -97,12 +97,13 @@ int main(void)
     };
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
+    /*
     struct menu_t mm = main_menu_init(&driver);
     draw_main_menu(&mm);
-    /*
+    */
     struct menu_t options_menu = options_menu_init(&driver);
     draw_options_menu(&options_menu);
-    */
+    
     
     struct pin_ref_t tcs = {&PORTC, PC3};
     struct pin_ref_t tirq = {&PINC, PC4};
