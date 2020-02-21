@@ -25,7 +25,7 @@ void lcd_driver_init(struct lcd_driver_t *driver, fbool options)
      */
     // optionally initialize the SPI interface
     if (options & FBOOL0)
-        mspi_init(&driver->spi);
+        mspi_init(driver->spi);
 
     driver->madctl = MADCTL_DEFAULT_VALUE;
     driver->res_x = (driver->madctl & MADCTL_MV) ? LCD_RESY : LCD_RESX;

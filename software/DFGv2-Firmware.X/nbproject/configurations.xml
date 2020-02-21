@@ -17,6 +17,7 @@
       <itemPath>include/touch-panel-driver/chips/XPT2046.h</itemPath>
       <itemPath>include/touch-panel-driver/touch-panel-driver-chip.h</itemPath>
       <itemPath>include/touch-panel-driver/touch-panel-driver.h</itemPath>
+      <itemPath>include/user-interface/ui_button.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -33,6 +34,7 @@
       <itemPath>src/lcd-driver/graphics.c</itemPath>
       <itemPath>src/user-interface/user-interface.c</itemPath>
       <itemPath>src/touch-panel-driver/touch-panel-driver.c</itemPath>
+      <itemPath>src/user-interface/ui_button.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

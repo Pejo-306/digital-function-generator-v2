@@ -8,27 +8,24 @@
 #ifndef USER_INTERFACE_H
 #define	USER_INTERFACE_H
 
-#include "lcd-driver/lcd-driver.h"
-#include "lcd-driver/graphics.h"
+#include <inttypes.h>
 
-#define MAX_AREAS 16
+#include "lcd-driver/lcd-driver.h"
+#include "user-interface/ui_button.h"
+
+#define MAIN_MENU_BUTTONS_SIZE 3
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
-struct menu_t {
-    struct lcd_driver_t *driver;
-    struct graphic_area_t areas[MAX_AREAS];
-};
+extern struct ui_button_t main_menu_buttons[MAIN_MENU_BUTTONS_SIZE];
 
-struct menu_t main_menu_init(struct lcd_driver_t *);
+void draw_main_menu(struct lcd_driver_t *);
 
-void draw_main_menu(struct menu_t *);
+void scan_main_menu(struct lcd_driver_t *, uint16_t, uint16_t);
 
-struct menu_t options_menu_init(struct lcd_driver_t *);
-
-void draw_options_menu(struct menu_t *);
+void draw_options_menu(struct lcd_driver_t *);
 
 #ifdef	__cplusplus
 }

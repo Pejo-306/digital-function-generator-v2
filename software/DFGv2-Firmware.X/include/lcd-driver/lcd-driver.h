@@ -62,7 +62,7 @@ enum rotation {
 };
     
 struct lcd_driver_t {
-    struct spi_interface_t spi;  // SPI interface
+    struct spi_interface_t *spi;  // SPI interface
     struct pin_ref_t dcx;  // Data/Command
     struct pin_ref_t reset;  // Reset
     struct pin_ref_t csx;  // Chip Select

@@ -5,6 +5,7 @@
  * Created on January 25, 2020, 6:47 PM
  */
 
+#include <stdlib.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -66,17 +67,17 @@ int main(void)
     // enable internal pull-up on ~SS
     PORTB = (1 << PB2);
      
-    struct spi_interface_t spi = {&DDRB, PB5, PB4, PB3};
-    struct pin_ref_t dcx = {&PORTC, PC0};
-    struct pin_ref_t reset = {&PORTC, PC1};
-    struct pin_ref_t csx = {&PORTC, PC2};
-    struct lcd_driver_t driver = {spi, dcx, reset, csx};
+    struct spi_interface_t spi = { &DDRB, PB5, PB4, PB3 };
+    struct pin_ref_t dcx = { &PORTC, PC0 };
+    struct pin_ref_t reset = { &PORTC, PC1 };
+    struct pin_ref_t csx = { &PORTC, PC2 };
+    struct lcd_driver_t driver = { &spi, dcx, reset, csx };
     
     // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
     DDRC = (1 << PC0) | (1 << PC1) | (1 << PC2);
     
-    struct pin_ref_t tcs = {&PORTC, PC3};
-    struct pin_ref_t tirq = {&PINC, PC4};
+    struct pin_ref_t tcs = { &PORTC, PC3 };
+    struct pin_ref_t tirq = { &PINC, PC4 };
     struct touch_driver_t touch = { &spi, tcs, tirq };
     touch_driver_init(&touch, 0);
     DDRC |= (1 << PC3) | (1 << PC5);
@@ -102,33 +103,25 @@ int main(void)
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
     
-    /*
-    struct menu_t mm = main_menu_init(&driver);
-    draw_main_menu(&mm);
-    */
-    /*
-    struct menu_t options_menu = options_menu_init(&driver);
-    draw_options_menu(&options_menu);
-    */
+    draw_main_menu(&driver);
 
-
+    
     uint16_t x, y;
- 
-    struct graphic_area_t bg;
-    graphic_area_init(&bg, 0x00, driver.res_x, 0x00, driver.res_y);
-    area_fill(&driver, &bg, 0x0000);
     while (1) {
         if (touch_scan(&touch, &x, &y)) {
             PORTC &= ~(1 << PC5);
             touch_get_screen_coordinates(&driver, &x, &y);
-            area_draw_pixel(&driver, &bg, x, y, 0xFFFF);
-        }
-        else {
+            draw_pixel(&driver, x, y, 0xFFFF);
+        } else {
             PINC |= (1 << PC5);
             _delay_ms(100);
+            x = 0xFFFF;
+            y = 0xFFFF;
         }
+        scan_main_menu(&driver, x, y);
     }
 }
+
 
 ISR(TWI_vect)
 {
