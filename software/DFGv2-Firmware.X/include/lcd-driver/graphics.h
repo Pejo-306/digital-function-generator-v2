@@ -8,6 +8,9 @@
 #ifndef GRAPHICS_H
 #define	GRAPHICS_H
 
+#include <inttypes.h>
+
+#include "defs.h"
 #include "lcd-driver/lcd-driver.h"
 
 #ifdef	__cplusplus
@@ -24,9 +27,11 @@ void draw_rectangle(struct lcd_driver_t *, uint16_t, uint16_t, uint16_t, uint16_
 
 void draw_figure(struct lcd_driver_t *, uint16_t, uint16_t, uint16_t, uint16_t, uint16_t *);
 
-void draw_char(struct lcd_driver_t *, uint16_t, uint16_t, unsigned char, uint16_t, uint8_t);
+void draw_char(struct lcd_driver_t *, uint16_t, uint16_t, unsigned char, 
+        uint16_t, uint16_t, uint8_t, fbool);
 
-void draw_string(struct lcd_driver_t *, uint16_t, uint16_t, const char *, uint16_t, uint8_t);
+void draw_string(struct lcd_driver_t *, uint16_t, uint16_t, const char *,
+        uint16_t, uint16_t, uint8_t, fbool);
 
 #ifdef	__cplusplus
 }

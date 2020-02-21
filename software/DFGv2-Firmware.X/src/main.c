@@ -18,7 +18,7 @@
 
 #include "lcd-driver/font8x8.h"
 
-#include "user-interface/user-interface.h"
+#include "user-interface/ui_main_menu.h"
 #include "touch-panel-driver/touch-panel-driver.h"
 
 int main(void)
@@ -109,12 +109,9 @@ int main(void)
     uint16_t x, y;
     while (1) {
         if (touch_scan(&touch, &x, &y)) {
-            PORTC &= ~(1 << PC5);
             touch_get_screen_coordinates(&driver, &x, &y);
             draw_pixel(&driver, x, y, 0xFFFF);
         } else {
-            PINC |= (1 << PC5);
-            _delay_ms(100);
             x = 0xFFFF;
             y = 0xFFFF;
         }

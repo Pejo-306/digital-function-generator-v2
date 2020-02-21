@@ -26,8 +26,9 @@ struct ui_button_t {
     enum button_state prev_state;
     enum button_state state;
     
-    void (*draw)(struct ui_button_t *, struct lcd_driver_t *);
-    void (*active)(struct ui_button_t *, struct lcd_driver_t *);
+    void (*draw)(struct ui_button_t *, void *);
+    void (*active)(struct ui_button_t *, void *);
+    void (*press)(struct ui_button_t *, void *);
 };
 
 void ui_button_set_state(struct ui_button_t *, enum button_state);

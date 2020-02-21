@@ -4,6 +4,7 @@
 #include <string.h>
 #include <avr/pgmspace.h>
 
+#include "defs.h"
 #include "lcd-driver/font8x8.h"
 #include "lcd-driver/lcd-driver.h"
 
@@ -58,8 +59,12 @@ void draw_figure(struct lcd_driver_t *driver, uint16_t start_x, uint16_t start_y
 }
 
 void draw_char(struct lcd_driver_t *driver, uint16_t start_x, uint16_t start_y, 
-        unsigned char ch, uint16_t color, uint8_t thickness)
+        unsigned char ch, uint16_t color, uint16_t bg_color, uint8_t thickness, fbool options)
 {
+    /* fbool options:
+     * bit 0: add background color to character
+     * bits 1-7: not used
+     */
     uint8_t row;
     
     for (short i = 0; i < CHAR_HEIGHT; ++i) {
@@ -72,15 +77,26 @@ void draw_char(struct lcd_driver_t *driver, uint16_t start_x, uint16_t start_y,
                     fill_rectangle(driver, start_x + j * thickness, start_y + i * thickness, 
                             thickness, thickness, color);
                 }
+            } else if (options & FBOOL0) {
+                if (thickness == 1) {
+                    draw_pixel(driver, start_x + j, start_y + i, bg_color);
+                } else {
+                    fill_rectangle(driver, start_x + j * thickness, start_y + i * thickness, 
+                            thickness, thickness, bg_color);
+                }
             }
         }
     }
 }
 
 void draw_string(struct lcd_driver_t *driver, uint16_t start_x, uint16_t start_y, 
-        const char *str, uint16_t color, uint8_t thickness)
+        const char *str, uint16_t color, uint16_t bg_color, uint8_t thickness, fbool options)
 {
+    /* fbool options:
+     * bit 0: add background color to string
+     * bits 1-7: not used
+     */
     for (short i = 0; i < strlen(str); ++i)
         draw_char(driver, start_x + CHAR_WIDTH * i * thickness, start_y, 
-                str[i], color, thickness);
+                str[i], color, bg_color, thickness, options);
 }
