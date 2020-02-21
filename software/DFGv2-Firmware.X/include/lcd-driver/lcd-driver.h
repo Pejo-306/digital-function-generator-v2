@@ -50,6 +50,17 @@
 extern "C" {
 #endif
 
+enum rotation { 
+    NORTHEAST = 0,
+    SOUTHWEST = 1,
+    NORTHWEST = 2,
+    SOUTHEAST = 3,
+    EASTNORTH = 4,
+    WESTSOUTH = 5,
+    WESTNORTH = 6,
+    EASTSOUTH = 7,
+};
+    
 struct lcd_driver_t {
     struct spi_interface_t spi;  // SPI interface
     struct pin_ref_t dcx;  // Data/Command
@@ -205,6 +216,8 @@ void lcd_enable_3G(struct lcd_driver_t *, uint8_t);
 void lcd_pump_ratio_control(struct lcd_driver_t *, uint8_t);
 
 uint16_t color565(uint8_t, uint8_t, uint8_t);
+
+enum rotation lcd_get_rotation(struct lcd_driver_t *);
 
 #ifdef	__cplusplus
 }

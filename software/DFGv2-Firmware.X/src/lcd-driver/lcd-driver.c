@@ -532,6 +532,26 @@ uint16_t color565(uint8_t r, uint8_t g, uint8_t b)
     return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | ((b & 0xF8) >> 3);
 }
 
+enum rotation lcd_get_rotation(struct lcd_driver_t *driver)
+{
+    enum rotation result;
+    
+    if (driver->madctl & MADCTL_MY) {  // bottom to top row order
+        if (driver->madctl & MADCTL_MX)  // right to left column order
+            result = SOUTHEAST;
+        else  // left to right column order
+            result = SOUTHWEST;
+    } else {  // top to bottom row order
+        if (driver->madctl & MADCTL_MX)  // right to left column order
+            result = NORTHEAST;
+        else  // left to right column order
+            result = NORTHWEST;
+    }
+    if (driver->madctl & MADCTL_MV)  // row/column order is exchanged
+        result += 4;  // exchange x/y directions
+    return result;
+}
+
 static void _lcd_command_no_parameter(struct lcd_driver_t *driver, 
         uint8_t command)
 {
@@ -549,6 +569,7 @@ static uint8_t _lcd_command_read_single_byte(struct lcd_driver_t *driver,
     
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
+    spi_transfer(0x00);
     spi_transfer(command);  // transmit the command
     _dcx_data(driver);  // transmit data
     spi_transfer(_LCD_DRIVER_NO_VALUE);  // read dummy parameter (1st)
@@ -563,6 +584,7 @@ static void _lcd_command_read_data(struct lcd_driver_t *driver,
     // WARNING: the 'data' array must be with length 'nparams'
     _dcx_command(driver);  // transmit a command
     _csx_low(driver);  // select the device
+    spi_transfer(0x00);
     spi_transfer(command);  // transmit the command
     _dcx_data(driver);  // transmit data
     spi_transfer(_LCD_DRIVER_NO_VALUE);  // read dummy parameter (1st)

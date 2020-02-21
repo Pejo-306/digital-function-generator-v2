@@ -75,12 +75,16 @@ int main(void)
     // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
     DDRC = (1 << PC0) | (1 << PC1) | (1 << PC2);
     
+    struct pin_ref_t tcs = {&PORTC, PC3};
+    struct pin_ref_t tirq = {&PINC, PC4};
+    struct touch_driver_t touch = { &spi, tcs, tirq };
+    touch_driver_init(&touch, 0);
+    DDRC |= (1 << PC3) | (1 << PC5);
+       
     lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
     // spi_set_speed(FBOOL0);
     spi_set_speed(0);
     // spi_set_data_mode(FBOOL2);
-
-
 
     lcd_reset(&driver);
     _delay_ms(200);
@@ -97,27 +101,31 @@ int main(void)
     };
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
+    
     /*
     struct menu_t mm = main_menu_init(&driver);
     draw_main_menu(&mm);
     */
+    /*
     struct menu_t options_menu = options_menu_init(&driver);
     draw_options_menu(&options_menu);
-    
-    
-    struct pin_ref_t tcs = {&PORTC, PC3};
-    struct pin_ref_t tirq = {&PINC, PC4};
-    struct touch_driver_t touch = { &spi, tcs, tirq };
-    touch_driver_init(&touch, 0);
+    */
+
 
     uint16_t x, y;
-    DDRC |= (1 << PC3) | (1 << PC5);
+ 
+    struct graphic_area_t bg;
+    graphic_area_init(&bg, 0x00, driver.res_x, 0x00, driver.res_y);
+    area_fill(&driver, &bg, 0x0000);
     while (1) {
         if (touch_scan(&touch, &x, &y)) {
-            PORTC |= (1 << PC5);
+            PORTC &= ~(1 << PC5);
+            touch_get_screen_coordinates(&driver, &x, &y);
+            area_draw_pixel(&driver, &bg, x, y, 0xFFFF);
         }
         else {
-            PORTC &= ~(1 << PC5);
+            PINC |= (1 << PC5);
+            _delay_ms(100);
         }
     }
 }
