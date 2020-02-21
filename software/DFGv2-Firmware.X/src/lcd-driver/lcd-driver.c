@@ -235,6 +235,20 @@ void lcd_memory_write(struct lcd_driver_t *driver, uint16_t *data, uint32_t size
     _csx_high(driver);  // deselect the device
 }
 
+void lcd_memory_write_optimized(struct lcd_driver_t *driver, uint16_t color, uint32_t size)
+{
+    // NOTE: for transmitting only one color
+    _dcx_command(driver);       // transmit a command
+    _csx_low(driver);           // select the device
+    spi_transfer(CMD_RAMWR);    // transmit the command
+    _dcx_data(driver);          // transmit data
+    for (uint32_t i = 0; i < size; ++i) {
+        spi_transfer(color >> 8);
+        spi_transfer(color & 0xFF);
+    }
+    _csx_high(driver);  // deselect the device
+}
+
 signed short lcd_partial_area(struct lcd_driver_t *driver, 
         uint16_t sr, uint16_t er)
 {
