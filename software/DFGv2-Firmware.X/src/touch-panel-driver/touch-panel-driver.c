@@ -53,38 +53,38 @@ void touch_get_screen_coordinates(struct lcd_driver_t *lcd_driver,
     enum rotation screen_rotation = lcd_get_rotation(lcd_driver);
     
     switch (screen_rotation) {
-        case NORTHEAST:
-            *y = lcd_driver->res_y - *y;
-            break;
-        case SOUTHWEST:
-            *x = lcd_driver->res_x - *x;
-            break;
-        case NORTHWEST:
-            *x = lcd_driver->res_x - *x;
-            *y = lcd_driver->res_y - *y;
-            break;
-        case SOUTHEAST:
-            break;
-        case EASTNORTH:
-            temp = *x;
-            *x = lcd_driver->res_x - *y;
-            *y = temp;
-            break;
-        case WESTSOUTH:
-            temp = *x;
-            *x = *y;
-            *y = lcd_driver->res_y - temp;
-            break;
-        case WESTNORTH:
-            temp = *x;
-            *x = lcd_driver->res_x - *y;
-            *y = lcd_driver->res_y - temp;
-            break;
-        case EASTSOUTH:
-            temp = *x;
-            *x = *y;
-            *y = temp;
-            break;
+    case NORTHEAST:
+        *y = lcd_driver->res_y - *y;
+        break;
+    case SOUTHWEST:
+        *x = lcd_driver->res_x - *x;
+        break;
+    case NORTHWEST:
+        *x = lcd_driver->res_x - *x;
+        *y = lcd_driver->res_y - *y;
+        break;
+    case SOUTHEAST:
+        break;
+    case EASTNORTH:
+        temp = *x;
+        *x = lcd_driver->res_x - *y;
+        *y = temp;
+        break;
+    case WESTSOUTH:
+        temp = *x;
+        *x = *y;
+        *y = lcd_driver->res_y - temp;
+        break;
+    case WESTNORTH:
+        temp = *x;
+        *x = lcd_driver->res_x - *y;
+        *y = lcd_driver->res_y - temp;
+        break;
+    case EASTSOUTH:
+        temp = *x;
+        *x = *y;
+        *y = temp;
+        break;
     }
 }
 

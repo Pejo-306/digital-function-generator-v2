@@ -196,5 +196,5 @@ static void _press_mm_stop_button(struct ui_button_t *button, void *params_p)
 
 static void _press_mm_options_button(struct ui_button_t *button, void *params_p)
 {
-    
+    set_menu_scene(OPTIONS_MENU);
 }

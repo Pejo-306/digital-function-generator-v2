@@ -32,56 +32,86 @@ static void _draw_om_text_button(struct ui_button_t *, void *);
 
 static void _draw_om_figure_button(struct ui_button_t *, void *);
 
+static void _press_om_sin_wave_button(struct ui_button_t *, void *);
+
+static void _press_om_tri_wave_button(struct ui_button_t *, void *);
+
+static void _press_om_sq_wave_button(struct ui_button_t *, void *);
+
+static void _press_om_10hz_button(struct ui_button_t *, void *);
+
+static void _press_om_1khz_button(struct ui_button_t *, void *);
+
+static void _press_om_100khz_button(struct ui_button_t *, void *);
+
+static void _press_om_1v_button(struct ui_button_t *, void *);
+
+static void _press_om_2v_button(struct ui_button_t *, void *);
+
+static void _press_om_3v_button(struct ui_button_t *, void *);
+
+static void _press_om_back_button(struct ui_button_t *, void *);
+
 static struct ui_button_t _options_menu_buttons[OPTIONS_MENU_BUTTONS_SIZE] = {
     { 
         0x001E, 0x000F, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_figure_button, 
-        &_draw_om_figure_button
+        &_draw_om_figure_button,
+        &_press_om_sin_wave_button
     },  // sin wave button
     { 
         0x0082, 0x000F, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_figure_button,
-        &_draw_om_figure_button
+        &_draw_om_figure_button,
+        &_press_om_tri_wave_button
     },  // triangle wave button
     { 
         0x00E6, 0x000F, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_figure_button,
-        &_draw_om_figure_button
+        &_draw_om_figure_button,
+        &_press_om_sq_wave_button
     },  // square wave button
     { 
         0x001E, 0x0041, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
-        &_draw_om_text_button
+        &_draw_om_text_button,
+        &_press_om_10hz_button
     },  // 10Hz button
     { 
         0x0082, 0x0041, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
-        &_draw_om_text_button
+        &_draw_om_text_button,
+        &_press_om_1khz_button
     },  // 1kHz button
     { 
         0x00E6, 0x0041, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
-        &_draw_om_text_button
+        &_draw_om_text_button,
+        &_press_om_100khz_button
     },  // 100kHz button
     { 
         0x001E, 0x0073, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
-        &_draw_om_text_button
+        &_draw_om_text_button,
+        &_press_om_1v_button
     },  // 1V button
     { 
         0x0082, 0x0073, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
-        &_draw_om_text_button
+        &_draw_om_text_button,
+        &_press_om_2v_button
     },  // 2V button
     { 
         0x00E6, 0x0073, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
-        &_draw_om_text_button
+        &_draw_om_text_button,
+        &_press_om_3v_button
     },  // 3V button
     { 
         0x0064, 0x00A5, 0x0078, 0x003C, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
-        &_draw_om_text_button
+        &_draw_om_text_button,
+        &_press_om_back_button
     },  // BACK button
 };
 
@@ -155,7 +185,13 @@ void scan_options_menu(struct lcd_driver_t *driver, uint16_t touched_x, uint16_t
         1,
         0xFFFF
     };
-    
+    static void *press_params[OPTIONS_MENU_BUTTONS_SIZE] = {
+        NULL, NULL, NULL,
+        NULL, NULL, NULL,
+        NULL, NULL, NULL,
+        NULL
+    };
+        
     draw_params.driver = driver;
     
     for (size_t i = 0; i < OPTIONS_MENU_BUTTONS_SIZE; ++i) {
@@ -180,6 +216,11 @@ void scan_options_menu(struct lcd_driver_t *driver, uint16_t touched_x, uint16_t
                 draw_params.fill_color = fill_color;
                 draw_params.outline_color = outline_color;
                 _options_menu_buttons[i].draw(&_options_menu_buttons[i], &draw_params);
+            }
+            
+            if (_options_menu_buttons[i].prev_state == ACTIVE 
+                    && _options_menu_buttons[i].state == NOT_ACTIVE) {
+                _options_menu_buttons[i].press(&_options_menu_buttons[i], press_params[i]);
             }
         }
     }
@@ -207,4 +248,54 @@ static void _draw_om_figure_button(struct ui_button_t *button, void *params_p)
             button->width, button->height, params.fill_color);
     draw_rectangle(params.driver, button->start_x, button->start_y,
             button->width, button->height, params.outline_color, params.outline_thickness);
+}
+
+static void _press_om_sin_wave_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_tri_wave_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_sq_wave_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_10hz_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_1khz_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_100khz_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_1v_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_2v_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_3v_button(struct ui_button_t *button, void *param_p)
+{
+    
+}
+
+static void _press_om_back_button(struct ui_button_t *button, void *param_p)
+{
+    set_menu_scene(MAIN_MENU);
 }

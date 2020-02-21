@@ -18,6 +18,7 @@
 
 #include "lcd-driver/font8x8.h"
 
+#include "user-interface/ui_helper.h"
 #include "user-interface/ui_main_menu.h"
 #include "user-interface/ui_options_menu.h"
 #include "touch-panel-driver/touch-panel-driver.h"
@@ -103,10 +104,28 @@ int main(void)
     };
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
-      
-    draw_options_menu(&driver);
     uint16_t x, y;
+    enum menu_scene selected_menu_scene = NONE;
+    void (*draw_menu_p)(struct lcd_driver_t *);
+    void (*scan_menu_p)(struct lcd_driver_t *, uint16_t, uint16_t);
     while (1) {
+        if (g_current_menu_scene != selected_menu_scene) {
+            switch (g_current_menu_scene) {
+            case MAIN_MENU:
+                draw_menu_p = &draw_main_menu;
+                scan_menu_p = &scan_main_menu;
+                break;
+            case OPTIONS_MENU:
+                draw_menu_p = &draw_options_menu;
+                scan_menu_p = &scan_options_menu;
+                break;
+            default:
+                break;
+            }
+            selected_menu_scene = g_current_menu_scene;
+            (*draw_menu_p)(&driver);
+        }
+        
         if (touch_scan(&touch, &x, &y)) {
             touch_get_screen_coordinates(&driver, &x, &y);
             draw_pixel(&driver, x, y, 0xFFFF);
@@ -114,7 +133,7 @@ int main(void)
             x = 0xFFFF;
             y = 0xFFFF;
         }
-        scan_options_menu(&driver, x, y);
+        (*scan_menu_p)(&driver, x, y);
     }
 }
 

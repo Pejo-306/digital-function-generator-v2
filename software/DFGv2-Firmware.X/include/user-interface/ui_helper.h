@@ -13,6 +13,16 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+    
+enum menu_scene {
+    NONE,
+    MAIN_MENU,
+    OPTIONS_MENU
+};
+    
+extern enum menu_scene g_current_menu_scene;
+
+void set_menu_scene(enum menu_scene);
 
 uint16_t _horizontal_str_offset(const char *, uint16_t, uint8_t);
 
