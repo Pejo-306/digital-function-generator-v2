@@ -19,6 +19,7 @@
 #include "lcd-driver/font8x8.h"
 
 #include "user-interface/ui_main_menu.h"
+#include "user-interface/ui_options_menu.h"
 #include "touch-panel-driver/touch-panel-driver.h"
 
 int main(void)
@@ -102,10 +103,8 @@ int main(void)
     };
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
-    
-    draw_main_menu(&driver);
-
-    
+      
+    draw_options_menu(&driver);
     uint16_t x, y;
     while (1) {
         if (touch_scan(&touch, &x, &y)) {
@@ -115,7 +114,7 @@ int main(void)
             x = 0xFFFF;
             y = 0xFFFF;
         }
-        scan_main_menu(&driver, x, y);
+        scan_options_menu(&driver, x, y);
     }
 }
 

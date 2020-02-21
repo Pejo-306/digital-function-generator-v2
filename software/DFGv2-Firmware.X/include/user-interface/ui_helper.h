@@ -14,9 +14,9 @@
 extern "C" {
 #endif
 
-uint16_t horizontal_str_offset(const char *, uint16_t, uint8_t);
+uint16_t _horizontal_str_offset(const char *, uint16_t, uint8_t);
 
-uint16_t vertical_str_offset(const char *, uint16_t, uint8_t);
+uint16_t _vertical_str_offset(const char *, uint16_t, uint8_t);
 
 #ifdef	__cplusplus
 }

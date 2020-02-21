@@ -2,11 +2,9 @@
 
 #include <stddef.h>
 #include <inttypes.h>
-#include <string.h>
 
 #include "defs.h"
 #include "lcd-driver/lcd-driver.h"
-#include "lcd-driver/font8x8.h"
 #include "lcd-driver/graphics.h"
 #include "user-interface/ui_helper.h"
 #include "user-interface/ui_button.h"
@@ -47,26 +45,26 @@ struct _mm_stop_button_press_params_t {
     uint8_t char_thickness;
 };
 
-static void draw_mm_button(struct ui_button_t *, void *);
+static void _draw_mm_button(struct ui_button_t *, void *);
 
-static void press_mm_start_button(struct ui_button_t *, void *);
+static void _press_mm_start_button(struct ui_button_t *, void *);
 
-static void press_mm_stop_button(struct ui_button_t *, void *);
+static void _press_mm_stop_button(struct ui_button_t *, void *);
 
-static void press_mm_options_button(struct ui_button_t *, void *);
+static void _press_mm_options_button(struct ui_button_t *, void *);
 
 static struct ui_button_t _main_menu_buttons[MAIN_MENU_BUTTONS_SIZE] = {
     { 
         0x64, 0x19, 0x78, 0x32, NOT_ACTIVE, NOT_ACTIVE,
-        &draw_mm_button, &draw_mm_button, &press_mm_start_button
+        &_draw_mm_button, &_draw_mm_button, &_press_mm_start_button
     },  // START button
     { 
         0x64, 0x5F, 0x78, 0x32, NOT_ACTIVE, NOT_ACTIVE,
-        &draw_mm_button, &draw_mm_button, &press_mm_stop_button
+        &_draw_mm_button, &_draw_mm_button, &_press_mm_stop_button
     },  // STOP button
     { 
         0x64, 0xA5, 0x78, 0x32, NOT_ACTIVE, NOT_ACTIVE,
-        &draw_mm_button, &draw_mm_button, &press_mm_options_button
+        &_draw_mm_button, &_draw_mm_button, &_press_mm_options_button
     },  // OPTIONS button
 };
 
@@ -166,37 +164,37 @@ void scan_main_menu(struct lcd_driver_t *driver, uint16_t touched_x, uint16_t to
     }
 }
 
-static void draw_mm_button(struct ui_button_t *button, void *params_)
+static void _draw_mm_button(struct ui_button_t *button, void *params_p)
 {
-    struct _draw_params_t params = *((struct _draw_params_t *)params_);
+    struct _draw_params_t params = *((struct _draw_params_t *)params_p);
     
     fill_rectangle(params.driver, button->start_x, button->start_y,
             button->width, button->height, params.fill_color);
     draw_rectangle(params.driver, button->start_x, button->start_y,
             button->width, button->height, params.outline_color, params.outline_thickness);
     draw_string(params.driver, 
-        button->start_x + horizontal_str_offset(params.str, button->width, params.char_thickness),
-        button->start_y + vertical_str_offset(params.str, button->height, params.char_thickness), 
+        button->start_x + _horizontal_str_offset(params.str, button->width, params.char_thickness),
+        button->start_y + _vertical_str_offset(params.str, button->height, params.char_thickness), 
         params.str, params.string_color, 0x0000, params.char_thickness, 0);
 }
 
-static void press_mm_start_button(struct ui_button_t *button, void *params_)
+static void _press_mm_start_button(struct ui_button_t *button, void *params_p)
 {
-    struct _mm_start_button_press_params_t params = *((struct _mm_start_button_press_params_t *)params_);
+    struct _mm_start_button_press_params_t params = *((struct _mm_start_button_press_params_t *)params_p);
 
     draw_string(params.driver, params.start_x, params.start_y, STR_ON, 
         params.string_color, params.bg_color, params.char_thickness, FBOOL0);
 }
 
-static void press_mm_stop_button(struct ui_button_t *button, void *params_)
+static void _press_mm_stop_button(struct ui_button_t *button, void *params_p)
 {
-    struct _mm_stop_button_press_params_t params = *((struct _mm_stop_button_press_params_t *)params_);
+    struct _mm_stop_button_press_params_t params = *((struct _mm_stop_button_press_params_t *)params_p);
 
     draw_string(params.driver, params.start_x, params.start_y, STR_OFF, 
         params.string_color, params.bg_color, params.char_thickness, FBOOL0);
 }
 
-static void press_mm_options_button(struct ui_button_t *button, void *params_)
+static void _press_mm_options_button(struct ui_button_t *button, void *params_p)
 {
     
 }

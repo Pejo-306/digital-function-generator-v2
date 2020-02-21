@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=src/main.c src/init_mcu.c src/twi_driver.c src/avr_controllers/spi_controller.c src/lcd-driver/lcd-driver.c src/lcd-driver/graphics.c src/user-interface/user-interface.c src/touch-panel-driver/touch-panel-driver.c src/user-interface/ui_button.c src/user-interface/ui_main_menu.c src/user-interface/ui_helper.c
+SOURCEFILES_QUOTED_IF_SPACED=src/main.c src/init_mcu.c src/twi_driver.c src/avr_controllers/spi_controller.c src/lcd-driver/lcd-driver.c src/lcd-driver/graphics.c src/touch-panel-driver/touch-panel-driver.c src/user-interface/ui_button.c src/user-interface/ui_main_menu.c src/user-interface/ui_helper.c src/user-interface/ui_options_menu.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/init_mcu.o ${OBJECTDIR}/src/twi_driver.o ${OBJECTDIR}/src/avr_controllers/spi_controller.o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o ${OBJECTDIR}/src/lcd-driver/graphics.o ${OBJECTDIR}/src/user-interface/user-interface.o ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o ${OBJECTDIR}/src/user-interface/ui_button.o ${OBJECTDIR}/src/user-interface/ui_main_menu.o ${OBJECTDIR}/src/user-interface/ui_helper.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/init_mcu.o.d ${OBJECTDIR}/src/twi_driver.o.d ${OBJECTDIR}/src/avr_controllers/spi_controller.o.d ${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d ${OBJECTDIR}/src/lcd-driver/graphics.o.d ${OBJECTDIR}/src/user-interface/user-interface.o.d ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o.d ${OBJECTDIR}/src/user-interface/ui_button.o.d ${OBJECTDIR}/src/user-interface/ui_main_menu.o.d ${OBJECTDIR}/src/user-interface/ui_helper.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/init_mcu.o ${OBJECTDIR}/src/twi_driver.o ${OBJECTDIR}/src/avr_controllers/spi_controller.o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o ${OBJECTDIR}/src/lcd-driver/graphics.o ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o ${OBJECTDIR}/src/user-interface/ui_button.o ${OBJECTDIR}/src/user-interface/ui_main_menu.o ${OBJECTDIR}/src/user-interface/ui_helper.o ${OBJECTDIR}/src/user-interface/ui_options_menu.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/src/main.o.d ${OBJECTDIR}/src/init_mcu.o.d ${OBJECTDIR}/src/twi_driver.o.d ${OBJECTDIR}/src/avr_controllers/spi_controller.o.d ${OBJECTDIR}/src/lcd-driver/lcd-driver.o.d ${OBJECTDIR}/src/lcd-driver/graphics.o.d ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o.d ${OBJECTDIR}/src/user-interface/ui_button.o.d ${OBJECTDIR}/src/user-interface/ui_main_menu.o.d ${OBJECTDIR}/src/user-interface/ui_helper.o.d ${OBJECTDIR}/src/user-interface/ui_options_menu.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/init_mcu.o ${OBJECTDIR}/src/twi_driver.o ${OBJECTDIR}/src/avr_controllers/spi_controller.o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o ${OBJECTDIR}/src/lcd-driver/graphics.o ${OBJECTDIR}/src/user-interface/user-interface.o ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o ${OBJECTDIR}/src/user-interface/ui_button.o ${OBJECTDIR}/src/user-interface/ui_main_menu.o ${OBJECTDIR}/src/user-interface/ui_helper.o
+OBJECTFILES=${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/init_mcu.o ${OBJECTDIR}/src/twi_driver.o ${OBJECTDIR}/src/avr_controllers/spi_controller.o ${OBJECTDIR}/src/lcd-driver/lcd-driver.o ${OBJECTDIR}/src/lcd-driver/graphics.o ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o ${OBJECTDIR}/src/user-interface/ui_button.o ${OBJECTDIR}/src/user-interface/ui_main_menu.o ${OBJECTDIR}/src/user-interface/ui_helper.o ${OBJECTDIR}/src/user-interface/ui_options_menu.o
 
 # Source Files
-SOURCEFILES=src/main.c src/init_mcu.c src/twi_driver.c src/avr_controllers/spi_controller.c src/lcd-driver/lcd-driver.c src/lcd-driver/graphics.c src/user-interface/user-interface.c src/touch-panel-driver/touch-panel-driver.c src/user-interface/ui_button.c src/user-interface/ui_main_menu.c src/user-interface/ui_helper.c
+SOURCEFILES=src/main.c src/init_mcu.c src/twi_driver.c src/avr_controllers/spi_controller.c src/lcd-driver/lcd-driver.c src/lcd-driver/graphics.c src/touch-panel-driver/touch-panel-driver.c src/user-interface/ui_button.c src/user-interface/ui_main_menu.c src/user-interface/ui_helper.c src/user-interface/ui_options_menu.c
 
 # Pack Options 
 PACK_COMPILER_OPTIONS=-I ${DFP_DIR}/include
@@ -146,12 +146,6 @@ ${OBJECTDIR}/src/lcd-driver/graphics.o: src/lcd-driver/graphics.c  nbproject/Mak
 	@${RM} ${OBJECTDIR}/src/lcd-driver/graphics.o 
 	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_ -D_XPT2046_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/lcd-driver/graphics.o.d" -MT "${OBJECTDIR}/src/lcd-driver/graphics.o.d" -MT ${OBJECTDIR}/src/lcd-driver/graphics.o  -o ${OBJECTDIR}/src/lcd-driver/graphics.o src/lcd-driver/graphics.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/src/user-interface/user-interface.o: src/user-interface/user-interface.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/src/user-interface" 
-	@${RM} ${OBJECTDIR}/src/user-interface/user-interface.o.d 
-	@${RM} ${OBJECTDIR}/src/user-interface/user-interface.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_ -D_XPT2046_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/user-interface/user-interface.o.d" -MT "${OBJECTDIR}/src/user-interface/user-interface.o.d" -MT ${OBJECTDIR}/src/user-interface/user-interface.o  -o ${OBJECTDIR}/src/user-interface/user-interface.o src/user-interface/user-interface.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
-	
 ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o: src/touch-panel-driver/touch-panel-driver.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src/touch-panel-driver" 
 	@${RM} ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o.d 
@@ -175,6 +169,12 @@ ${OBJECTDIR}/src/user-interface/ui_helper.o: src/user-interface/ui_helper.c  nbp
 	@${RM} ${OBJECTDIR}/src/user-interface/ui_helper.o.d 
 	@${RM} ${OBJECTDIR}/src/user-interface/ui_helper.o 
 	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_ -D_XPT2046_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/user-interface/ui_helper.o.d" -MT "${OBJECTDIR}/src/user-interface/ui_helper.o.d" -MT ${OBJECTDIR}/src/user-interface/ui_helper.o  -o ${OBJECTDIR}/src/user-interface/ui_helper.o src/user-interface/ui_helper.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/src/user-interface/ui_options_menu.o: src/user-interface/ui_options_menu.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/user-interface" 
+	@${RM} ${OBJECTDIR}/src/user-interface/ui_options_menu.o.d 
+	@${RM} ${OBJECTDIR}/src/user-interface/ui_options_menu.o 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS} -g -DDEBUG -D__MPLAB_DEBUGGER_SIMULATOR=1 -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_ -D_XPT2046_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/user-interface/ui_options_menu.o.d" -MT "${OBJECTDIR}/src/user-interface/ui_options_menu.o.d" -MT ${OBJECTDIR}/src/user-interface/ui_options_menu.o  -o ${OBJECTDIR}/src/user-interface/ui_options_menu.o src/user-interface/ui_options_menu.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 else
 ${OBJECTDIR}/src/main.o: src/main.c  nbproject/Makefile-${CND_CONF}.mk
@@ -213,12 +213,6 @@ ${OBJECTDIR}/src/lcd-driver/graphics.o: src/lcd-driver/graphics.c  nbproject/Mak
 	@${RM} ${OBJECTDIR}/src/lcd-driver/graphics.o 
 	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_ -D_XPT2046_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/lcd-driver/graphics.o.d" -MT "${OBJECTDIR}/src/lcd-driver/graphics.o.d" -MT ${OBJECTDIR}/src/lcd-driver/graphics.o  -o ${OBJECTDIR}/src/lcd-driver/graphics.o src/lcd-driver/graphics.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/src/user-interface/user-interface.o: src/user-interface/user-interface.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/src/user-interface" 
-	@${RM} ${OBJECTDIR}/src/user-interface/user-interface.o.d 
-	@${RM} ${OBJECTDIR}/src/user-interface/user-interface.o 
-	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_ -D_XPT2046_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/user-interface/user-interface.o.d" -MT "${OBJECTDIR}/src/user-interface/user-interface.o.d" -MT ${OBJECTDIR}/src/user-interface/user-interface.o  -o ${OBJECTDIR}/src/user-interface/user-interface.o src/user-interface/user-interface.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
-	
 ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o: src/touch-panel-driver/touch-panel-driver.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/src/touch-panel-driver" 
 	@${RM} ${OBJECTDIR}/src/touch-panel-driver/touch-panel-driver.o.d 
@@ -242,6 +236,12 @@ ${OBJECTDIR}/src/user-interface/ui_helper.o: src/user-interface/ui_helper.c  nbp
 	@${RM} ${OBJECTDIR}/src/user-interface/ui_helper.o.d 
 	@${RM} ${OBJECTDIR}/src/user-interface/ui_helper.o 
 	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_ -D_XPT2046_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/user-interface/ui_helper.o.d" -MT "${OBJECTDIR}/src/user-interface/ui_helper.o.d" -MT ${OBJECTDIR}/src/user-interface/ui_helper.o  -o ${OBJECTDIR}/src/user-interface/ui_helper.o src/user-interface/ui_helper.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/src/user-interface/ui_options_menu.o: src/user-interface/ui_options_menu.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/src/user-interface" 
+	@${RM} ${OBJECTDIR}/src/user-interface/ui_options_menu.o.d 
+	@${RM} ${OBJECTDIR}/src/user-interface/ui_options_menu.o 
+	 ${MP_CC}  $(MP_EXTRA_CC_PRE) -mmcu=atmega328p ${PACK_COMPILER_OPTIONS} ${PACK_COMMON_OPTIONS}  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -funsigned-char -funsigned-bitfields -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -DF_CPU=16000000 -D_ILI9341_ -D_XPT2046_  -I "include" -Wall -MD -MP -MF "${OBJECTDIR}/src/user-interface/ui_options_menu.o.d" -MT "${OBJECTDIR}/src/user-interface/ui_options_menu.o.d" -MT ${OBJECTDIR}/src/user-interface/ui_options_menu.o  -o ${OBJECTDIR}/src/user-interface/ui_options_menu.o src/user-interface/ui_options_menu.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 endif
 
