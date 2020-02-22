@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/touch-panel-driver/touch-panel-driver.h</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/lcd-driver/graphics.h</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/user-interface/ui_options_menu.c</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/user-interface/ui_options_menu.h</file>
             <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/main.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/lcd-driver/graphics.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/avr_controllers/spi_controller.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/lcd-driver/lcd-driver.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/touch-panel-driver/touch-panel-driver.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/lcd-driver/lcd-driver.h</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/scl/spi_receive.SCL</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/user-interface/user-interface.c</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/user-interface/ui_main_menu.c</file>
         </group>
     </open-files>
 </project-private>

@@ -25,7 +25,7 @@
 
 int main(void)
 {   
-    // init_mcu();
+    init_mcu();
     
     /*
     DDRA = 0xff;
@@ -52,21 +52,27 @@ int main(void)
         PINA = 0xff;
     }
     */
-    /*
+    
     // enable internal pull-up on ~SS
     PORTB = (1 << PB0);
      
-    struct spi_interface_t spi = {&DDRB, PB1, PB3, PB2};
-    struct pin_ref_t dcx = {&PORTD, PD2};
-    struct pin_ref_t reset = {&PORTD, PD3};
-    struct pin_ref_t csx = {&PORTD, PD4};
-    struct lcd_driver_t driver = {spi, dcx, reset, csx};
+    struct spi_interface_t spi = { &DDRB, PB1, PB3, PB2 };
+    struct pin_ref_t dcx = { &PORTD, PD2 };
+    struct pin_ref_t reset = { &PORTD, PD3 };
+    struct pin_ref_t csx = { &PORTD, PD4 };
+    struct lcd_driver_t driver = { &spi, dcx, reset, csx };
     
     // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
-    DDRD = (1 << PD2) | (1 << PD3) | (1 << PD4);
-    */
+    // DDRD = (1 << PD2) | (1 << PD3) | (1 << PD4);
+    
+    struct pin_ref_t tcs = { &PORTD, PD5 };
+    struct pin_ref_t tirq = { &PIND, PD6 };
+    struct touch_driver_t touch = { &spi, tcs, tirq };
+    touch_driver_init(&touch, 0);
+    
     // NOTE: for ATmega328p
     // enable internal pull-up on ~SS
+    /*
     PORTB = (1 << PB2);
      
     struct spi_interface_t spi = { &DDRB, PB5, PB4, PB3 };
@@ -83,10 +89,11 @@ int main(void)
     struct touch_driver_t touch = { &spi, tcs, tirq };
     touch_driver_init(&touch, 0);
     DDRC |= (1 << PC3) | (1 << PC5);
-       
+    */
+    
     lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
     // spi_set_speed(FBOOL0);
-    spi_set_speed(0);
+    
     // spi_set_data_mode(FBOOL2);
 
     lcd_reset(&driver);
@@ -123,9 +130,11 @@ int main(void)
                 break;
             }
             selected_menu_scene = g_current_menu_scene;
+            spi_set_speed(0);  // 4 MHz
             (*draw_menu_p)(&driver);
         }
         
+        spi_set_speed(FBOOL2 | FBOOL0);  // 2 MHz
         if (touch_scan(&touch, &x, &y)) {
             touch_get_screen_coordinates(&driver, &x, &y);
             draw_pixel(&driver, x, y, 0xFFFF);
@@ -133,6 +142,7 @@ int main(void)
             x = 0xFFFF;
             y = 0xFFFF;
         }
+        spi_set_speed(0);  // 4 MHz
         (*scan_menu_p)(&driver, x, y);
     }
 }

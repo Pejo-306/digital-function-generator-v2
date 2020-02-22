@@ -14,7 +14,7 @@
 # FUSES......... Parameters for avrdude to flash the fuses appropriately
 
 HEX_FILEPATH	:= dist/default/production/DFGv2-Firmware.X.production.hex
-DEVICE		:= m328p
+DEVICE		:= m2561
 PROGRAMMER	:= -c usbasp -P /dev/tty.usb* -b 19200
 FUSES		:= -U lfuse:w:0xff:m -U hfuse:w:0x99:m -U efuse:w:0xff:m
 
