@@ -12,6 +12,10 @@
 
 #include "defs.h"
 
+#define SPI_1MHZ (FBOOL0)           // when fclk = 16 MHz
+#define SPI_2MHZ (FBOOL2 | FBOOL0)  // when fclk = 16 MHz
+#define SPI_4MHZ 0                  // when fclk = 16 MHz
+
 #ifdef	__cplusplus
 extern "C" {
 #endif

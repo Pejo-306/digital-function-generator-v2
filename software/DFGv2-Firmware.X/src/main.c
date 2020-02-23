@@ -11,7 +11,7 @@
 #include <util/delay.h>
 
 #include "init_mcu.h"
-#include "twi_driver.h"
+#include "avr_controllers/twi_controller.h"
 #include "avr_controllers/spi_controller.h"
 #include "lcd-driver/lcd-driver.h"
 #include "lcd-driver/graphics.h"
@@ -25,20 +25,20 @@
 
 int main(void)
 {   
-    init_mcu();
+    uint8_t buffer1[3] = { 0xC7, 0xD3, 0xE5 };
+    uint8_t buffer2[3] = { 0xD9, 0xA2, 0x04 };
+    uint8_t buffer3[3] = { 0x5A, 0x35, 0x12 };
     
-    /*
-    DDRA = 0xff;
-    DDRC = 0xff;
-    DDRE = 0xff;
-    DDRF = 0xf0;
-    DDRG = 0xf;
-    PORTA = 0xff;
-    PORTC = 0xff;
-    PORTE = 0xff;
-    PORTF = 0xf0;
-    PORTG = 0xf;
-    */
+    init_mcu();
+    twi_set_speed(TWI_400KHZ, 0);
+    twi_set_slave_address(0x00);
+    
+    twi_write(0x3F, buffer1, 3);
+    twi_write(0x08, buffer2, 3);
+    twi_write(0x21, buffer3, 3);
+    while (1) {
+       
+    }
     
     // FOR SIMULATION:
     
@@ -53,6 +53,7 @@ int main(void)
     }
     */
     
+    /*
     // enable internal pull-up on ~SS
     PORTB = (1 << PB0);
      
@@ -69,7 +70,8 @@ int main(void)
     struct pin_ref_t tirq = { &PIND, PD6 };
     struct touch_driver_t touch = { &spi, tcs, tirq };
     touch_driver_init(&touch, 0);
-    
+    lcd_driver_init(&driver, FBOOL0);
+    */
     // NOTE: for ATmega328p
     // enable internal pull-up on ~SS
     /*
@@ -91,15 +93,12 @@ int main(void)
     DDRC |= (1 << PC3) | (1 << PC5);
     */
     
-    lcd_driver_init(&driver, FBOOL0);  // set SCK clock frequency to fclk/16
-    // spi_set_speed(FBOOL0);
-    
-    // spi_set_data_mode(FBOOL2);
-
+    /*
     lcd_reset(&driver);
     _delay_ms(200);
     lcd_power_on(&driver);
     lcd_memory_access_control(&driver, MADCTL_MV | MADCTL_BGR);
+    */
  
     /*
     uint16_t pixels[25] = {
@@ -111,6 +110,7 @@ int main(void)
     };
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
+    /*
     uint16_t x, y;
     enum menu_scene selected_menu_scene = NONE;
     void (*draw_menu_p)(struct lcd_driver_t *);
@@ -130,11 +130,11 @@ int main(void)
                 break;
             }
             selected_menu_scene = g_current_menu_scene;
-            spi_set_speed(0);  // 4 MHz
+            spi_set_speed(SPI_4MHZ);  // 4 MHz
             (*draw_menu_p)(&driver);
         }
         
-        spi_set_speed(FBOOL2 | FBOOL0);  // 2 MHz
+        spi_set_speed(SPI_2MHZ);  // 2 MHz
         if (touch_scan(&touch, &x, &y)) {
             touch_get_screen_coordinates(&driver, &x, &y);
             draw_pixel(&driver, x, y, 0xFFFF);
@@ -142,14 +142,8 @@ int main(void)
             x = 0xFFFF;
             y = 0xFFFF;
         }
-        spi_set_speed(0);  // 4 MHz
+        spi_set_speed(SPI_4MHZ);  // 4 MHz
         (*scan_menu_p)(&driver, x, y);
     }
-}
-
-
-ISR(TWI_vect)
-{
-    PINC = 0xff;
-    twi_start();
+    */
 }
