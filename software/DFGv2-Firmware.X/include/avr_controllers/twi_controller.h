@@ -15,23 +15,25 @@
 
 #define TWI_400KHZ 400000
 
-#define TWI_MTSC_START      0x08
-#define TWI_MTSC_SLA_ACK    0x18
-#define TWI_MTSC_SLA_NACK   0x20
-#define TWI_MTSC_DATA_ACK   0x28
-#define TWI_MTSC_DATA_NACK  0x30
-
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
+void twi_init(void);
+    
 void twi_set_speed(uint32_t, fbool);
 
 void twi_set_slave_address(uint8_t);
 
-short twi_start(void);
+uint8_t twi_start(void);
 
-short twi_write(uint8_t, uint8_t *, size_t);
+void twi_stop(void);
+
+uint8_t twi_write_SLAW(uint8_t);
+
+uint8_t twi_write8(uint8_t);
+
+uint8_t twi_write(uint8_t, uint8_t *, size_t);
 
 #ifdef	__cplusplus
 }

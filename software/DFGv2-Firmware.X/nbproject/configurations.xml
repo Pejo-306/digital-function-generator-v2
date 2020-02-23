@@ -20,6 +20,7 @@
       <itemPath>include/user-interface/ui_helper.h</itemPath>
       <itemPath>include/user-interface/ui_options_menu.h</itemPath>
       <itemPath>include/avr_controllers/twi_controller.h</itemPath>
+      <itemPath>include/DFG-firmware/DDS_firmware.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -39,6 +40,7 @@
       <itemPath>src/user-interface/ui_helper.c</itemPath>
       <itemPath>src/user-interface/ui_options_menu.c</itemPath>
       <itemPath>src/avr_controllers/twi_controller.c</itemPath>
+      <itemPath>src/DFG-firmware/DDS_firmware.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -141,7 +143,7 @@
         <property key="make-warnings-into-errors" value="false"/>
         <property key="no-interrupts" value="false"/>
         <property key="no-system-directories" value="false"/>
-        <property key="optimization-level" value="-O0"/>
+        <property key="optimization-level" value="-O1"/>
         <property key="pack-struct" value="true"/>
         <property key="preprocessor-macros" value="F_CPU=16000000;_ILI9341_;_XPT2046_"/>
         <property key="preprocessor-macros-undefined" value=""/>

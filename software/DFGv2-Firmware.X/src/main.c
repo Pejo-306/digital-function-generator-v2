@@ -23,21 +23,33 @@
 #include "user-interface/ui_options_menu.h"
 #include "touch-panel-driver/touch-panel-driver.h"
 
+#include "DFG-firmware/DDS_firmware.h"
+
+#include <util/twi.h>
+
 int main(void)
 {   
-    uint8_t buffer1[3] = { 0xC7, 0xD3, 0xE5 };
-    uint8_t buffer2[3] = { 0xD9, 0xA2, 0x04 };
-    uint8_t buffer3[3] = { 0x5A, 0x35, 0x12 };
+    // uint8_t iocon[2] = { MCP23017_B0_IOCON, 0x80 };
+    uint8_t iodira[2] = { MCP23017_B0_IODIRA, 0x00 };
+    uint8_t gpioa[2] = { MCP23017_B0_GPIOA, 0x00 };
+    uint8_t iodirb[2] = { MCP23017_B0_IODIRB, 0x00 };
+    uint8_t gpiob[2] = { MCP23017_B0_GPIOB, 0xAA };
     
     init_mcu();
+    twi_init();
     twi_set_speed(TWI_400KHZ, 0);
     twi_set_slave_address(0x00);
     
-    twi_write(0x3F, buffer1, 3);
-    twi_write(0x08, buffer2, 3);
-    twi_write(0x21, buffer3, 3);
+    PORTB &= ~_BV(PB6);
+    PORTF &= ~_BV(PF1);
+    _delay_ms(100);
+    PORTF |= _BV(PF1);
+    _delay_ms(100);
+    
+    twi_write(U10_ADDRESS, iodirb, 2);
+    twi_write(U10_ADDRESS, gpiob, 2);
     while (1) {
-       
+
     }
     
     // FOR SIMULATION:
