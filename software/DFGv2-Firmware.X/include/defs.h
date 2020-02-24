@@ -15,6 +15,9 @@
 extern "C" {
 #endif
 
+#define CPU_IC      (1000000000 / F_CPU)    // in ns
+#define DELAY_TICK  (CPU_IC * 3)            // in ns; see '_delay_loop_1()' of 'delay_basic.h'
+    
 #define FBOOL0 0x01
 #define FBOOL1 0x02
 #define FBOOL2 0x04
@@ -45,8 +48,10 @@ struct pin_ref_t {
 }
 
 #define resetpinref(pin_ref) { \
-    *((pin_ref).port) &= _BV((pin_ref).pin); \
+    *((pin_ref).port) &= ~_BV((pin_ref).pin); \
 }
+
+#define pinrefstate(pin_ref) (*pin_ref.port & _BV(pin_ref.pin))
 
 #ifdef	__cplusplus
 }

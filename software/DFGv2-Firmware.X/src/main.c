@@ -33,14 +33,27 @@ int main(void)
     twi_set_speed(TWI_400KHZ, 0);
     twi_set_slave_address(0x00);
     
-    PORTB &= ~_BV(PB6);
-    struct pin_ref_t ioex_reset_pin = { &PORTF, PF1 };
-    ioex_reset(ioex_reset_pin);
-    ioex_set_iodir(U10_TWI_ADDRESS, 0x00, FBOOL1);
-    ioex_write_gpio(U10_TWI_ADDRESS, 0xAA, FBOOL1);
-    ioex_set_iodir(U10_TWI_ADDRESS, 0x00, 0);
-    ioex_write_gpio(U10_TWI_ADDRESS, 0x0F, 0);
+    struct pin_ref_t pwrdwn = { &PORTF, PF0 };
+    struct pin_ref_t cmr1 = { &PORTB, PB4 };
+    struct pin_ref_t cmr2 = { &PORTB, PB5 };
+    struct pin_ref_t cp = { &PORTB, PB7 };
+    power_up(pwrdwn);
+    set_address_counter(0x0000, cp, cmr1, cmr2);
     
+    struct pin_ref_t rw = { &PORTB, PB6 };
+    uint16_t data[4] = { 0xAAAA, 0xFFFF, 0x0000, 0xB73A };
+    sram_write(data, 4, rw, pwrdwn, cp);
+    
+    set_address_counter(0x0000, cp, cmr1, cmr2);
+    
+    ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, 0);
+    ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1);
+    setpinref(rw);      // read from SRAM
+    power_up(pwrdwn);   // activate the chip
+        // set all pins on both PORT A and PORT B as inputs
+    // if ((rc = ) != 0) return rc;
+    // if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;
+    // load_into_dac(rw, pwrdwn);
     while (1) {
 
     }
