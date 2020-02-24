@@ -24,46 +24,26 @@
 #include "touch-panel-driver/touch-panel-driver.h"
 
 #include "DFG-firmware/DDS_firmware.h"
-
-#include <util/twi.h>
+#include "DFG-firmware/IOexpander_driver.h"
 
 int main(void)
-{   
-    // uint8_t iocon[2] = { MCP23017_B0_IOCON, 0x80 };
-    uint8_t iodira[2] = { MCP23017_B0_IODIRA, 0x00 };
-    uint8_t gpioa[2] = { MCP23017_B0_GPIOA, 0x00 };
-    uint8_t iodirb[2] = { MCP23017_B0_IODIRB, 0x00 };
-    uint8_t gpiob[2] = { MCP23017_B0_GPIOB, 0xAA };
-    
+{       
     init_mcu();
     twi_init();
     twi_set_speed(TWI_400KHZ, 0);
     twi_set_slave_address(0x00);
     
     PORTB &= ~_BV(PB6);
-    PORTF &= ~_BV(PF1);
-    _delay_ms(100);
-    PORTF |= _BV(PF1);
-    _delay_ms(100);
+    struct pin_ref_t ioex_reset_pin = { &PORTF, PF1 };
+    ioex_reset(ioex_reset_pin);
+    ioex_set_iodir(U10_TWI_ADDRESS, 0x00, FBOOL1);
+    ioex_write_gpio(U10_TWI_ADDRESS, 0xAA, FBOOL1);
+    ioex_set_iodir(U10_TWI_ADDRESS, 0x00, 0);
+    ioex_write_gpio(U10_TWI_ADDRESS, 0x0F, 0);
     
-    twi_write(U10_ADDRESS, iodirb, 2);
-    twi_write(U10_ADDRESS, gpiob, 2);
     while (1) {
 
     }
-    
-    // FOR SIMULATION:
-    
-    /*
-    PORTD = (1 << PD0) | (1 << PD1);
-
-    twi_init();
-    sei();
-    twi_start();
-    while (1) {    
-        PINA = 0xff;
-    }
-    */
     
     /*
     // enable internal pull-up on ~SS

@@ -9,6 +9,7 @@
 #define	DEFS_H
 
 #include <inttypes.h>
+#include <avr/io.h>
 
 #ifdef	__cplusplus
 extern "C" {
@@ -38,6 +39,14 @@ struct pin_ref_t {
     SFR8_p port;
     SFRPIN pin;
 };
+
+#define setpinref(pin_ref) { \
+    *((pin_ref).port) |= _BV((pin_ref).pin); \
+}
+
+#define resetpinref(pin_ref) { \
+    *((pin_ref).port) &= _BV((pin_ref).pin); \
+}
 
 #ifdef	__cplusplus
 }
