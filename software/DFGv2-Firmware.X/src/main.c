@@ -25,6 +25,7 @@
 
 #include "DFG-firmware/DDS_firmware.h"
 #include "DFG-firmware/IOexpander_driver.h"
+#include "DFG-firmware/programmable_oscillator_driver.h"
 
 int main(void)
 {       
@@ -33,27 +34,43 @@ int main(void)
     twi_set_speed(TWI_400KHZ, 0);
     twi_set_slave_address(0x00);
     
+    struct pin_ref_t oscoe = { &PORTF, PF2 };
+    osc_conf_mux_word(U8_TWI_ADDRESS, 0x2780);  // sets P0 and P1 to 8
+    osc_output_disable(oscoe);
+    
+    uint8_t pot_data[] = { 0x00, 0xFF };
+    twi_write(U15_TWI_ADDRESS, pot_data, 2);
+     
     struct pin_ref_t pwrdwn = { &PORTF, PF0 };
     struct pin_ref_t cmr1 = { &PORTB, PB4 };
     struct pin_ref_t cmr2 = { &PORTB, PB5 };
     struct pin_ref_t cp = { &PORTB, PB7 };
     power_up(pwrdwn);
-    set_address_counter(0x0000, cp, cmr1, cmr2);
     
     struct pin_ref_t rw = { &PORTB, PB6 };
-    uint16_t data[4] = { 0xAAAA, 0xFFFF, 0x0000, 0xB73A };
-    sram_write(data, 4, rw, pwrdwn, cp);
+    uint16_t data[64] = { 
+0x2000, 0x2320, 0x263c, 0x2948, 0x2c3c, 0x2f14, 0x31c4, 0x3448, 
+0x369c, 0x38b8, 0x3a98, 0x3c34, 0x3d8c, 0x3e9c, 0x3f60, 0x3fd4, 
+0x3ffc, 0x3fd4, 0x3f60, 0x3e9c, 0x3d8c, 0x3c34, 0x3a98, 0x38b8, 
+0x369c, 0x3448, 0x31c4, 0x2f14, 0x2c3c, 0x2948, 0x263c, 0x2320, 
+0x2000, 0x1cdc, 0x19c0, 0x16b4, 0x13c0, 0x10e8, 0xe38, 0xbb4, 
+0x960, 0x744, 0x564, 0x3c8, 0x270, 0x160, 0x9c, 0x28, 
+0x0, 0x28, 0x9c, 0x160, 0x270, 0x3c8, 0x564, 0x744, 
+0x960, 0xbb4, 0xe38, 0x10e8, 0x13c0, 0x16b4, 0x19c0, 0x1cdc, 
+    };
+    for (int i = 0; i < 4096 / 64; ++i) {
+        set_address_counter(i * 64, cp, cmr1, cmr2);
+        sram_write(data, 64, rw, pwrdwn, cp);
+    }
+    load_into_dac(rw, pwrdwn);
     
-    set_address_counter(0x0000, cp, cmr1, cmr2);
-    
-    ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, 0);
-    ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1);
-    setpinref(rw);      // read from SRAM
-    power_up(pwrdwn);   // activate the chip
-        // set all pins on both PORT A and PORT B as inputs
-    // if ((rc = ) != 0) return rc;
-    // if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;
-    // load_into_dac(rw, pwrdwn);
+    reset_address_counter(cmr1, cmr2);
+    setpinref(cmr2);  // disable counter 2
+    DDRB &= ~_BV(PB7);
+    PORTB &= ~_BV(PB7);
+    osc_conf_div(U8_TWI_ADDRESS, 16);
+    osc_conf_freq(U8_TWI_ADDRESS, 2, 8);
+    osc_output_enable(oscoe);
     while (1) {
 
     }

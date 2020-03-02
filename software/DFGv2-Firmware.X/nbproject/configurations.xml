@@ -23,6 +23,8 @@
       <itemPath>include/DFG-firmware/DDS_firmware.h</itemPath>
       <itemPath>include/DFG-firmware/chips/MCP23017.h</itemPath>
       <itemPath>include/DFG-firmware/IOexpander_driver.h</itemPath>
+      <itemPath>include/DFG-firmware/chips/DS1085.h</itemPath>
+      <itemPath>include/DFG-firmware/programmable_oscillator_driver.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -44,6 +46,7 @@
       <itemPath>src/avr_controllers/twi_controller.c</itemPath>
       <itemPath>src/DFG-firmware/DDS_firmware.c</itemPath>
       <itemPath>src/DFG-firmware/IOexpander_driver.c</itemPath>
+      <itemPath>src/DFG-firmware/programmable_oscillator_driver.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -197,7 +200,7 @@
         <property key="codecoverage.outputfile" value=""/>
         <property key="oscillator.auxfrequency" value="120"/>
         <property key="oscillator.auxfrequencyunit" value="Mega"/>
-        <property key="oscillator.frequency" value="1"/>
+        <property key="oscillator.frequency" value="16"/>
         <property key="oscillator.frequencyunit" value="Mega"/>
         <property key="oscillator.rcfrequency" value="250"/>
         <property key="oscillator.rcfrequencyunit" value="Kilo"/>

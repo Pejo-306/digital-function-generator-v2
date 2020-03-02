@@ -84,6 +84,10 @@ uint8_t load_into_dac(struct pin_ref_t rw, struct pin_ref_t pwrdwn)
 {
     uint8_t rc;
     
-
+    // set all pins on both PORT A and PORT B as inputs
+    if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, 0)) != 0) return rc;
+    if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;
+    setpinref(rw);      // read from SRAM
+    power_up(pwrdwn);   // activate the chip
     return 0;
 }
