@@ -5,10 +5,9 @@
         <group>
             <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/DFG-firmware/programmable_oscillator_driver.c</file>
             <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/main.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/DFG-firmware/DDS_firmware.h</file>
             <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/defs.h</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/DFG-firmware/DDS_firmware.c</file>
-            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/DFG-firmware/chips/DS1085.h</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/src/lcd-driver/lcd-driver.c</file>
+            <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/lcd-driver/lcd-driver.h</file>
             <file>file:/data/Electronics/digital-function-generator-v2/software/DFGv2-Firmware.X/include/DFG-firmware/programmable_oscillator_driver.h</file>
         </group>
     </open-files>
