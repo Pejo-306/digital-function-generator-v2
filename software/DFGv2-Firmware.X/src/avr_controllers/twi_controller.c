@@ -75,7 +75,7 @@ uint8_t twi_write8(uint8_t data)
 
 uint8_t twi_write(uint8_t slave, uint8_t *buffer, size_t size)
 {
-    if (twi_start() != 0) return -1;                    // transmit START condition
+    if (twi_start() != 0) return TW_STATUS;             // transmit START condition
     if (twi_write_SLAW(slave) != 0) return TW_STATUS;   // transmit SLA+W
     for (size_t i = 0; i < size; ++i)                   // transmit each data byte
         if (twi_write8(buffer[i]) != 0) return TW_STATUS;  
