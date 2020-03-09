@@ -38,8 +38,7 @@ int main(void)
     osc_conf_mux_word(U8_TWI_ADDRESS, 0x2780);  // sets P0 and P1 to 8
     osc_output_disable(oscoe);
     
-    uint8_t pot_data[] = { 0x00, 0xFF };
-    twi_write(U15_TWI_ADDRESS, pot_data, 2);
+    set_dc_offset(0x100);
      
     struct pin_ref_t pwrdwn = { &PORTF, PF0 };
     struct pin_ref_t cmr1 = { &PORTB, PB4 };

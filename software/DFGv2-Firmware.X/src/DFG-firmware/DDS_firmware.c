@@ -5,7 +5,9 @@
 #include <util/delay.h>
 
 #include "defs.h"
+#include "avr_controllers/twi_controller.h"
 #include "DFG-firmware/IOexpander_driver.h"
+#include "DFG-firmware/chips/MCP455X.h"
 
 void power_up(struct pin_ref_t pwrdwn)
 {
@@ -89,5 +91,19 @@ uint8_t load_into_dac(struct pin_ref_t rw, struct pin_ref_t pwrdwn)
     if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;
     setpinref(rw);      // read from SRAM
     power_up(pwrdwn);   // activate the chip
+    return 0;
+}
+
+uint8_t set_dc_offset(uint16_t wiper_value)
+{
+    uint8_t rc;
+    uint8_t pot_data[2];
+    
+    wiper_value = (wiper_value & 0x100) ? 0x100 : wiper_value;  // cap the wiper value at 100h
+    pot_data[0] = MCP4551_VOLATILE_WIPER_0                      // address volatile wiper 0 register
+            | MCP4551_WRITE_CMD                                 // write command
+            | ((wiper_value >> 8) & 0x01);                      // D8 bit
+    pot_data[1] = wiper_value & 0xFF;                           // D7-D0 bits
+    if ((rc = twi_write(U15_TWI_ADDRESS, pot_data, 2)) != 0) return rc;
     return 0;
 }

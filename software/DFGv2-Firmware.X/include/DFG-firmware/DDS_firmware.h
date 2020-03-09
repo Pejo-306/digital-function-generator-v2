@@ -45,6 +45,8 @@ uint8_t sram_write(uint16_t *, size_t, struct pin_ref_t, struct pin_ref_t,
 
 uint8_t load_into_dac(struct pin_ref_t, struct pin_ref_t);
 
+uint8_t set_dc_offset(uint16_t wiper_value);
+
 #ifdef	__cplusplus
 }
 #endif

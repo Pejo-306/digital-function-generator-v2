@@ -25,6 +25,7 @@
       <itemPath>include/DFG-firmware/IOexpander_driver.h</itemPath>
       <itemPath>include/DFG-firmware/chips/DS1085.h</itemPath>
       <itemPath>include/DFG-firmware/programmable_oscillator_driver.h</itemPath>
+      <itemPath>include/DFG-firmware/chips/MCP455X.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
