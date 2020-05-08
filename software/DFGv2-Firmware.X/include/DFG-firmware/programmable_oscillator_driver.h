@@ -27,6 +27,8 @@ uint8_t osc_conf_freq(uint8_t, uint16_t, uint8_t);
 
 uint8_t osc_conf_div(uint8_t, uint16_t);
 
+uint8_t osc_read_range(uint8_t address, uint8_t *os);
+
 #ifdef	__cplusplus
 }
 #endif
