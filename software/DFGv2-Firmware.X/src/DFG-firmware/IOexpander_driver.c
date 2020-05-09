@@ -4,14 +4,15 @@
 #include <util/delay.h>
 
 #include "defs.h"
+#include "init_mcu.h"
 #include "avr_controllers/twi_controller.h"
 #include "DFG-firmware/chips/MCP23017.h"
 
-void ioex_reset(struct pin_ref_t reset)
+void ioex_reset(void)
 {
-    resetpinref(reset);
+    resetpinref(ioex_reset_pin);
     _delay_us(IOEX_RESET_TIME);
-    setpinref(reset);
+    setpinref(ioex_reset_pin);
     _delay_us(IOEX_RESET_TIME);
 }
 

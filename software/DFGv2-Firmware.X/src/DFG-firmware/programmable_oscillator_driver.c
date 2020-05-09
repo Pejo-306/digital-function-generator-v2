@@ -3,18 +3,19 @@
 #include <inttypes.h>
 #include <util/delay.h>
 
+#include "init_mcu.h"
 #include "defs.h"
 #include "avr_controllers/twi_controller.h"
 #include "DFG-firmware/chips/DS1085.h"
 
-void osc_output_enable(struct pin_ref_t oscoe)
+void osc_output_enable(void)
 {
-    resetpinref(oscoe);
+    resetpinref(oscoe_pin);
 }
 
-void osc_output_disable(struct pin_ref_t oscoe)
+void osc_output_disable(void)
 {
-    setpinref(oscoe);
+    setpinref(oscoe_pin);
 }
 
 uint8_t osc_conf_mux_word(uint8_t address, uint16_t mux_word)

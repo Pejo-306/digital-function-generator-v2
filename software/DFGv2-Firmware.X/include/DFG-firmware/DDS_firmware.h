@@ -28,22 +28,21 @@
 extern "C" {
 #endif
 
-void power_up(struct pin_ref_t);
+void power_up(void);
     
-void power_down(struct pin_ref_t);
+void power_down(void);
 
-fbool is_powered_down(struct pin_ref_t);
+fbool is_powered_down(void);
 
-void set_address_counter(uint16_t, struct pin_ref_t, struct pin_ref_t, struct pin_ref_t);
+void set_address_counter(uint16_t address);
 
-void reset_address_counter(struct pin_ref_t, struct pin_ref_t);
+void reset_address_counter(void);
 
-void increment_address_counter(struct pin_ref_t);
+void increment_address_counter(void);
 
-uint8_t sram_write(uint16_t *, size_t, struct pin_ref_t, struct pin_ref_t, 
-        struct pin_ref_t cp);
+uint8_t sram_write(uint16_t *data, size_t size);
 
-uint8_t load_into_dac(struct pin_ref_t, struct pin_ref_t);
+uint8_t load_into_dac(void);
 
 uint8_t set_dc_offset(uint16_t wiper_value);
 

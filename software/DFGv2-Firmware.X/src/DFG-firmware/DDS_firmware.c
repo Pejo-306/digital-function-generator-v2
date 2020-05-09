@@ -5,98 +5,96 @@
 #include <util/delay.h>
 
 #include "defs.h"
+#include "init_mcu.h"
 #include "avr_controllers/twi_controller.h"
 #include "DFG-firmware/IOexpander_driver.h"
 #include "DFG-firmware/chips/MCP455X.h"
 
-void power_up(struct pin_ref_t pwrdwn)
+void power_up(void)
 {
-    resetpinref(pwrdwn);
+    resetpinref(pwrdwn_pin);
     _delay_us(POWER_UP_TIME);
 }
 
-void power_down(struct pin_ref_t pwrdwn)
+void power_down(void)
 {
-    setpinref(pwrdwn);
+    setpinref(pwrdwn_pin);
 }
 
-fbool is_powered_down(struct pin_ref_t pwrdwn)
+fbool is_powered_down(void)
 {
-    return ((pinrefstate(pwrdwn) == 0) ? 0 : 1);
+    return ((pinrefstate(pwrdwn_pin) == 0) ? 0 : 1);
 }
 
-void set_address_counter(uint16_t address, struct pin_ref_t cp,
-        struct pin_ref_t cmr1, struct pin_ref_t cmr2)
+void set_address_counter(uint16_t address)
 {
-    setpinref(cp);
-    reset_address_counter(cmr1, cmr2);
-    setpinref(cmr2);  // disable 12-bit binary counter #2
+    setpinref(cp_pin);
+    reset_address_counter();
+    setpinref(cmr2_pin);  // disable 12-bit binary counter #2
     for (uint16_t i = 0; i < (address & 0x0FFF); ++i)
-        increment_address_counter(cp);
+        increment_address_counter();
 }
 
-void reset_address_counter(struct pin_ref_t cmr1, struct pin_ref_t cmr2)
+void reset_address_counter(void)
 {
-    setpinref(cmr1);
-    setpinref(cmr2);
+    setpinref(cmr1_pin);
+    setpinref(cmr2_pin);
 #if defined(DELAY_TICK) && DELAY_TICK <= ADDRESS_COUNTER_PULSE_WIDTH_NS
     _delay_us(ADDRESS_COUNTER_PULSE_WIDTH_US);
 #endif
-    resetpinref(cmr1);
-    resetpinref(cmr2);
+    resetpinref(cmr1_pin);
+    resetpinref(cmr2_pin);
 #if defined(DELAY_TICK) && DELAY_TICK <= ADDRESS_COUNTER_RECOVERY_TIME_NS
     _delay_us(ADDRESS_COUNTER_RECOVERY_TIME_US);
 #endif
 }
 
-void increment_address_counter(struct pin_ref_t cp)
+void increment_address_counter(void)
 {
-    resetpinref(cp);
+    resetpinref(cp_pin);
 #if defined(DELAY_TICK) && DELAY_TICK <= ADDRESS_COUNTER_PULSE_WIDTH_NS
     _delay_us(ADDRESS_COUNTER_PULSE_WIDTH_US);
 #endif
-    setpinref(cp);
+    setpinref(cp_pin);
 #if defined(DELAY_TICK) && DELAY_TICK <= ADDRESS_COUNTER_PULSE_WIDTH_NS
     _delay_us(ADDRESS_COUNTER_PULSE_WIDTH_US);
 #endif
 }
 
-uint8_t sram_write(uint16_t *data, size_t size, struct pin_ref_t rw, 
-        struct pin_ref_t pwrdwn, struct pin_ref_t cp)
+uint8_t sram_write(uint16_t *data, size_t size)
 {
     uint8_t rc;
     
     // set all pins on both PORT A and PORT B as outputs
     if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0x00, 0)) != 0) return rc;
     if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0x00, FBOOL1)) != 0) return rc;
-    resetpinref(rw);                                                    // write to SRAM
+    resetpinref(rw_pin);                                                // write to SRAM
     for (size_t i = 0; i < size; ++i) {
-        power_up(pwrdwn);                                               // activate the chip
+        power_up();                                                     // activate the chip
         rc = ioex_write_gpio(U10_TWI_ADDRESS, data[i] & 0xFF, FBOOL1);  // write LSBs to GPIOB
         if (rc != 0) return rc;
         rc = ioex_write_gpio(U10_TWI_ADDRESS, data[i] >> 8, 0);         // write MSBs to GPIOA
         if (rc != 0) return rc;
-        power_down(pwrdwn);                                             // deselect the chip
-        increment_address_counter(cp);                                  // move to next memory cell
+        power_down();                                                   // deselect the chip
+        increment_address_counter();                                    // move to next memory cell
     }
     return 0;
 }
 
-uint8_t load_into_dac(struct pin_ref_t rw, struct pin_ref_t pwrdwn)
+uint8_t load_into_dac(void)
 {
     uint8_t rc;
     
     // set all pins on both PORT A and PORT B as inputs
     if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, 0)) != 0) return rc;
     if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;
-    setpinref(rw);      // read from SRAM
-    power_up(pwrdwn);   // activate the chip
+    setpinref(rw_pin);      // read from SRAM
+    power_up();             // activate the chip
     return 0;
 }
 
 uint8_t set_dc_offset(uint16_t wiper_value)
 {
-    uint8_t rc;
     uint8_t pot_data[2];
     
     wiper_value = (wiper_value & 0x100) ? 0x100 : wiper_value;  // cap the wiper value at 100h
@@ -104,6 +102,5 @@ uint8_t set_dc_offset(uint16_t wiper_value)
             | MCP4551_WRITE_CMD                                 // write command
             | ((wiper_value >> 8) & 0x01);                      // D8 bit
     pot_data[1] = wiper_value & 0xFF;                           // D7-D0 bits
-    if ((rc = twi_write(U15_TWI_ADDRESS, pot_data, 2)) != 0) return rc;
-    return 0;
+    return twi_write(U15_TWI_ADDRESS, pot_data, 2);
 }

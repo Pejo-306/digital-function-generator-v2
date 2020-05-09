@@ -29,26 +29,34 @@
 
 int main(void)
 {       
+    // initialize MCU
     init_mcu();
     twi_init();
     twi_set_speed(TWI_400KHZ, 0);
     twi_set_slave_address(0x00);
 
+    // initialize programmable oscillator (DS1085)
     uint8_t os;
-    struct pin_ref_t oscoe = { &PORTF, PF2 };
     osc_read_range(U8_TWI_ADDRESS, &os);
     osc_conf_mux_word(U8_TWI_ADDRESS, 0x2780);  // sets P0 and P1 to 8
-    osc_output_disable(oscoe);
+    osc_output_disable();
 
+    // initialize offset potentiometer
     set_dc_offset(0x80);
-     
-    struct pin_ref_t pwrdwn = { &PORTF, PF0 };
-    struct pin_ref_t cmr1 = { &PORTB, PB4 };
-    struct pin_ref_t cmr2 = { &PORTB, PB5 };
-    struct pin_ref_t cp = { &PORTB, PB7 };
-    power_up(pwrdwn);
     
-    struct pin_ref_t rw = { &PORTB, PB6 };
+    // initialize touchscreen module
+    struct spi_interface_t spi = { &DDRB, PB1, PB3, PB2 };
+    struct touch_driver_t touch = { &spi, tcs_pin, tirq_pin };
+    touch_driver_init(&touch, 0);
+    struct lcd_driver_t driver = { &spi, dcx_pin, reset_pin, csx_pin };
+    lcd_driver_init(&driver, FBOOL0);
+    lcd_reset(&driver);
+    _delay_ms(200);
+    lcd_power_on(&driver);
+    lcd_memory_access_control(&driver, MADCTL_MV | MADCTL_BGR);
+     
+    // power up the device
+    power_up();
     
     uint16_t data[1024] = {  // sine
 0x8000, 0x80c0, 0x8190, 0x8250, 0x8320, 0x83e0, 0x84b0, 0x8570, 
@@ -313,10 +321,10 @@ int main(void)
     };
      */
     for (int i = 0; i < 4096 / 1024; ++i) {
-        set_address_counter(i * 1024, cp, cmr1, cmr2);
-        sram_write(data, 1024, rw, pwrdwn, cp);
+        set_address_counter(i * 1024);
+        sram_write(data, 1024);
     }
-    load_into_dac(rw, pwrdwn);
+    load_into_dac();
     
     /*
     uint16_t data[2] ={ 0x8000, 0xFFF0 };  // square 
@@ -326,59 +334,15 @@ int main(void)
     }
     load_into_dac(rw, pwrdwn);
     */
-    reset_address_counter(cmr1, cmr2);
-    setpinref(cmr2);  // disable counter 2
+    reset_address_counter();
+    setpinref(cmr2_pin);  // disable counter 2
     DDRB &= ~_BV(PB7);
     PORTB &= ~_BV(PB7);
     osc_conf_div(U8_TWI_ADDRESS, 8);
     osc_conf_freq(U8_TWI_ADDRESS, 2, os - 2);
-    osc_output_enable(oscoe);
+    osc_output_enable();
 
-    // enable internal pull-up on ~SS
-    // PORTB |= (1 << PB0);
-     
-    struct spi_interface_t spi = { &DDRB, PB1, PB3, PB2 };
-    struct pin_ref_t dcx = { &PORTD, PD2 };
-    struct pin_ref_t reset = { &PORTD, PD3 };
-    struct pin_ref_t csx = { &PORTD, PD4 };
-    struct lcd_driver_t driver = { &spi, dcx, reset, csx };
-    
-    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
-    // DDRD = (1 << PD2) | (1 << PD3) | (1 << PD4);
-    
-    struct pin_ref_t tcs = { &PORTD, PD5 };
-    struct pin_ref_t tirq = { &PIND, PD6 };
-    struct touch_driver_t touch = { &spi, tcs, tirq };
-    touch_driver_init(&touch, 0);
-    lcd_driver_init(&driver, FBOOL0);
 
-    // NOTE: for ATmega328p
-    // enable internal pull-up on ~SS
-    /*
-    PORTB = (1 << PB2);
-     
-    struct spi_interface_t spi = { &DDRB, PB5, PB4, PB3 };
-    struct pin_ref_t dcx = { &PORTC, PC0 };
-    struct pin_ref_t reset = { &PORTC, PC1 };
-    struct pin_ref_t csx = { &PORTC, PC2 };
-    struct lcd_driver_t driver = { &spi, dcx, reset, csx };
-    
-    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
-    DDRC = (1 << PC0) | (1 << PC1) | (1 << PC2);
-    
-    struct pin_ref_t tcs = { &PORTC, PC3 };
-    struct pin_ref_t tirq = { &PINC, PC4 };
-    struct touch_driver_t touch = { &spi, tcs, tirq };
-    touch_driver_init(&touch, 0);
-    DDRC |= (1 << PC3) | (1 << PC5);
-    */
-    
-    
-    lcd_reset(&driver);
-    _delay_ms(200);
-    lcd_power_on(&driver);
-    lcd_memory_access_control(&driver, MADCTL_MV | MADCTL_BGR);
-    
  
     /*
     uint16_t pixels[25] = {
@@ -391,9 +355,6 @@ int main(void)
     area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
     */
     
-    
-    
-    /*
     uint16_t x, y;
     enum menu_scene selected_menu_scene = NONE;
     void (*draw_menu_p)(struct lcd_driver_t *);
@@ -428,9 +389,37 @@ int main(void)
         spi_set_speed(SPI_4MHZ);  // 4 MHz
         (*scan_menu_p)(&driver, x, y);
     }
-     */
+}
+
+    // enable internal pull-up on ~SS
+    // PORTB |= (1 << PB0);
+     
+    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
+    // DDRD = (1 << PD2) | (1 << PD3) | (1 << PD4);
+
+// NOTE: for ATmega328p
+    // enable internal pull-up on ~SS
+    /*
+    PORTB = (1 << PB2);
+     
+    struct spi_interface_t spi = { &DDRB, PB5, PB4, PB3 };
+    struct pin_ref_t dcx = { &PORTC, PC0 };
+    struct pin_ref_t reset = { &PORTC, PC1 };
+    struct pin_ref_t csx = { &PORTC, PC2 };
+    struct lcd_driver_t driver = { &spi, dcx, reset, csx };
     
-    uint8_t msb, lsb;
+    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
+    DDRC = (1 << PC0) | (1 << PC1) | (1 << PC2);
+    
+    struct pin_ref_t tcs = { &PORTC, PC3 };
+    struct pin_ref_t tirq = { &PINC, PC4 };
+    struct touch_driver_t touch = { &spi, tcs, tirq };
+    touch_driver_init(&touch, 0);
+    DDRC |= (1 << PC3) | (1 << PC5);
+    */
+
+/*
+     uint8_t msb, lsb;
     uint16_t dac_val, div_val, mux_val;
     uint8_t os_val;
     
@@ -488,4 +477,4 @@ int main(void)
     while (1) {
         
     }
-}
+ */

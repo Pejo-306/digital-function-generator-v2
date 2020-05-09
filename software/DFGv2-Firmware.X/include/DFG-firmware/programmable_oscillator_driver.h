@@ -10,22 +10,19 @@
 
 #include <inttypes.h>
 
-#include "defs.h"
-#include "DFG-firmware/chips/DS1085.h"
-
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
-void osc_output_enable(struct pin_ref_t);
+void osc_output_enable(void);
 
-void osc_output_disable(struct pin_ref_t);
+void osc_output_disable(void);
 
-uint8_t osc_conf_mux_word(uint8_t, uint16_t);
+uint8_t osc_conf_mux_word(uint8_t address, uint16_t mux_word);
 
-uint8_t osc_conf_freq(uint8_t, uint16_t, uint8_t);
+uint8_t osc_conf_freq(uint8_t address, uint16_t dac_word, uint8_t offset_byte);
 
-uint8_t osc_conf_div(uint8_t, uint16_t);
+uint8_t osc_conf_div(uint8_t address, uint16_t div_word);
 
 uint8_t osc_read_range(uint8_t address, uint8_t *os);
 

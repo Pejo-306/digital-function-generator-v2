@@ -2,6 +2,21 @@
 
 #include <avr/io.h>
 
+#include "defs.h"
+
+struct pin_ref_t cmr1_pin =         { &PORTB, PB4 };
+struct pin_ref_t cmr2_pin =         { &PORTB, PB5 };
+struct pin_ref_t rw_pin =           { &PORTB, PB6 };    
+struct pin_ref_t cp_pin =           { &PORTB, PB7 };
+struct pin_ref_t dcx_pin =          { &PORTD, PD2 };
+struct pin_ref_t reset_pin =        { &PORTD, PD3 };
+struct pin_ref_t csx_pin =          { &PORTD, PD4 };
+struct pin_ref_t tcs_pin =          { &PORTD, PD5 };
+struct pin_ref_t tirq_pin =         { &PIND, PD6 };
+struct pin_ref_t pwrdwn_pin =       { &PORTF, PF0 };
+struct pin_ref_t ioex_reset_pin =   { &PORTF, PF1 };
+struct pin_ref_t oscoe_pin =        { &PORTF, PF2 };
+
 void init_mcu(void)
 { 
     /* configure all PORT A pins as inputs:

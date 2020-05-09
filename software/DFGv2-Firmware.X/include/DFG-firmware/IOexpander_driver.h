@@ -18,11 +18,11 @@
 extern "C" {
 #endif
 
-void ioex_reset(struct pin_ref_t);
+void ioex_reset(void);
 
-uint8_t ioex_set_iodir(uint8_t, uint8_t, fbool);
+uint8_t ioex_set_iodir(uint8_t address, uint8_t dir, fbool options);
 
-uint8_t ioex_write_gpio(uint8_t, uint8_t, fbool);
+uint8_t ioex_write_gpio(uint8_t address, uint8_t data, fbool options);
 
 #ifdef	__cplusplus
 }
