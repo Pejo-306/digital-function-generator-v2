@@ -8,6 +8,7 @@
 #include "lcd-driver/graphics.h"
 #include "user-interface/ui_helper.h"
 #include "user-interface/ui_button.h"
+#include "DFG-firmware/programmable_oscillator_driver.h"
 
 #define MAIN_MENU_BUTTONS_SIZE 3
 
@@ -184,6 +185,7 @@ static void _press_mm_start_button(struct ui_button_t *button, void *params_p)
 
     draw_string(params.driver, params.start_x, params.start_y, STR_ON, 
         params.string_color, params.bg_color, params.char_thickness, FBOOL0);
+    osc_output_enable();
 }
 
 static void _press_mm_stop_button(struct ui_button_t *button, void *params_p)
@@ -192,6 +194,7 @@ static void _press_mm_stop_button(struct ui_button_t *button, void *params_p)
 
     draw_string(params.driver, params.start_x, params.start_y, STR_OFF, 
         params.string_color, params.bg_color, params.char_thickness, FBOOL0);
+    osc_output_disable();
 }
 
 static void _press_mm_options_button(struct ui_button_t *button, void *params_p)

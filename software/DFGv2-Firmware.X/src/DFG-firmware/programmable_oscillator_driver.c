@@ -9,13 +9,18 @@
 #include "DFG-firmware/chips/DS1085.h"
 
 void osc_output_enable(void)
-{
+{    
+    DDRB &= ~_BV(PB7);
+    PORTB &= ~_BV(PB7);
     resetpinref(oscoe_pin);
 }
 
 void osc_output_disable(void)
 {
     setpinref(oscoe_pin);
+    _delay_ms(10);
+    DDRB |= _BV(PB7);
+    PORTB |= _BV(PB7);
 }
 
 uint8_t osc_conf_mux_word(uint8_t address, uint16_t mux_word)

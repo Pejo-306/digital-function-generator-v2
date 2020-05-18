@@ -22,7 +22,13 @@ void ioex_reset(void);
 
 uint8_t ioex_set_iodir(uint8_t address, uint8_t dir, fbool options);
 
+uint8_t ioex_set_gppu(uint8_t address, uint8_t gppu, fbool options);
+
 uint8_t ioex_write_gpio(uint8_t address, uint8_t data, fbool options);
+
+uint8_t ioex_read_gpio(uint8_t address, uint8_t *data, fbool options);
+
+uint8_t ioex_read_olat(uint8_t address, uint8_t *data, fbool options);
 
 #ifdef	__cplusplus
 }

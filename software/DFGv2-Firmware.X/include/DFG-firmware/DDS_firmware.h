@@ -40,11 +40,13 @@ void reset_address_counter(void);
 
 void increment_address_counter(void);
 
-uint8_t sram_write(uint16_t *data, size_t size);
+uint8_t sram_write(const uint16_t *data, size_t size, size_t step);
 
 uint8_t load_into_dac(void);
 
 uint8_t set_dc_offset(uint16_t wiper_value);
+
+void set_waveform(const uint16_t *wave, size_t wave_size, size_t resolution, size_t sram_size);
 
 #ifdef	__cplusplus
 }

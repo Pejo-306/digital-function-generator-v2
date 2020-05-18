@@ -27,6 +27,8 @@
 #include "DFG-firmware/IOexpander_driver.h"
 #include "DFG-firmware/programmable_oscillator_driver.h"
 
+#include "DFG-firmware/waveforms.h"
+
 int main(void)
 {       
     // initialize MCU
@@ -40,7 +42,7 @@ int main(void)
     osc_read_range(U8_TWI_ADDRESS, &os);
     osc_conf_mux_word(U8_TWI_ADDRESS, 0x2780);  // sets P0 and P1 to 8
     osc_output_disable();
-
+    
     // initialize offset potentiometer
     set_dc_offset(0x80);
     
@@ -58,7 +60,150 @@ int main(void)
     // power up the device
     power_up();
     
-    uint16_t data[1024] = {  // sine
+    reset_address_counter();
+    setpinref(cmr2_pin);  // disable counter 2
+    osc_conf_div(U8_TWI_ADDRESS, 8);
+    osc_conf_freq(U8_TWI_ADDRESS, 2, os - 2);
+    
+    uint16_t x, y;
+    enum menu_scene selected_menu_scene = NONE;
+    void (*draw_menu_p)(struct lcd_driver_t *);
+    void (*scan_menu_p)(struct lcd_driver_t *, uint16_t, uint16_t);
+    while (1) {
+        if (g_current_menu_scene != selected_menu_scene) {
+            switch (g_current_menu_scene) {
+            case MAIN_MENU:
+                draw_menu_p = &draw_main_menu;
+                scan_menu_p = &scan_main_menu;
+                break;
+            case OPTIONS_MENU:
+                draw_menu_p = &draw_options_menu;
+                scan_menu_p = &scan_options_menu;
+                break;
+            default:
+                break;
+            }
+            selected_menu_scene = g_current_menu_scene;
+            spi_set_speed(SPI_4MHZ);  // 4 MHz
+            (*draw_menu_p)(&driver);
+        }
+        
+        spi_set_speed(SPI_2MHZ);  // 2 MHz
+        if (touch_scan(&touch, &x, &y)) {
+            touch_get_screen_coordinates(&driver, &x, &y);
+            draw_pixel(&driver, x, y, 0xFFFF);
+        } else {
+            x = 0xFFFF;
+            y = 0xFFFF;
+        }
+        spi_set_speed(SPI_4MHZ);  // 4 MHz
+        (*scan_menu_p)(&driver, x, y);
+    }
+}
+
+
+ 
+    /*
+    uint16_t pixels[25] = {
+        0x0, 0x0, 0x0, 0x0, 0x0,
+        0x0, color2, 0x0, 0x0, 0x0,
+        color2, 0x0, color2, 0x0, color2,
+        0x0, 0x0, 0x0, color2, 0x0,
+        0x0, 0x0, 0x0, 0x0, 0x0
+    };
+    area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
+    */
+
+    // enable internal pull-up on ~SS
+    // PORTB |= (1 << PB0);
+     
+    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
+    // DDRD = (1 << PD2) | (1 << PD3) | (1 << PD4);
+
+// NOTE: for ATmega328p
+    // enable internal pull-up on ~SS
+    /*
+    PORTB = (1 << PB2);
+     
+    struct spi_interface_t spi = { &DDRB, PB5, PB4, PB3 };
+    struct pin_ref_t dcx = { &PORTC, PC0 };
+    struct pin_ref_t reset = { &PORTC, PC1 };
+    struct pin_ref_t csx = { &PORTC, PC2 };
+    struct lcd_driver_t driver = { &spi, dcx, reset, csx };
+    
+    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
+    DDRC = (1 << PC0) | (1 << PC1) | (1 << PC2);
+    
+    struct pin_ref_t tcs = { &PORTC, PC3 };
+    struct pin_ref_t tirq = { &PINC, PC4 };
+    struct touch_driver_t touch = { &spi, tcs, tirq };
+    touch_driver_init(&touch, 0);
+    DDRC |= (1 << PC3) | (1 << PC5);
+    */
+
+/*
+     uint8_t msb, lsb;
+    uint16_t dac_val, div_val, mux_val;
+    uint8_t os_val;
+    
+    twi_start(); // transmit START condition
+    twi_write_SLAW(U8_TWI_ADDRESS); // transmit SLA+W
+    twi_write8(DS1085_ACCESS_DAC); // transmit ACCESS RANGE command
+    twi_repeated_start();            // transmit REPEATED START condition
+    twi_write_SLAR(U8_TWI_ADDRESS);// transmit SLA+R
+    twi_read8(&msb, FBOOL0); // receive 8 MSBs of RANGE register
+    twi_read8(&lsb, 0);              // receive 8 LSBs of RANGE register
+    twi_stop();                                                 // transmit STOP condition                                            // retrieve OS value
+    dac_val = (msb << 2) | (lsb >> 6);
+    
+    twi_start(); // transmit START condition
+    twi_write_SLAW(U8_TWI_ADDRESS); // transmit SLA+W
+    twi_write8(DS1085_ACCESS_DIV); // transmit ACCESS RANGE command
+    twi_repeated_start();            // transmit REPEATED START condition
+    twi_write_SLAR(U8_TWI_ADDRESS);// transmit SLA+R
+    twi_read8(&msb, FBOOL0); // receive 8 MSBs of RANGE register
+    twi_read8(&lsb, 0);              // receive 8 LSBs of RANGE register
+    twi_stop();                                                 // transmit STOP condition                                            // retrieve OS value
+    div_val = (msb << 2) | (lsb >> 6);
+    
+    twi_start(); // transmit START condition
+    twi_write_SLAW(U8_TWI_ADDRESS); // transmit SLA+W
+    twi_write8(DS1085_ACCESS_OFFSET); // transmit ACCESS RANGE command
+    twi_repeated_start();            // transmit REPEATED START condition
+    twi_write_SLAR(U8_TWI_ADDRESS);// transmit SLA+R
+    twi_read8(&msb, 0); // receive 8 MSBs of RANGE 
+    twi_stop();                                                 // transmit STOP condition                                            // retrieve OS value
+    os_val = msb & 0x1F;
+    
+    twi_start(); // transmit START condition
+    twi_write_SLAW(U8_TWI_ADDRESS); // transmit SLA+W
+    twi_write8(DS1085_ACCESS_MUX); // transmit ACCESS RANGE command
+    twi_repeated_start();            // transmit REPEATED START condition
+    twi_write_SLAR(U8_TWI_ADDRESS);// transmit SLA+R
+    twi_read8(&msb, FBOOL0); // receive 8 MSBs of RANGE register
+    twi_read8(&lsb, 0);              // receive 8 LSBs of RANGE register
+    twi_stop();                                                 // transmit STOP condition                                            // retrieve OS value
+    mux_val = (msb << 8) | lsb;
+    
+    char buffer[30];
+    fill_rectangle(&driver, 0, 0, driver.res_x, driver.res_y, 0x0000);
+    itoa(dac_val, buffer, 10);
+    draw_string(&driver, 0, 0, buffer, 0xFFFF, 0x0000, 2, 0);
+    itoa(div_val, buffer, 10);
+    draw_string(&driver, 0, 20, buffer, 0xFFFF, 0x0000, 2, 0);
+    itoa(os_val, buffer, 10);
+    draw_string(&driver, 0, 40, buffer, 0xFFFF, 0x0000, 2, 0);
+    itoa(os, buffer, 10);
+    draw_string(&driver, 0, 60, buffer, 0xFFFF, 0x0000, 2, 0);
+        itoa(mux_val, buffer, 2);
+    draw_string(&driver, 0, 80, buffer, 0xFFFF, 0x0000, 2, 0);
+    while (1) {
+        
+    }
+ */
+
+/*
+ uint16_t data[1024] = {  // sine
 0x8000, 0x80c0, 0x8190, 0x8250, 0x8320, 0x83e0, 0x84b0, 0x8570, 
 0x8640, 0x8710, 0x87d0, 0x88a0, 0x8960, 0x8a30, 0x8af0, 0x8bc0, 
 0x8c80, 0x8d50, 0x8e10, 0x8ee0, 0x8fa0, 0x9070, 0x9130, 0x91f0, 
@@ -188,7 +333,10 @@ int main(void)
 0x7370, 0x7430, 0x7500, 0x75c0, 0x7690, 0x7750, 0x7820, 0x78e0, 
 0x79b0, 0x7a80, 0x7b40, 0x7c10, 0x7cd0, 0x7da0, 0x7e60, 0x7f30, 
     };
-    /*
+ 
+ */
+
+/*
     uint16_t data[1024] = {  // triangle
         0x80, 0x100, 0x180, 0x200, 0x280, 0x300, 0x380, 0x400,
         0x480, 0x500, 0x580, 0x600, 0x680, 0x700, 0x780, 0x800,
@@ -320,161 +468,12 @@ int main(void)
         0x380, 0x300, 0x280, 0x200, 0x180, 0x100, 0x80, 0x0, 
     };
      */
-    for (int i = 0; i < 4096 / 1024; ++i) {
-        set_address_counter(i * 1024);
-        sram_write(data, 1024);
-    }
-    load_into_dac();
-    
+
     /*
     uint16_t data[2] ={ 0x8000, 0xFFF0 };  // square 
     for (int i = 0; i < 4096 / 2; ++i) {
-        set_address_counter(i * 2, cp, cmr1, cmr2);
-        sram_write(data, 2, rw, pwrdwn, cp);
+        set_address_counter(i * 2);
+        sram_write(data, 2);
     }
     load_into_dac(rw, pwrdwn);
     */
-    reset_address_counter();
-    setpinref(cmr2_pin);  // disable counter 2
-    DDRB &= ~_BV(PB7);
-    PORTB &= ~_BV(PB7);
-    osc_conf_div(U8_TWI_ADDRESS, 8);
-    osc_conf_freq(U8_TWI_ADDRESS, 2, os - 2);
-    osc_output_enable();
-
-
- 
-    /*
-    uint16_t pixels[25] = {
-        0x0, 0x0, 0x0, 0x0, 0x0,
-        0x0, color2, 0x0, 0x0, 0x0,
-        color2, 0x0, color2, 0x0, color2,
-        0x0, 0x0, 0x0, color2, 0x0,
-        0x0, 0x0, 0x0, 0x0, 0x0
-    };
-    area_draw_figure(&driver, &area, 5, 5, 5, 5, pixels);
-    */
-    
-    uint16_t x, y;
-    enum menu_scene selected_menu_scene = NONE;
-    void (*draw_menu_p)(struct lcd_driver_t *);
-    void (*scan_menu_p)(struct lcd_driver_t *, uint16_t, uint16_t);
-    while (1) {
-        if (g_current_menu_scene != selected_menu_scene) {
-            switch (g_current_menu_scene) {
-            case MAIN_MENU:
-                draw_menu_p = &draw_main_menu;
-                scan_menu_p = &scan_main_menu;
-                break;
-            case OPTIONS_MENU:
-                draw_menu_p = &draw_options_menu;
-                scan_menu_p = &scan_options_menu;
-                break;
-            default:
-                break;
-            }
-            selected_menu_scene = g_current_menu_scene;
-            spi_set_speed(SPI_4MHZ);  // 4 MHz
-            (*draw_menu_p)(&driver);
-        }
-        
-        spi_set_speed(SPI_2MHZ);  // 2 MHz
-        if (touch_scan(&touch, &x, &y)) {
-            touch_get_screen_coordinates(&driver, &x, &y);
-            draw_pixel(&driver, x, y, 0xFFFF);
-        } else {
-            x = 0xFFFF;
-            y = 0xFFFF;
-        }
-        spi_set_speed(SPI_4MHZ);  // 4 MHz
-        (*scan_menu_p)(&driver, x, y);
-    }
-}
-
-    // enable internal pull-up on ~SS
-    // PORTB |= (1 << PB0);
-     
-    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
-    // DDRD = (1 << PD2) | (1 << PD3) | (1 << PD4);
-
-// NOTE: for ATmega328p
-    // enable internal pull-up on ~SS
-    /*
-    PORTB = (1 << PB2);
-     
-    struct spi_interface_t spi = { &DDRB, PB5, PB4, PB3 };
-    struct pin_ref_t dcx = { &PORTC, PC0 };
-    struct pin_ref_t reset = { &PORTC, PC1 };
-    struct pin_ref_t csx = { &PORTC, PC2 };
-    struct lcd_driver_t driver = { &spi, dcx, reset, csx };
-    
-    // Concfigure the LCD signal lines RESET, D/CX and CSX as outputs
-    DDRC = (1 << PC0) | (1 << PC1) | (1 << PC2);
-    
-    struct pin_ref_t tcs = { &PORTC, PC3 };
-    struct pin_ref_t tirq = { &PINC, PC4 };
-    struct touch_driver_t touch = { &spi, tcs, tirq };
-    touch_driver_init(&touch, 0);
-    DDRC |= (1 << PC3) | (1 << PC5);
-    */
-
-/*
-     uint8_t msb, lsb;
-    uint16_t dac_val, div_val, mux_val;
-    uint8_t os_val;
-    
-    twi_start(); // transmit START condition
-    twi_write_SLAW(U8_TWI_ADDRESS); // transmit SLA+W
-    twi_write8(DS1085_ACCESS_DAC); // transmit ACCESS RANGE command
-    twi_repeated_start();            // transmit REPEATED START condition
-    twi_write_SLAR(U8_TWI_ADDRESS);// transmit SLA+R
-    twi_read8(&msb, FBOOL0); // receive 8 MSBs of RANGE register
-    twi_read8(&lsb, 0);              // receive 8 LSBs of RANGE register
-    twi_stop();                                                 // transmit STOP condition                                            // retrieve OS value
-    dac_val = (msb << 2) | (lsb >> 6);
-    
-    twi_start(); // transmit START condition
-    twi_write_SLAW(U8_TWI_ADDRESS); // transmit SLA+W
-    twi_write8(DS1085_ACCESS_DIV); // transmit ACCESS RANGE command
-    twi_repeated_start();            // transmit REPEATED START condition
-    twi_write_SLAR(U8_TWI_ADDRESS);// transmit SLA+R
-    twi_read8(&msb, FBOOL0); // receive 8 MSBs of RANGE register
-    twi_read8(&lsb, 0);              // receive 8 LSBs of RANGE register
-    twi_stop();                                                 // transmit STOP condition                                            // retrieve OS value
-    div_val = (msb << 2) | (lsb >> 6);
-    
-    twi_start(); // transmit START condition
-    twi_write_SLAW(U8_TWI_ADDRESS); // transmit SLA+W
-    twi_write8(DS1085_ACCESS_OFFSET); // transmit ACCESS RANGE command
-    twi_repeated_start();            // transmit REPEATED START condition
-    twi_write_SLAR(U8_TWI_ADDRESS);// transmit SLA+R
-    twi_read8(&msb, 0); // receive 8 MSBs of RANGE 
-    twi_stop();                                                 // transmit STOP condition                                            // retrieve OS value
-    os_val = msb & 0x1F;
-    
-    twi_start(); // transmit START condition
-    twi_write_SLAW(U8_TWI_ADDRESS); // transmit SLA+W
-    twi_write8(DS1085_ACCESS_MUX); // transmit ACCESS RANGE command
-    twi_repeated_start();            // transmit REPEATED START condition
-    twi_write_SLAR(U8_TWI_ADDRESS);// transmit SLA+R
-    twi_read8(&msb, FBOOL0); // receive 8 MSBs of RANGE register
-    twi_read8(&lsb, 0);              // receive 8 LSBs of RANGE register
-    twi_stop();                                                 // transmit STOP condition                                            // retrieve OS value
-    mux_val = (msb << 8) | lsb;
-    
-    char buffer[30];
-    fill_rectangle(&driver, 0, 0, driver.res_x, driver.res_y, 0x0000);
-    itoa(dac_val, buffer, 10);
-    draw_string(&driver, 0, 0, buffer, 0xFFFF, 0x0000, 2, 0);
-    itoa(div_val, buffer, 10);
-    draw_string(&driver, 0, 20, buffer, 0xFFFF, 0x0000, 2, 0);
-    itoa(os_val, buffer, 10);
-    draw_string(&driver, 0, 40, buffer, 0xFFFF, 0x0000, 2, 0);
-    itoa(os, buffer, 10);
-    draw_string(&driver, 0, 60, buffer, 0xFFFF, 0x0000, 2, 0);
-        itoa(mux_val, buffer, 2);
-    draw_string(&driver, 0, 80, buffer, 0xFFFF, 0x0000, 2, 0);
-    while (1) {
-        
-    }
- */

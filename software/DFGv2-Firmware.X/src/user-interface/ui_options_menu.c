@@ -7,6 +7,9 @@
 #include "lcd-driver/graphics.h"
 #include "user-interface/ui_helper.h"
 #include "user-interface/ui_button.h"
+#include "DFG-firmware/waveforms.h"
+#include "DFG-firmware/DDS_firmware.h"
+#include "DFG-firmware/programmable_oscillator_driver.h"
 
 #define STR_10HZ    "10Hz"
 #define STR_1KHZ    "1kHz"
@@ -252,17 +255,23 @@ static void _draw_om_figure_button(struct ui_button_t *button, void *params_p)
 
 static void _press_om_sin_wave_button(struct ui_button_t *button, void *param_p)
 {
-    
+    osc_output_disable();
+    set_waveform(sine_wave, SINE_SIZE, 1024, 4096);
+    load_into_dac();
 }
 
 static void _press_om_tri_wave_button(struct ui_button_t *button, void *param_p)
 {
-    
+    osc_output_disable();
+    set_waveform(tri_wave, TRI_SIZE, 1024, 4096);
+    load_into_dac();
 }
 
 static void _press_om_sq_wave_button(struct ui_button_t *button, void *param_p)
 {
-    
+    osc_output_disable();
+    set_waveform(sq_wave, SQ_SIZE, 1024, 4096);
+    load_into_dac();
 }
 
 static void _press_om_10hz_button(struct ui_button_t *button, void *param_p)

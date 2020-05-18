@@ -3,6 +3,7 @@
 #include <stddef.h>
 #include <inttypes.h>
 #include <util/delay.h>
+#include <avr/pgmspace.h>
 
 #include "defs.h"
 #include "init_mcu.h"
@@ -61,22 +62,36 @@ void increment_address_counter(void)
 #endif
 }
 
-uint8_t sram_write(uint16_t *data, size_t size)
+uint8_t sram_write(const uint16_t *data, size_t size, size_t step)
 {
+    // NOTE: the data array should be saved in program space!
     uint8_t rc;
+    uint16_t val;
+    uint8_t lsbs, msbs;
+    uint16_t gpio;
     
-    // set all pins on both PORT A and PORT B as outputs
-    if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0x00, 0)) != 0) return rc;
-    if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0x00, FBOOL1)) != 0) return rc;
-    resetpinref(rw_pin);                                                // write to SRAM
-    for (size_t i = 0; i < size; ++i) {
-        power_up();                                                     // activate the chip
-        rc = ioex_write_gpio(U10_TWI_ADDRESS, data[i] & 0xFF, FBOOL1);  // write LSBs to GPIOB
-        if (rc != 0) return rc;
-        rc = ioex_write_gpio(U10_TWI_ADDRESS, data[i] >> 8, 0);         // write MSBs to GPIOA
-        if (rc != 0) return rc;
-        power_down();                                                   // deselect the chip
-        increment_address_counter();                                    // move to next memory cell
+    if ((rc = ioex_set_gppu(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;                    // enable internal pull-ups on PORT B
+    if ((rc = ioex_set_gppu(U10_TWI_ADDRESS, 0xFF, 0)) != 0) return rc;                         // enable internal pull-ups on PORT A
+    for (size_t i = 0; i < size; i += step) {
+        val = pgm_read_word(&data[i]);
+        do {
+            if ((rc = ioex_write_gpio(U10_TWI_ADDRESS, val & 0xFF, FBOOL1)) != 0) return rc;    // write LSBs to GPIOB
+            if ((rc = ioex_write_gpio(U10_TWI_ADDRESS, val >> 8, 0)) != 0) return rc;           // write MSBs to GPIOA
+            if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0x00, FBOOL1)) != 0) return rc;           // set all pins on PORT B as outputs
+            if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0x00, 0)) != 0) return rc;                // set all pins on PORT A as outputs
+            power_up();                                                                         // activate the chip
+            resetpinref(rw_pin);                                                                // write to SRAM
+            power_down();                                                                       // deselect the chip
+            setpinref(rw_pin);                                                                  // read from SRAM        
+            if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;           // set all pins on PORT B as inputs
+            if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, 0)) != 0) return rc;                // set all pins on PORT A as inputs
+            power_up();                                                                         // activate the chip
+            if ((rc = ioex_read_gpio(U10_TWI_ADDRESS, &lsbs, FBOOL1)) != 0) return rc;          // read the value of PORT B
+            if ((rc = ioex_read_gpio(U10_TWI_ADDRESS, &msbs, 0)) != 0) return rc;               // read the value of PORT A
+            power_down();                                                                       // deselect the chip
+            gpio = (msbs << 8) | lsbs;
+        } while (gpio != val);
+        increment_address_counter();                                                            // move to next memory cell
     }
     return 0;
 }
@@ -85,9 +100,10 @@ uint8_t load_into_dac(void)
 {
     uint8_t rc;
     
-    // set all pins on both PORT A and PORT B as inputs
-    if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, 0)) != 0) return rc;
-    if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;
+    if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, FBOOL1)) != 0) return rc;   // set all pins on PORT B as outputs
+    if ((rc = ioex_set_iodir(U10_TWI_ADDRESS, 0xFF, 0)) != 0) return rc;        // set all pins on PORT A as outputs
+    if ((rc = ioex_set_gppu(U10_TWI_ADDRESS, 0x00, FBOOL1)) != 0) return rc;    // disable internal pull-ups on PORT B
+    if ((rc = ioex_set_gppu(U10_TWI_ADDRESS, 0x00, 0)) != 0) return rc;         // disable internal pull-ups on PORT A
     setpinref(rw_pin);      // read from SRAM
     power_up();             // activate the chip
     return 0;
@@ -103,4 +119,15 @@ uint8_t set_dc_offset(uint16_t wiper_value)
             | ((wiper_value >> 8) & 0x01);                      // D8 bit
     pot_data[1] = wiper_value & 0xFF;                           // D7-D0 bits
     return twi_write(U15_TWI_ADDRESS, pot_data, 2);
+}
+
+// NOTE: this function should be deprecated
+void set_waveform(const uint16_t *wave, size_t wave_size, size_t resolution, size_t sram_size)
+{
+    size_t step = wave_size / resolution;
+    
+    for (size_t i = 0; i < sram_size / resolution; ++i) {
+        set_address_counter(i * resolution);
+        sram_write(wave, wave_size, step);
+    }
 }
