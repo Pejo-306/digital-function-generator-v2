@@ -51,6 +51,23 @@ void draw_figure(struct lcd_driver_t *driver, uint16_t start_x, uint16_t start_y
     lcd_memory_write(driver, pixels, width * height);
 }
 
+void draw_figure_pgm(struct lcd_driver_t *driver, uint16_t start_x, uint16_t start_y, 
+        uint16_t width, uint16_t height, const uint16_t *pixels)
+{
+    // TODO: error checking
+    lcd_column_address_set(driver, start_x, start_x + width - 1);
+    lcd_page_address_set(driver, start_y, start_y + height - 1);
+    lcd_memory_write_pgm(driver, pixels, width * height);
+}
+
+/*
+void draw_figure2_pgm(struct lcd_driver_t *driver, uint16_t start_x, uint16_t start_y, 
+        uint16_t width, uint16_t height, const uint16_t *colors, const uint8_t *pixels)
+{
+    
+}
+*/
+
 void draw_char(struct lcd_driver_t *driver, uint16_t start_x, uint16_t start_y, 
         unsigned char ch, uint16_t color, uint16_t bg_color, uint8_t thickness, fbool options)
 {

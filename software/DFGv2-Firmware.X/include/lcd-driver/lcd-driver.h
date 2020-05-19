@@ -121,6 +121,8 @@ signed short lcd_page_address_set(struct lcd_driver_t *, uint16_t, uint16_t);
 
 void lcd_memory_write(struct lcd_driver_t *, uint16_t *, uint32_t);
 
+void lcd_memory_write_pgm(struct lcd_driver_t *, const uint16_t *, uint32_t);
+
 void lcd_memory_write_optimized(struct lcd_driver_t *, uint16_t, uint32_t);
 
 // NOTE: Color Set (2Dh) is used in 16-bit parallel interface

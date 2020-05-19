@@ -1,5 +1,6 @@
 #include "lcd-driver/lcd-driver.h"
 
+#include <avr/pgmspace.h>
 #include <util/delay.h>
 #include <inttypes.h>
 
@@ -231,6 +232,22 @@ void lcd_memory_write(struct lcd_driver_t *driver, uint16_t *data, uint32_t size
     for (uint32_t i = 0; i < size; ++i) {
         spi_transfer(data[i] >> 8);
         spi_transfer(data[i] & 0xFF);
+    }
+    _csx_high(driver);  // deselect the device
+}
+
+void lcd_memory_write_pgm(struct lcd_driver_t *driver, const uint16_t *data, uint32_t size)
+{
+    uint16_t val;
+    
+    _dcx_command(driver);  // transmit a command
+    _csx_low(driver);  // select the device
+    spi_transfer(CMD_RAMWR);  // transmit the command
+    _dcx_data(driver);  // transmit data
+    for (uint32_t i = 0; i < size; ++i) {
+        val = pgm_read_word(&data[i]);
+        spi_transfer(val >> 8);
+        spi_transfer(val & 0xFF);
     }
     _csx_high(driver);  // deselect the device
 }
