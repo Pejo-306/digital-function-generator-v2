@@ -4,11 +4,13 @@
 #include <inttypes.h>
 
 #include "defs.h"
+#include "hardcode.h"
 #include "lcd-driver/lcd-driver.h"
 #include "lcd-driver/graphics.h"
 #include "user-interface/ui_helper.h"
 #include "user-interface/ui_button.h"
 #include "DFG-firmware/programmable_oscillator_driver.h"
+#include "DFG-firmware/DDS_firmware.h"
 
 #define MAIN_MENU_BUTTONS_SIZE 3
 
@@ -182,7 +184,18 @@ static void _draw_mm_button(struct ui_button_t *button, void *params_p)
 static void _press_mm_start_button(struct ui_button_t *button, void *params_p)
 {
     struct _mm_start_button_press_params_t params = *((struct _mm_start_button_press_params_t *)params_p);
-
+    
+    if (g_wave_changed & FBOOL0) {
+        uint8_t os;
+        
+        set_waveform(g_wave_data, g_wave_size, g_values[g_freq_setting][0], 4096);
+        osc_read_range(U8_TWI_ADDRESS, &os);
+        osc_conf_mux_word(U8_TWI_ADDRESS, g_values[g_freq_setting][1]);
+        osc_conf_div(U8_TWI_ADDRESS, g_values[g_freq_setting][2]);
+        osc_conf_freq(U8_TWI_ADDRESS, g_values[g_freq_setting][4], os + g_values[g_freq_setting][3]);
+        load_into_dac();
+        g_wave_changed = 0;
+    }
     draw_string(params.driver, params.start_x, params.start_y, STR_ON, 
         params.string_color, params.bg_color, params.char_thickness, FBOOL0);
     osc_output_enable();

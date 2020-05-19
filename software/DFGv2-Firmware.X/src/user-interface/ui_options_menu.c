@@ -10,6 +10,7 @@
 #include "DFG-firmware/waveforms.h"
 #include "DFG-firmware/DDS_firmware.h"
 #include "DFG-firmware/programmable_oscillator_driver.h"
+#include "hardcode.h"
 
 #define STR_10HZ    "10Hz"
 #define STR_1KHZ    "1kHz"
@@ -256,37 +257,46 @@ static void _draw_om_figure_button(struct ui_button_t *button, void *params_p)
 static void _press_om_sin_wave_button(struct ui_button_t *button, void *param_p)
 {
     osc_output_disable();
-    set_waveform(sine_wave, SINE_SIZE, 1024, 4096);
-    load_into_dac();
+    g_wave_data = sine_wave;
+    g_wave_size = SINE_SIZE;
+    g_wave_changed = FBOOL0;
 }
 
 static void _press_om_tri_wave_button(struct ui_button_t *button, void *param_p)
 {
     osc_output_disable();
-    set_waveform(tri_wave, TRI_SIZE, 1024, 4096);
-    load_into_dac();
+    g_wave_data = tri_wave;
+    g_wave_size = TRI_SIZE;
+    g_wave_changed = FBOOL0;
 }
 
 static void _press_om_sq_wave_button(struct ui_button_t *button, void *param_p)
 {
     osc_output_disable();
-    set_waveform(sq_wave, SQ_SIZE, 1024, 4096);
-    load_into_dac();
+    g_wave_data = sq_wave;
+    g_wave_size = SQ_SIZE;
+    g_wave_changed = FBOOL0;
 }
 
 static void _press_om_10hz_button(struct ui_button_t *button, void *param_p)
 {
-    
+    osc_output_disable();
+    g_freq_setting = FREQ_SETTING_10HZ;
+    g_wave_changed = FBOOL0;
 }
 
 static void _press_om_1khz_button(struct ui_button_t *button, void *param_p)
 {
-    
+    osc_output_disable();
+    g_freq_setting = FREQ_SETTING_1KHZ;
+    g_wave_changed = FBOOL0;
 }
 
 static void _press_om_100khz_button(struct ui_button_t *button, void *param_p)
-{
-    
+{    
+    osc_output_disable();
+    g_freq_setting = FREQ_SETTING_100KHZ;
+    g_wave_changed = FBOOL0;
 }
 
 static void _press_om_1v_button(struct ui_button_t *button, void *param_p)

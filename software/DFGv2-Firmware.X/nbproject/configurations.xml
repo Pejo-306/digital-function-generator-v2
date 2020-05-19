@@ -27,6 +27,7 @@
       <itemPath>include/DFG-firmware/programmable_oscillator_driver.h</itemPath>
       <itemPath>include/DFG-firmware/chips/MCP455X.h</itemPath>
       <itemPath>include/DFG-firmware/waveforms.h</itemPath>
+      <itemPath>include/hardcode.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -49,6 +50,7 @@
       <itemPath>src/DFG-firmware/DDS_firmware.c</itemPath>
       <itemPath>src/DFG-firmware/IOexpander_driver.c</itemPath>
       <itemPath>src/DFG-firmware/programmable_oscillator_driver.c</itemPath>
+      <itemPath>src/hardcode.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
