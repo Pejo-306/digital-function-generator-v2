@@ -15,9 +15,9 @@
 #define STR_10HZ    "10Hz"
 #define STR_1KHZ    "1kHz"
 #define STR_100KHZ  "100kHz"
-#define STR_1V      "1V"
-#define STR_2V      "2V"
-#define STR_3V      "3V"
+#define STR_5V      "5V"
+#define STR_N2V     "-2V"
+#define STR_0V      "0V"
 #define STR_BACK    "BACK"
 
 #define OPTIONS_MENU_BUTTONS_SIZE 10
@@ -48,11 +48,11 @@ static void _press_om_1khz_button(struct ui_button_t *, void *);
 
 static void _press_om_100khz_button(struct ui_button_t *, void *);
 
-static void _press_om_1v_button(struct ui_button_t *, void *);
+static void _press_om_5v_button(struct ui_button_t *, void *);
 
-static void _press_om_2v_button(struct ui_button_t *, void *);
+static void _press_om_n2v_button(struct ui_button_t *, void *);
 
-static void _press_om_3v_button(struct ui_button_t *, void *);
+static void _press_om_0v_button(struct ui_button_t *, void *);
 
 static void _press_om_back_button(struct ui_button_t *, void *);
 
@@ -97,19 +97,19 @@ static struct ui_button_t _options_menu_buttons[OPTIONS_MENU_BUTTONS_SIZE] = {
         0x001E, 0x0073, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
         &_draw_om_text_button,
-        &_press_om_1v_button
+        &_press_om_5v_button
     },  // 1V button
     { 
         0x0082, 0x0073, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
         &_draw_om_text_button,
-        &_press_om_2v_button
+        &_press_om_n2v_button
     },  // 2V button
     { 
         0x00E6, 0x0073, 0x003C, 0x0028, NOT_ACTIVE, NOT_ACTIVE,
         &_draw_om_text_button,
         &_draw_om_text_button,
-        &_press_om_3v_button
+        &_press_om_0v_button
     },  // 3V button
     { 
         0x0064, 0x00A5, 0x0078, 0x003C, NOT_ACTIVE, NOT_ACTIVE,
@@ -150,13 +150,13 @@ void draw_options_menu(struct lcd_driver_t *driver)
     draw_params.str = STR_100KHZ;
     _options_menu_buttons[5].draw(&_options_menu_buttons[5], &draw_params);
     // 1V button
-    draw_params.str = STR_1V;
+    draw_params.str = STR_5V;
     _options_menu_buttons[6].draw(&_options_menu_buttons[6], &draw_params);
     // 2V button
-    draw_params.str = STR_2V;
+    draw_params.str = STR_N2V;
     _options_menu_buttons[7].draw(&_options_menu_buttons[7], &draw_params);
     // 3V button
-    draw_params.str = STR_3V;
+    draw_params.str = STR_0V;
     _options_menu_buttons[8].draw(&_options_menu_buttons[8], &draw_params);
     // BACK button
     draw_params.str = STR_BACK;
@@ -171,7 +171,7 @@ void scan_options_menu(struct lcd_driver_t *driver, uint16_t touched_x, uint16_t
     static const char *_button_strings[OPTIONS_MENU_BUTTONS_SIZE] = { 
         NULL, NULL, NULL,
         STR_10HZ, STR_1KHZ, STR_100KHZ,
-        STR_1V, STR_2V, STR_3V,
+        STR_5V, STR_N2V, STR_0V,
         STR_BACK
     };
     static const uint8_t _button_char_thicknesses[OPTIONS_MENU_BUTTONS_SIZE] = {
@@ -299,19 +299,22 @@ static void _press_om_100khz_button(struct ui_button_t *button, void *param_p)
     g_wave_changed = FBOOL0;
 }
 
-static void _press_om_1v_button(struct ui_button_t *button, void *param_p)
+static void _press_om_5v_button(struct ui_button_t *button, void *param_p)
 {
-    
+    osc_output_disable();
+    set_dc_offset(0x100);
 }
 
-static void _press_om_2v_button(struct ui_button_t *button, void *param_p)
+static void _press_om_n2v_button(struct ui_button_t *button, void *param_p)
 {
-    
+    osc_output_disable();
+    set_dc_offset(0x4D);
 }
 
-static void _press_om_3v_button(struct ui_button_t *button, void *param_p)
+static void _press_om_0v_button(struct ui_button_t *button, void *param_p)
 {
-    
+    osc_output_disable();
+    set_dc_offset(0x80);
 }
 
 static void _press_om_back_button(struct ui_button_t *button, void *param_p)
